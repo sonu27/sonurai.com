@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import moment from 'moment'
 import Layout from '../../components/Layout'
 import Api from '../../libs/Api'
@@ -6,6 +7,12 @@ const apiClient = new Api()
 
 const Wallpaper = props => (
   <Layout>
+    <Head>
+      <title key="title">{props.wallpaper.desc} - Bing Wallpapers - Sonu Rai</title>
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={`https://images.sonurai.com/${props.wallpaper.name}_th.jpg`} />
+      <meta property="og:image" content={`https://images.sonurai.com/${props.wallpaper.name}_th.jpg`} />
+    </Head>
     <h1 className="title px-3 px-lg-0">{props.wallpaper.desc}</h1>
     <a href={`https://images.sonurai.com/${props.wallpaper.name}.jpg`}><img className="img-fluid" src={`https://images.sonurai.com/${props.wallpaper.name}.jpg`} alt={props.wallpaper.desc}/></a>
     <p className="px-3 px-lg-0">{props.wallpaper.copyright} - {moment(props.wallpaper.date, 'YYYYMMDD').format('MMMM Do YYYY')}</p>
