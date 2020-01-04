@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Link from 'next/link'
 import moment from 'moment'
 import Layout from '../../../components/Layout'
@@ -7,6 +8,9 @@ const apiClient = new Api()
 
 const Wallpapers = props => (
   <Layout>
+    <Head>
+      <title key="title">Bing Wallpapers - Page {props.page} - Sonu Rai</title>
+    </Head>
     <h1 className="title px-3 px-lg-0">Bing Wallpapers</h1>
     {props.wallpapers.map((wallpaper) => (
       <div className="wallpaper">
@@ -24,8 +28,11 @@ Wallpapers.getInitialProps = async function(context) {
   const { page } = context.query
 
   try {
-    const data = await apiClient.getWallpapers(1)
-    return { wallpapers: data.wallpapers }
+    const data = await apiClient.getWallpapers(page)
+    return {
+      page: page,
+      wallpapers: data.wallpapers
+    }
   } catch (err) {
     console.log(err)
   }
