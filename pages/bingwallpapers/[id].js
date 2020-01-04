@@ -10,7 +10,8 @@ const Wallpaper = props => (
     <Head>
       <title key="title">{props.wallpaper.desc} - Bing Wallpapers - Sonu Rai</title>
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content={`https://images.sonurai.com/${props.wallpaper.name}_th.jpg`} />
+      <meta property="og:title" content={`${props.wallpaper.desc} - Bing Wallpapers - Sonu Rai}`} />
+      <meta property="og:description" content={`${props.wallpaper.desc} ${props.wallpaper.copyright}`} />
       <meta property="og:image" content={`https://images.sonurai.com/${props.wallpaper.name}_th.jpg`} />
     </Head>
     <h1 className="title px-3 px-lg-0">{props.wallpaper.desc}</h1>
