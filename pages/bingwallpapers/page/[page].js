@@ -1,10 +1,16 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Router from 'next/router'
 import moment from 'moment'
 import Layout from '../../../components/Layout'
+import Pagination from '../../../components/Pagination'
 import Api from '../../../libs/Api'
 
 const apiClient = new Api()
+
+const handlePageClick = (page) => {
+  Router.push(`/bingwallpapers/page/${page}`)
+}
 
 const Wallpapers = props => (
   <Layout>
@@ -21,6 +27,7 @@ const Wallpapers = props => (
         <div className="px-3 px-lg-0">{moment(wallpaper.date, 'YYYYMMDD').format('MMMM Do YYYY')}</div>
       </div>
     ))}
+    <Pagination pagination={props.pagination} handlePageChange={handlePageClick} />
   </Layout>
 )
 
@@ -31,7 +38,8 @@ Wallpapers.getInitialProps = async function(context) {
     const data = await apiClient.getWallpapers(page)
     return {
       page: page,
-      wallpapers: data.wallpapers
+      wallpapers: data.wallpapers,
+      pagination: data.pagination,
     }
   } catch (err) {
     console.log(err)
