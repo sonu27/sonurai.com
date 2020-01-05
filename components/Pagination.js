@@ -1,22 +1,13 @@
-import React from 'react'
+import Link from 'next/link'
 
+const url = '/bingwallpapers/page/[id]'
 const getUrl = (page) => `/bingwallpapers/page/${page}`
 
-const Pagination = ({pagination, handlePageChange}) => (
+const Pagination = ({ pagination }) => (
   <ul className="col pagination">
-    <li className="page-item"><a className="page-link" href={getUrl(pagination.prev)} onClick={(e) => {
-      e.preventDefault()
-      e.target.blur()
-      handlePageChange(pagination.prev)
-    }}>{pagination.prev}</a></li>
-  <li className="page-item active"><a className="page-link" href={getUrl(pagination.current)} onClick={(e) => {
-      e.preventDefault()
-    }}>{pagination.current}</a></li>
-  <li className="page-item"><a className="page-link" href={getUrl(pagination.next)} onClick={(e) => {
-      e.preventDefault()
-      e.target.blur()
-      handlePageChange(pagination.next)
-    }}>{pagination.next}</a></li>
+    <li className="page-item"><Link href={url} as={getUrl(pagination.prev)}><a className="page-link">{pagination.prev}</a></Link></li>
+    <li className="page-item active"><Link href={url} as={getUrl(pagination.current)}><a className="page-link">{pagination.current}</a></Link></li>
+    <li className="page-item"><Link href={url} as={getUrl(pagination.next)}><a className="page-link">{pagination.next}</a></Link></li>
   </ul>
 )
 
