@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-test",
+  "name": "sonurai_com",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,10 +9,9 @@
     "start": "next start"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Amarjeet Singh Rai",
+  "license": "MIT",
   "dependencies": {
-    "@zeit/next-css": "^1.0.1",
     "algoliasearch": "^3.35.1",
     "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",
