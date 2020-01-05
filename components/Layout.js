@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Header from './Header'
 
-const GA_TRACKING_ID = 'UA-83506-8'
-
 const Footer = props => (
   <footer className="container-lg px-0">
     <div className="px-3 px-lg-0">&copy; {new Date().getFullYear()} Amarjeet Rai</div>
@@ -12,12 +10,6 @@ const Footer = props => (
 const Layout = props => (
   <div>
     <Head>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag('js', new Date());gtag('config', '${GA_TRACKING_ID}');`,
-        }}
-      />
       <title key="title">Sonu Rai</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
