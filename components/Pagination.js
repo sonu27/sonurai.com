@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const url = '/bingwallpapers/page/[id]'
+const url = '/bingwallpapers/page/[page]'
 const getUrl = (page) => `/bingwallpapers/page/${page}`
 
 const Pagination = ({ pagination }) => (
