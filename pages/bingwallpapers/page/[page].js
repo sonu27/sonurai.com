@@ -34,7 +34,20 @@ const Wallpapers = ({ page, wallpapers, pagination }) => (
 Wallpapers.getInitialProps = async function({ query, res }) {
   try {
     const { page } = query
+    if (page < 1) {
+      res.statusCode = 404
+      res.end('Not found')
+      return
+    }
+
     const data = await apiClient.getWallpapers(page)
+
+    if (data.wallpapers.length === 0) {
+      res.statusCode = 404
+      res.end('Not found')
+      return
+    }
+
     return {
       page: page,
       wallpapers: data.wallpapers,
