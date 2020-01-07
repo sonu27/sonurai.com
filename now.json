@@ -1,0 +1,8 @@
+{
+  "env": {
+    "FIRESTORE_SA": "@firestore_sa"
+  },
+  "github": {
+    "silent": true
+  }
+}
