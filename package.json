@@ -12,7 +12,6 @@
   "author": "Amarjeet Singh Rai",
   "license": "MIT",
   "dependencies": {
-    "algoliasearch": "^3.35.1",
     "isomorphic-unfetch": "^3.0.0",
     "moment": "^2.24.0",
     "next": "^9.1.7",

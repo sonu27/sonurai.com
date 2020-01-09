@@ -1,37 +1,6 @@
-import algoliasearch from 'algoliasearch'
+import fetch from 'isomorphic-unfetch'
 
-const client = algoliasearch('QAQQSPXMWF', '9d20f264afd11c7c1507a7ab36225b59')
-const index = client.initIndex('prod_wallpapers')
-
-const attributesToRetrieve = [
-  'description',
-  'copyright',
-  'date',
-  'name',
-  'oldId',
-];
-
-async function getWallpapers(page) {
-  return index.search(
-    {
-      query: '',
-      attributesToRetrieve: attributesToRetrieve,
-      hitsPerPage: 10,
-      page: page - 1,
-    }
-  )
-}
-
-async function getWallpaper(id) {
-  return index.search(
-    {
-      query: '',
-      numericFilters: [`oldId=${id}`],
-      attributesToRetrieve: attributesToRetrieve,
-    }
-  )
-  // return index.getObject(id, attributesToRetrieve)
-}
+const apiUrl = process.env.API_URL
 
 function toWallpaper(v) {
   return {
@@ -43,14 +12,22 @@ function toWallpaper(v) {
   }
 }
 
-function hitsToWallpapers(hits) {
-  return hits.map(toWallpaper)
+function apiToWallpaper(v) {
+  return {
+    id: v.id,
+    title: v.title,
+    copyright: v.copyright,
+    date: v.date,
+    filename: v.filename,
+  }
 }
 
 export default class Api {
   async getWallpapers(page) {
-    const res = await getWallpapers(page)
-    const wallpapers = hitsToWallpapers(res.hits)
+    const offset = (page * 10) - 10
+    const res = await fetch(`${apiUrl}/wallpapers?offset=${offset}`)
+    const json = await res.json()
+    const wallpapers = json.data.map(apiToWallpaper)
 
     return {
       pagination: {
@@ -63,10 +40,11 @@ export default class Api {
   }
 
   async getWallpaper(id) {
-    const res = await getWallpaper(id)
+    const res = await fetch(`${apiUrl}/wallpapers/${id}`)
+    const json = await res.json()
 
     return {
-      wallpaper: hitsToWallpapers(res.hits)[0],
+      wallpaper: apiToWallpaper(json),
     }
   }
 }

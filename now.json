@@ -1,6 +1,6 @@
 {
   "env": {
-    "FIRESTORE_SA": "@firestore_sa"
+    "API_URL": "https://api.sonurai.com"
   },
   "github": {
     "silent": true
