@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Router from 'next/router'
 import moment from 'moment'
 import Layout from '../../components/Layout'
 import Api from '../../libs/Api'
@@ -34,6 +35,17 @@ Wallpaper.getInitialProps = async function({ query, res }) {
       res.statusCode = 404
       res.end('Not found')
       return
+    }
+
+    if (!isNaN(Number(id))) {
+      if (res) {
+        res.writeHead(301, {
+          Location: `/bingwallpapers/${data.wallpaper.id}`
+        })
+        res.end()
+      } else {
+        Router.push(`/bingwallpapers/${data.wallpaper.id}`)
+      }
     }
 
     return { wallpaper: data.wallpaper }
