@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import moment from 'moment'
@@ -7,7 +8,11 @@ import Api from '../../libs/Api'
 const apiClient = new Api()
 
 const Wallpaper = ({ wallpaper }) => {
-  const { filename, title, copyright, date } = wallpaper
+  const { filename, title, copyright, date, labelAnnotations } = wallpaper
+  const la = labelAnnotations.map((l) => (
+    <React.Fragment key={l.mid}><span className="badge badge-secondary">{l.description}</span> </React.Fragment>
+  ))
+
   return (
     <Layout>
       <Head>
@@ -22,6 +27,7 @@ const Wallpaper = ({ wallpaper }) => {
         <img className="img-fluid" src={`https://images.sonurai.com/${filename}.jpg`} alt={title}/>
       </a>
       <p className="px-3 px-lg-0">{copyright} - {moment(date, 'YYYYMMDD').format('MMMM Do YYYY')}</p>
+      <p className="px-3 px-lg-0">{la}</p>
     </Layout>
   )
 }
