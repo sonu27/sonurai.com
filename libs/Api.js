@@ -42,6 +42,10 @@ export default class Api {
 
   async getWallpaper(id) {
     const res = await fetch(`${apiUrl}/wallpapers/${id}`)
+    if (res.status === 404) {
+      return { wallpaper: null }
+    }
+
     const json = await res.json()
 
     return {
