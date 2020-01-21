@@ -2,10 +2,20 @@ import Head from 'next/head'
 import Link from 'next/link'
 import moment from 'moment'
 import Layout from '../../../components/Layout'
-import Pagination from '../../../components/Pagination'
 import Api from '../../../libs/Api'
 
 const apiClient = new Api()
+
+const url = '/bingwallpapers/page/[...p]'
+const getUrl = (page) => `/bingwallpapers/page/${page}`
+const getUrl2 = (p) => `/bingwallpapers/page/${p.page}/${p.startAfterDate}/${p.startAfterID}`
+
+const Pagination = ({ pagination }) => (
+  <ul className="col pagination">
+    <li className={pagination.prev.page < 1 ? "page-item disabled" : "page-item"}><Link href={url} as={getUrl(pagination.prev.page)}><a className="page-link">Prev</a></Link></li>
+    <li className="page-item"><Link href={url} as={getUrl2(pagination.next)}><a className="page-link">Next</a></Link></li>
+  </ul>
+)
 
 const Wallpapers = ({ page, wallpapers, pagination }) => (
   <Layout>
@@ -28,14 +38,16 @@ const Wallpapers = ({ page, wallpapers, pagination }) => (
 
 Wallpapers.getInitialProps = async function({ query, res }) {
   try {
-    const { page } = query
+    const { p } = query
+    const page = p[0]
+
     if (page < 1) {
       res.statusCode = 404
       res.end('Not found')
       return
     }
 
-    const data = await apiClient.getWallpapers(page)
+    const data = await apiClient.getWallpapers(page, p[1], p[2])
 
     if (data.wallpapers.length === 0) {
       res.statusCode = 404

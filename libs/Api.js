@@ -24,17 +24,30 @@ function apiToWallpaper(v) {
 }
 
 export default class Api {
-  async getWallpapers(page) {
+  async getWallpapers(page, startAfterDate, startAfterID) {
     const offset = (page * 10) - 10
-    const res = await fetch(`${apiUrl}/wallpapers?offset=${offset}`)
+    let url = `${apiUrl}/wallpapers?offset=${offset}`
+    if (startAfterDate && startAfterID) {
+      url = `${apiUrl}/wallpapers?startAfterDate=${startAfterDate}&startAfterID=${startAfterID}`
+    }
+    const res = await fetch(url)
     const json = await res.json()
     const wallpapers = json.data.map(apiToWallpaper)
 
+    // const first = wallpapers[0]
+    const last = wallpapers[wallpapers.length - 1]
     return {
       pagination: {
-        prev: parseInt(page) - 1,
-        current: page,
-        next: parseInt(page) + 1,
+        prev: {
+          page: parseInt(page) - 1,
+          // startAfterDate: first.date,
+          // startAfterID: first.id,
+        },
+        next: {
+          page: parseInt(page) + 1,
+          startAfterDate: last.date,
+          startAfterID: last.id,
+        },
       },
       wallpapers: wallpapers
     }
