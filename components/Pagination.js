@@ -5,9 +5,8 @@ const getUrl = (page) => `/bingwallpapers/page/${page}`
 
 const Pagination = ({ pagination }) => (
   <ul className="col pagination">
-    <li className="page-item"><Link href={url} as={getUrl(pagination.prev)}><a className="page-link">{pagination.prev}</a></Link></li>
-    <li className="page-item active"><Link href={url} as={getUrl(pagination.current)}><a className="page-link">{pagination.current}</a></Link></li>
-    <li className="page-item"><Link href={url} as={getUrl(pagination.next)}><a className="page-link">{pagination.next}</a></Link></li>
+    <li className={pagination.prev < 1 ? "page-item disabled" : "page-item"}><Link href={url} as={getUrl(pagination.prev)}><a className="page-link">Prev</a></Link></li>
+    <li className="page-item"><Link href={url} as={getUrl(pagination.next)}><a className="page-link">Next</a></Link></li>
   </ul>
 )
 
