@@ -3,7 +3,7 @@ import Header from './Header'
 
 const Footer = props => (
   <footer className="container-lg px-0">
-    <div className="px-3 px-lg-0">&copy; {new Date().getFullYear()} Amarjeet Rai</div>
+    <div className="px-3 px-lg-0">&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</div>
   </footer>
 )
 
