@@ -2,16 +2,6 @@ import fetch from 'isomorphic-unfetch'
 
 const apiUrl = process.env.API_URL
 
-function toWallpaper(v) {
-  return {
-    id: v.oldId,
-    name: v.name,
-    desc: v.description,
-    copyright: v.copyright,
-    date: v.date,
-  }
-}
-
 function apiToWallpaper(v) {
   return {
     id: v.id,
@@ -24,27 +14,37 @@ function apiToWallpaper(v) {
 }
 
 export default class Api {
-  async getWallpapers(page, startAfterDate, startAfterID) {
-    const offset = (page * 10) - 10
-    let url = `${apiUrl}/wallpapers?offset=${offset}`
+  async getWallpapers(startAfterDate, startAfterID, prev) {
+    let url = `${apiUrl}/wallpapers`
+
     if (startAfterDate && startAfterID) {
-      url = `${apiUrl}/wallpapers?startAfterDate=${startAfterDate}&startAfterID=${startAfterID}`
+      url = `${url}?startAfterDate=${startAfterDate}&startAfterID=${startAfterID}`
+
+      if (prev) {
+        url = `${url}&prev=1`
+      }
     }
+
     const res = await fetch(url)
     const json = await res.json()
+
+    if (json.data === null) {
+      return {
+        wallpapers: []
+      }
+    }
+
     const wallpapers = json.data.map(apiToWallpaper)
 
-    // const first = wallpapers[0]
+    const first = wallpapers[0]
     const last = wallpapers[wallpapers.length - 1]
     return {
       pagination: {
         prev: {
-          page: parseInt(page) - 1,
-          // startAfterDate: first.date,
-          // startAfterID: first.id,
+          startAfterDate: first.date,
+          startAfterID: first.id,
         },
         next: {
-          page: parseInt(page) + 1,
           startAfterDate: last.date,
           startAfterID: last.id,
         },
