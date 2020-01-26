@@ -7,13 +7,13 @@ import Api from '../../../libs/Api'
 const apiClient = new Api()
 
 const url = '/bingwallpapers/page/[...p]'
-const getUrl = (page) => `/bingwallpapers/page/${page}`
-const getUrl2 = (p) => `/bingwallpapers/page/${p.page}/${p.startAfterDate}/${p.startAfterID}`
+const getUrlPrev = (p) => `/bingwallpapers/page/prev/${p.startAfterDate}/${p.startAfterID}`
+const getUrlNext = (p) => `/bingwallpapers/page/next/${p.startAfterDate}/${p.startAfterID}`
 
 const Pagination = ({ pagination }) => (
   <ul className="col pagination">
-    <li className={pagination.prev.page < 1 ? "page-item disabled" : "page-item"}><Link href={url} as={getUrl(pagination.prev.page)}><a className="page-link">Prev</a></Link></li>
-    <li className="page-item"><Link href={url} as={getUrl2(pagination.next)}><a className="page-link">Next</a></Link></li>
+    <li className="page-item"><Link href={url} as={getUrlPrev(pagination.prev)}><a className="page-link">Prev</a></Link></li>
+    <li className="page-item"><Link href={url} as={getUrlNext(pagination.next)}><a className="page-link">Next</a></Link></li>
   </ul>
 )
 
@@ -40,18 +40,28 @@ Wallpapers.getInitialProps = async function({ query, res }) {
   try {
     const { p } = query
     const page = p[0]
+    const startAfterDate = p[1]
+    const startAfterID = p[2]
+    const prev = (page === 'prev')
 
-    if (page < 1) {
-      res.statusCode = 404
-      res.end('Not found')
-      return
+    if (page !== '1' && (!startAfterDate || !startAfterID)) {
+      if (res) {
+        res.writeHead(302, {
+          Location: '/bingwallpapers/page/1'
+        })
+        res.end()
+      } else {
+        Router.push('/bingwallpapers/page/1')
+      }
     }
 
-    const data = await apiClient.getWallpapers(page, p[1], p[2])
+    const data = await apiClient.getWallpapers(startAfterDate, startAfterID, prev)
 
     if (data.wallpapers.length === 0) {
-      res.statusCode = 404
-      res.end('Not found')
+      if (res) {
+        res.statusCode = 404
+        res.end('Not found')
+      }
       return
     }
 
