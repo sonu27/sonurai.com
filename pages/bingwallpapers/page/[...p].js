@@ -22,10 +22,10 @@ const Wallpapers = ({ page, wallpapers, pagination }) => (
     <Head>
       <title key="title">Bing Wallpapers - Page {page} - Sonu Rai</title>
     </Head>
-    <h1 className="title px-3 px-lg-0">Bing Wallpapers</h1>
+    <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
     {wallpapers.map(({ id, title, date, filename }) => (
       <div key={id} className="wallpaper">
-        <h3 className="px-3 px-lg-0">{title}</h3>
+        <h2 className="px-3 px-lg-0">{title}</h2>
         <Link href="/bingwallpapers/[id]" as={`/bingwallpapers/${id}`}>
           <a><img className="img-fluid" src={`https://images.sonurai.com/${filename}_th.jpg`} alt={title}/></a>
         </Link>

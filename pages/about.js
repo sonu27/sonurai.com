@@ -3,7 +3,7 @@ import Layout from '../components/Layout'
 const About = () => (
   <Layout>
     <div className="px-3 px-lg-0">
-      <h2>About</h2>
+      <h1>About</h1>
       <p>Designed and built by <a href="https://amarjeet.dev" rel="me">Amarjeet Rai</a></p>
       <p>
         <a href="https://github.com/sonu27/" rel="me">GitHub</a><br/>
