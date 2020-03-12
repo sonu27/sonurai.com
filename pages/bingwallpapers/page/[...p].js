@@ -20,7 +20,7 @@ const Pagination = ({ pagination }) => (
 const Wallpapers = ({ page, wallpapers, pagination }) => (
   <Layout>
     <Head>
-      <title key="title">Bing Wallpapers - Page {page} - Sonu Rai</title>
+      <title key="title">Bing Wallpapers - Sonu Rai</title>
     </Head>
     <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
     {wallpapers.map(({ id, title, date, filename }) => (
