@@ -26,6 +26,10 @@ code {
   display: block;
 }
 
+#site-title .t {
+  margin-top: 0;
+}
+
 #site-title:hover .t {
   margin-top: -30px;
 }
