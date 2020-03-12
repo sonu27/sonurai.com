@@ -12,6 +12,24 @@ code {
     monospace;
 }
 
+#site-title, .t {
+  transition: 0.3s;
+  transition-timing-function: ease;
+}
+
+#site-title {
+  height: 40px;
+  overflow: hidden;
+}
+
+#site-title span {
+  display: block;
+}
+
+#site-title:hover .t {
+  margin-top: -30px;
+}
+
 .wallpaper, footer {
   margin-bottom: 2.5rem;;
 }
