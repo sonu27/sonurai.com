@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import moment from 'moment'
-import Layout from '../../../components/Layout'
-import Api from '../../../libs/Api'
+import Layout from 'components/Layout'
+import Api from 'libs/Api'
 
 const apiClient = new Api()
 
