@@ -1,4 +1,4 @@
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+const apiUrl = "https://api.sonurai.com"
 
 function apiToWallpaper(v) {
   return {
