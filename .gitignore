@@ -1,3 +1,4 @@
-.next
-.now
-node_modules
+/.next
+/.now
+/node_modules
+*.env*
