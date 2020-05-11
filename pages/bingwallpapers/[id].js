@@ -2,8 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
 import moment from 'moment'
-import Layout from '../../components/Layout'
-import Api from '../../libs/Api'
+import Layout from 'components/Layout'
+import Api from 'libs/Api'
 
 const apiClient = new Api()
 

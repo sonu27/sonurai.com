@@ -1,6 +1,4 @@
-import fetch from 'isomorphic-unfetch'
-
-const apiUrl = process.env.API_URL
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 function apiToWallpaper(v) {
   return {
