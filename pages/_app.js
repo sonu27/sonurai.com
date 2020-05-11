@@ -1,14 +1,8 @@
-import React from 'react'
 import App from 'next/app'
 import Router from 'next/router'
-import withGA from 'next-ga'
+import * as gtag from 'libs/gtag'
 import 'css/index.css'
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
-    return <Component {...pageProps} />
-  }
-}
+Router.events.on('routeChangeComplete', url => gtag.pageview(url))
 
-export default withGA('UA-83506-8', Router)(MyApp)
+export default App
