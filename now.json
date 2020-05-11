@@ -1,4 +1,7 @@
 {
+  "env": {
+    "NEXT_PUBLIC_API_URL": "https://api.sonurai.com"
+  },
   "github": {
     "silent": true
   }
