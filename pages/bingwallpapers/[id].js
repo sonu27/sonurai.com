@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import Router from 'next/router'
-import moment from 'moment'
 import Layout from 'components/Layout'
 import Api from 'libs/Api'
+import { intToDate } from 'libs/date'
 
 const apiClient = new Api()
 
@@ -26,7 +26,7 @@ const Wallpaper = ({ wallpaper }) => {
       <a href={`https://images.sonurai.com/${filename}.jpg`}>
         <img className="img-fluid" src={`https://images.sonurai.com/${filename}.jpg`} alt={title}/>
       </a>
-      <p className="px-3 px-lg-0">{copyright} - {moment(date, 'YYYYMMDD').format('MMMM Do YYYY')}</p>
+      <p className="px-3 px-lg-0">{copyright} - {intToDate(date)}</p>
       <p className="px-3 px-lg-0">{la}</p>
     </Layout>
   )
