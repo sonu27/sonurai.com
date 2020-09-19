@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import moment from 'moment'
 import Layout from 'components/Layout'
 import Api from 'libs/Api'
+import { intToDate } from 'libs/date'
 
 const apiClient = new Api()
 
@@ -29,7 +29,7 @@ const Wallpapers = ({ page, wallpapers, pagination }) => (
         <Link href="/bingwallpapers/[id]" as={`/bingwallpapers/${id}`}>
           <a><img className="img-fluid" src={`https://images.sonurai.com/${filename}_th.jpg`} alt={title}/></a>
         </Link>
-        <div className="px-3 px-lg-0">{moment(date, 'YYYYMMDD').format('MMMM Do YYYY')}</div>
+        <div className="px-3 px-lg-0">{intToDate(date)}</div>
       </div>
     ))}
     <Pagination pagination={pagination} />
