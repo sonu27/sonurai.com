@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-const Layout = props => (
+const Layout = (props) => (
   <div>
     <Head>
       <title key="title">Sonu Rai</title>
@@ -44,7 +44,7 @@ const Header = () => (
   </header>
 )
 
-const Footer = props => (
+const Footer = () => (
   <footer className="container-lg px-0">
     <div className="px-3 px-lg-0">&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</div>
   </footer>
