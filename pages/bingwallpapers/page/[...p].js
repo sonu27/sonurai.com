@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import Layout from 'components/Layout'
 import Api from 'libs/Api'
@@ -26,7 +27,15 @@ const Wallpapers = ({ page, wallpapers, pagination }) => (
       <div key={id} className="wallpaper">
         <h2 className="px-3 px-lg-0">{title}</h2>
         <Link href={`/bingwallpapers/${id}`}>
-          <a><img className="img-fluid" src={`https://images.sonurai.com/${filename}_th.jpg`} alt={title}/></a>
+          <a>
+            <Image
+              className="img-fluid"
+              src={`https://images.sonurai.com/${filename}_th.jpg`}
+              width="1920"
+              height="1080"
+              alt={title}
+            />
+          </a>
         </Link>
         <div className="px-3 px-lg-0">{intToDate(date)}</div>
       </div>
