@@ -11,6 +11,7 @@
   "author": "Amarjeet Singh Rai",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.5.3",
     "next": "^10.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
