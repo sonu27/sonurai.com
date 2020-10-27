@@ -6,14 +6,13 @@ import { intToDate } from 'libs/date'
 
 const apiClient = new Api()
 
-const url = '/bingwallpapers/page/[...p]'
 const getUrlPrev = (p) => `/bingwallpapers/page/prev/${p.startAfterDate}/${p.startAfterID}`
 const getUrlNext = (p) => `/bingwallpapers/page/next/${p.startAfterDate}/${p.startAfterID}`
 
 const Pagination = ({ pagination }) => (
   <ul className="col pagination">
-    <li className="page-item"><Link href={url} as={getUrlPrev(pagination.prev)}><a className="page-link">Prev</a></Link></li>
-    <li className="page-item"><Link href={url} as={getUrlNext(pagination.next)}><a className="page-link">Next</a></Link></li>
+    <li className="page-item"><Link href={getUrlPrev(pagination.prev)}><a className="page-link">Prev</a></Link></li>
+    <li className="page-item"><Link href={getUrlNext(pagination.next)}><a className="page-link">Next</a></Link></li>
   </ul>
 )
 
@@ -26,7 +25,7 @@ const Wallpapers = ({ page, wallpapers, pagination }) => (
     {wallpapers.map(({ id, title, date, filename }) => (
       <div key={id} className="wallpaper">
         <h2 className="px-3 px-lg-0">{title}</h2>
-        <Link href="/bingwallpapers/[id]" as={`/bingwallpapers/${id}`}>
+        <Link href={`/bingwallpapers/${id}`}>
           <a><img className="img-fluid" src={`https://images.sonurai.com/${filename}_th.jpg`} alt={title}/></a>
         </Link>
         <div className="px-3 px-lg-0">{intToDate(date)}</div>
