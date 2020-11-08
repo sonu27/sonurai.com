@@ -7,7 +7,7 @@ import { intToDate } from 'libs/date'
 
 const apiClient = new Api()
 
-const Wallpaper = ({ wallpaper }) => {
+export default function Wallpaper({ wallpaper }) {
   const { filename, title, copyright, date, labelAnnotations } = wallpaper
   const la = labelAnnotations.map((l) => (
     <React.Fragment key={l.mid}><span className="badge badge-secondary">{l.description}</span> </React.Fragment>
@@ -24,7 +24,7 @@ const Wallpaper = ({ wallpaper }) => {
       </Head>
       <h1 className="title px-3 px-lg-0">{title}</h1>
       <a href={`https://images.sonurai.com/${filename}.jpg`}>
-        <img className="img-fluid" src={`https://images.sonurai.com/${filename}.jpg`} alt={title}/>
+        <img className="img-fluid" src={`https://images.sonurai.com/${filename}.jpg`} alt={title} />
       </a>
       <p className="px-3 px-lg-0">{copyright} - {intToDate(date)}</p>
       <p className="px-3 px-lg-0">{la}</p>
@@ -32,32 +32,26 @@ const Wallpaper = ({ wallpaper }) => {
   )
 }
 
-Wallpaper.getInitialProps = async function({ query, res }) {
-  try {
-    const { id } = query
-    const data = await apiClient.getWallpaper(id)
+export async function getServerSideProps({ query, res }) {
+  const { id } = query
+  const data = await apiClient.getWallpaper(id)
 
-    if (!data.wallpaper) {
-      res.statusCode = 404
-      res.end('Not found')
-      return
-    }
-
-    if (!isNaN(Number(id))) {
-      if (res) {
-        res.writeHead(301, {
-          Location: `/bingwallpapers/${data.wallpaper.id}`
-        })
-        res.end()
-      } else {
-        Router.push(`/bingwallpapers/${data.wallpaper.id}`)
-      }
-    }
-
-    return { wallpaper: data.wallpaper }
-  } catch (err) {
-    console.log(err)
+  if (!data.wallpaper) {
+    res.statusCode = 404
+    res.end('Not found')
+    return
   }
-}
 
-export default Wallpaper
+  if (!isNaN(Number(id))) {
+    if (res) {
+      res.writeHead(301, {
+        Location: `/bingwallpapers/${data.wallpaper.id}`
+      })
+      res.end()
+    } else {
+      Router.push(`/bingwallpapers/${data.wallpaper.id}`)
+    }
+  }
+
+  return { props: { wallpaper: data.wallpaper } }
+}
