@@ -17,7 +17,7 @@ const Pagination = ({ pagination }) => (
   </ul>
 )
 
-export default function Wallpapers({ page, wallpapers, pagination }) {
+export default function Wallpapers({ wallpapers, pagination }) {
   return (
     <Layout>
       <Head>
@@ -46,7 +46,7 @@ export default function Wallpapers({ page, wallpapers, pagination }) {
   )
 }
 
-export async function getServerSideProps({ query, res }) {
+export async function getServerSideProps({ query }) {
   const { p } = query
   const page = p[0]
   const startAfterDate = p[1]
@@ -54,24 +54,12 @@ export async function getServerSideProps({ query, res }) {
   const prev = (page === 'prev')
 
   if (page !== '1' && (!startAfterDate || !startAfterID)) {
-    if (res) {
-      res.writeHead(302, {
-        Location: '/bingwallpapers/page/1'
-      })
-      res.end()
-    } else {
-      Router.push('/bingwallpapers/page/1')
-    }
+    return { redirect: { destination: `/bingwallpapers/page/1`, permanent: false } }
   }
 
   const data = await apiClient.getWallpapers(startAfterDate, startAfterID, prev)
-
   if (data.wallpapers.length === 0) {
-    if (res) {
-      res.statusCode = 404
-      res.end('Not found')
-    }
-    return
+    return { notFound: true }
   }
 
   return {
