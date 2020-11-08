@@ -1,4 +1,4 @@
-import React from 'react'
+import { Fragment } from 'react'
 import Head from 'next/head'
 import Layout from 'components/Layout'
 import Api from 'libs/Api'
@@ -9,7 +9,7 @@ const apiClient = new Api()
 export default function Wallpaper({ wallpaper }) {
   const { filename, title, copyright, date, labelAnnotations } = wallpaper
   const la = labelAnnotations.map((l) => (
-    <React.Fragment key={l.mid}><span className="badge badge-secondary">{l.description}</span> </React.Fragment>
+    <Fragment key={l.mid}><span className="badge badge-secondary">{l.description}</span> </Fragment>
   ))
 
   return (
