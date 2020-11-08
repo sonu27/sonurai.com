@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import Router from 'next/router'
 import Layout from 'components/Layout'
 import Api from 'libs/Api'
 import { intToDate } from 'libs/date'
@@ -32,25 +31,16 @@ export default function Wallpaper({ wallpaper }) {
   )
 }
 
-export async function getServerSideProps({ query, res }) {
+export async function getServerSideProps({ query }) {
   const { id } = query
   const data = await apiClient.getWallpaper(id)
 
   if (!data.wallpaper) {
-    res.statusCode = 404
-    res.end('Not found')
-    return
+    return { notFound: true }
   }
 
   if (!isNaN(Number(id))) {
-    if (res) {
-      res.writeHead(301, {
-        Location: `/bingwallpapers/${data.wallpaper.id}`
-      })
-      res.end()
-    } else {
-      Router.push(`/bingwallpapers/${data.wallpaper.id}`)
-    }
+    return { redirect: { destination: `/bingwallpapers/${data.wallpaper.id}`, permanent: true } }
   }
 
   return { props: { wallpaper: data.wallpaper } }
