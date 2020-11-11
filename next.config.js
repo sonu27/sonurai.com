@@ -11,6 +11,10 @@ module.exports = {
   images: {
     domains: ['images.sonurai.com'],
   },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en'
+  },
   poweredByHeader: false,
   reactStrictMode: true,
 }
