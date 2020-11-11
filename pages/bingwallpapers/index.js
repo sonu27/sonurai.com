@@ -22,13 +22,14 @@ export default function Wallpapers({ wallpapers, pagination }) {
     <Layout>
       <Head>
         <title key="title">Bing Wallpapers - Sonu Rai</title>
+        <meta name="description" content="Bing Wallpapers" />
       </Head>
       <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
       {wallpapers.map(({ id, title, date, filename }) => (
         <div key={id} className="wallpaper">
           <h2 className="px-3 px-lg-0">{title}</h2>
           <Link href={`/bingwallpapers/${id}`}>
-            <a>
+            <a title={title}>
               <Image
                 className="img-fluid"
                 src={`https://images.sonurai.com/${filename}_th.jpg`}
