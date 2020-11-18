@@ -6,6 +6,11 @@ module.exports = {
         destination: '/bingwallpapers',
         permanent: true,
       },
+      {
+        source: '/wallpaper/:image',
+        destination: 'https://images.sonurai.com/:image',
+        permanent: true,
+      },
     ]
   },
   images: {
@@ -13,7 +18,7 @@ module.exports = {
   },
   i18n: {
     locales: ['en'],
-    defaultLocale: 'en'
+    defaultLocale: 'en',
   },
   poweredByHeader: false,
   reactStrictMode: true,
