@@ -12,6 +12,7 @@ const Layout = (props) => (
       <link rel="manifest" href="/manifest.json" />
       <meta name="twitter:site" content="@sonu27" />
       <meta name="twitter:creator" content="@sonu27" />
+      <script data-ad-client="ca-pub-4409513349650396" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     </Head>
     <Header />
     <div className="container-lg px-0">{props.children}</div>
