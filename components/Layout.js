@@ -24,10 +24,7 @@ const Header = () => (
     <nav className="container-lg">
       <div id="site-title">
         <Link href="/">
-          <a className="navbar-brand">
-            <span className="t">Sonu Rai</span>
-            <span>ソヌライ</span>
-          </a>
+          <a className="navbar-brand">Sonu Rai</a>
         </Link>
       </div>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
