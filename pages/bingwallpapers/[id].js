@@ -11,7 +11,7 @@ const domain = process.env.NEXT_PUBLIC_URL
 export default function Wallpaper({ wallpaper }) {
   const { filename, title, copyright, date, labelAnnotations } = wallpaper
   const tags = labelAnnotations.map((l) => (
-    <Fragment key={l.mid}><span className="badge badge-secondary">{l.description}</span> </Fragment>
+    <Fragment key={l.mid}><span className="badge bg-secondary">{l.description}</span> </Fragment>
   ))
 
   return (
