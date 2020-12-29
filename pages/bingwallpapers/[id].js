@@ -3,12 +3,14 @@ import Head from 'next/head'
 import Layout from 'components/Layout'
 import Api from 'libs/Api'
 import { intToDate } from 'libs/date'
+import SocialShareButtons from 'libs/SocialShareButtons'
 
 const apiClient = new Api()
+const domain = process.env.NEXT_PUBLIC_URL
 
 export default function Wallpaper({ wallpaper }) {
   const { filename, title, copyright, date, labelAnnotations } = wallpaper
-  const la = labelAnnotations.map((l) => (
+  const tags = labelAnnotations.map((l) => (
     <Fragment key={l.mid}><span className="badge badge-secondary">{l.description}</span> </Fragment>
   ))
 
@@ -26,7 +28,15 @@ export default function Wallpaper({ wallpaper }) {
         <img className="img-fluid" src={`https://images.sonurai.com/${filename}.jpg`} alt={title} />
       </a>
       <p className="px-3 px-lg-0">{copyright} - {intToDate(date)}</p>
-      <p className="px-3 px-lg-0">{la}</p>
+      <p className="px-3 px-lg-0">
+        <SocialShareButtons
+          url={`${domain}/bingwallpapers/${wallpaper.id}`}
+          media={`https://images.sonurai.com/${filename}.jpg`}
+          desc={`${title} - ${process.env.NEXT_PUBLIC_NAME}`}
+          size={40}
+        />
+      </p>
+      <p className="px-3 px-lg-0">{tags}</p>
     </Layout>
   )
 }
