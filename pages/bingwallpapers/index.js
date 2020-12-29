@@ -21,7 +21,7 @@ export default function Wallpapers({ wallpapers, pagination }) {
   return (
     <Layout>
       <Head>
-        <title key="title">Bing Wallpapers - Sonu Rai</title>
+        <title key="title">Bing Wallpapers - {process.env.NEXT_PUBLIC_NAME}</title>
         <meta name="description" content="Bing Wallpapers" />
       </Head>
       <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>

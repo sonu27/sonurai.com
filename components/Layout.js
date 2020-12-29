@@ -4,7 +4,7 @@ import Link from 'next/link'
 const Layout = (props) => (
   <div>
     <Head>
-      <title key="title">Sonu Rai</title>
+      <title key="title">{process.env.NEXT_PUBLIC_NAME}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
       <link rel="icon" href="/favicon.ico" />
