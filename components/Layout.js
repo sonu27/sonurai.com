@@ -21,8 +21,8 @@ const Layout = (props) => (
 )
 
 const Header = () => (
-  <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="navigation">
-    <div class="navbar-nav container-lg px-3 px-lg-0">
+  <nav className="navbar navbar-expand navbar-dark bg-dark" aria-label="navigation">
+    <div className="navbar-nav container-lg px-3 px-lg-0">
       <Link href="/">
         <a className="navbar-brand">Sonu Rai</a>
       </Link>
