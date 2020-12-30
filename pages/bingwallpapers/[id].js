@@ -1,11 +1,10 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
 import Layout from 'components/Layout'
-import Api from 'libs/Api'
+import client from 'libs/Client'
 import { intToDate } from 'libs/date'
 import SocialShareButtons from 'components/SocialShareButtons'
 
-const apiClient = new Api()
 const domain = process.env.NEXT_PUBLIC_URL
 
 export default function Wallpaper({ wallpaper }) {
@@ -43,7 +42,7 @@ export default function Wallpaper({ wallpaper }) {
 
 export async function getServerSideProps({ query }) {
   const { id } = query
-  const data = await apiClient.getWallpaper(id)
+  const data = await client.getWallpaper(id)
 
   if (!data.wallpaper) {
     return { notFound: true }

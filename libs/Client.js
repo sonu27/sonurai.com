@@ -11,7 +11,7 @@ function apiToWallpaper(v) {
   }
 }
 
-export default class Api {
+class Client {
   async getWallpapers(startAfterDate, startAfterID, prev) {
     let url = `${apiUrl}/wallpapers`
 
@@ -64,3 +64,7 @@ export default class Api {
     }
   }
 }
+
+const client = new Client()
+
+export default client
