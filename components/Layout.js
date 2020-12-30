@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import ActiveLink from './ActiveLink'
 
 const Layout = (props) => (
   <div>
@@ -20,25 +21,24 @@ const Layout = (props) => (
 )
 
 const Header = () => (
-  <header className="navbar navbar-expand navbar-dark bg-dark">
-    <nav className="container-lg">
-      <div id="site-title">
-        <Link href="/">
-          <a className="navbar-brand">Sonu Rai</a>
-        </Link>
+  <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="navigation">
+    <div class="navbar-nav container-lg px-3 px-lg-0">
+      <Link href="/">
+        <a className="navbar-brand">Sonu Rai</a>
+      </Link>
+      <div className="navbar-nav w-100">
+        <ActiveLink href="/">
+          <a className="nav-item nav-link">Home</a>
+        </ActiveLink>
+        <ActiveLink href="/about">
+          <a className="nav-item nav-link">About</a>
+        </ActiveLink>
+        <ActiveLink href="/contact">
+          <a className="nav-item nav-link">Contact</a>
+        </ActiveLink>
       </div>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
-          <Link href="/"><a className="nav-item nav-link">Home</a></Link>
-          <Link href="/about"><a className="nav-item nav-link">About</a></Link>
-          <Link href="/contact"><a className="nav-item nav-link">Contact</a></Link>
-        </div>
-      </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
 )
 
 const Footer = () => (
