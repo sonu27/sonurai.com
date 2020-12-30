@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Layout from 'components/Layout'
 import Api from 'libs/Api'
 import { intToDate } from 'libs/date'
-import SocialShareButtons from 'libs/SocialShareButtons'
+import SocialShareButtons from 'components/SocialShareButtons'
 
 const apiClient = new Api()
 const domain = process.env.NEXT_PUBLIC_URL
