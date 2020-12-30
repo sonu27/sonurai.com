@@ -2,10 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from 'components/Layout'
-import Api from 'libs/Api'
+import client from 'libs/Client'
 import { intToDate } from 'libs/date'
-
-const apiClient = new Api()
 
 const getUrlPrev = (p) => `/bingwallpapers?startAfterDate=${p.startAfterDate}&startAfterID=${p.startAfterID}&prev=1`
 const getUrlNext = (p) => `/bingwallpapers?startAfterDate=${p.startAfterDate}&startAfterID=${p.startAfterID}`
@@ -49,13 +47,13 @@ export default function Wallpapers({ wallpapers, pagination }) {
 
 export async function getServerSideProps({ query }) {
   const { startAfterDate, startAfterID, prev } = query
-  const backward = (prev === '1')
+  const reverse = (prev === '1')
 
   if (startAfterDate && startAfterID && (!startAfterDate || !startAfterID)) {
     return { redirect: { destination: `/bingwallpapers`, permanent: false } }
   }
 
-  const data = await apiClient.getWallpapers(startAfterDate, startAfterID, backward)
+  const data = await client.getWallpapers(startAfterDate, startAfterID, reverse)
   if (data.wallpapers.length === 0) {
     return { notFound: true }
   }
