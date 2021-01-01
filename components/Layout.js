@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import ActiveLink from './ActiveLink'
+import ActiveLink from 'components/ActiveLink'
 
 const Layout = (props) => (
   <div>
