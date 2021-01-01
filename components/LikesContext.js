@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext } from 'react'
 import dynamic from 'next/dynamic'
 
 const LikesContext = createContext({})
