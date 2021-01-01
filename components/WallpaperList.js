@@ -1,11 +1,7 @@
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
+import LikeButton from 'components/LikeButton'
 import { intToDate } from 'libs/date'
-
-const LikeButton = dynamic(() => import('components/LikeButton'), {
-  ssr: false,
-})
 
 export default function WallpaperList({ wallpapers }) {
   return (
