@@ -1,16 +1,19 @@
 import React, { createContext } from 'react'
-import dynamic from 'next/dynamic'
 
 const LikesContext = createContext({})
 
-class LikesProviderClass extends React.Component {
+export class LikesProvider extends React.Component {
   constructor() {
     super()
     this.setLikes = this.setLikes.bind(this)
     this.state = {
-      likes: JSON.parse(localStorage.getItem('likes')) ?? {},
+      likes: {},
       setLikes: this.setLikes,
     }
+  }
+
+  componentDidMount() {
+    this.setLikes(JSON.parse(localStorage.getItem('likes')) ?? {})
   }
 
   setLikes(newValue) {
@@ -26,5 +29,4 @@ class LikesProviderClass extends React.Component {
   }
 }
 
-export const LikesProvider = dynamic(() => Promise.resolve(LikesProviderClass), { ssr: false })
 export default LikesContext
