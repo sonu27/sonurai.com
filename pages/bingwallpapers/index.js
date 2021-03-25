@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import Layout from 'components/Layout'
+import { useAuth } from 'components/AuthProvider'
 import client from 'libs/Client'
 import { intToDate } from 'libs/date'
 
@@ -16,6 +17,8 @@ const Pagination = ({ pagination }) => (
 )
 
 export default function Wallpapers({ wallpapers, pagination }) {
+  const { user } = useAuth()
+  console.log(user)
   return (
     <Layout>
       <Head>
@@ -50,7 +53,7 @@ export async function getServerSideProps({ query }) {
   const reverse = (prev === '1')
 
   if (startAfterDate && startAfterID && (!startAfterDate || !startAfterID)) {
-    return { redirect: { destination: `/bingwallpapers`, permanent: false } }
+    return { redirect: { destination: '/bingwallpapers', permanent: false } }
   }
 
   const data = await client.getWallpapers(startAfterDate, startAfterID, reverse)
