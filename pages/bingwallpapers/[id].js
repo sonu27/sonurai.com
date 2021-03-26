@@ -8,15 +8,19 @@ import SocialShareButtons from 'components/SocialShareButtons'
 const domain = process.env.NEXT_PUBLIC_URL
 
 export default function Wallpaper({ wallpaper }) {
-  const { filename, title, copyright, date, labelAnnotations } = wallpaper
-  const tags = labelAnnotations.map((l) => (
-    <Fragment key={l.mid}><span className="badge bg-secondary">{l.description}</span> </Fragment>
+  const { filename, title, copyright, date, tags } = wallpaper
+
+  const t = Object.entries(tags).sort((a, b) => b[1] - a[1])
+
+  const tagFields = t.map((l, i) => (
+    <Fragment key={i}><span className="badge bg-secondary">{l[0]}</span> </Fragment>
   ))
 
   return (
     <Layout>
       <Head>
         <title key="title">{title} - Bing Wallpapers - {process.env.NEXT_PUBLIC_NAME}</title>
+        <meta name="keywords" content={t.reduce((a, c) => `${a}, ${c[0]}`, '')} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content={`${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`} />
         <meta property="og:description" content={`${title} ${copyright}`} />
@@ -35,7 +39,7 @@ export default function Wallpaper({ wallpaper }) {
           size={40}
         />
       </p>
-      <p className="px-3 px-lg-0">{tags}</p>
+      <p className="px-3 px-lg-0">{tagFields}</p>
     </Layout>
   )
 }
