@@ -39,12 +39,12 @@ class Client {
     return {
       pagination: {
         prev: {
-          startAfterDate: first.date,
-          startAfterID: first.id,
+          date: first.date,
+          id: first.id,
         },
         next: {
-          startAfterDate: last.date,
-          startAfterID: last.id,
+          date: last.date,
+          id: last.id,
         },
       },
       wallpapers: wallpapers
