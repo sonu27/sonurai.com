@@ -50,7 +50,7 @@ export async function getServerSideProps({ query }) {
   const reverse = (prev === '1')
 
   if (startAfterDate && startAfterID && (!startAfterDate || !startAfterID)) {
-    return { redirect: { destination: `/bingwallpapers`, permanent: false } }
+    return { redirect: { destination: '/bingwallpapers', permanent: false } }
   }
 
   const data = await client.getWallpapers(startAfterDate, startAfterID, reverse)
