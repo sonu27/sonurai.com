@@ -5,8 +5,8 @@ import Layout from 'components/Layout'
 import client from 'libs/Client'
 import { intToDate } from 'libs/date'
 
-const getUrlPrev = (p) => `/bingwallpapers?startAfterDate=${p.startAfterDate}&startAfterID=${p.startAfterID}&prev=1`
-const getUrlNext = (p) => `/bingwallpapers?startAfterDate=${p.startAfterDate}&startAfterID=${p.startAfterID}`
+const getUrlPrev = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
+const getUrlNext = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}`
 
 const Pagination = ({ pagination }) => (
   <ul className="col pagination px-3 px-lg-0">
@@ -46,14 +46,14 @@ export default function Wallpapers({ wallpapers, pagination }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const { startAfterDate, startAfterID, prev } = query
+  const { date, id, prev } = query
   const reverse = (prev === '1')
 
-  if (startAfterDate && startAfterID && (!startAfterDate || !startAfterID)) {
+  if (date && id && (!date || !id)) {
     return { redirect: { destination: '/bingwallpapers', permanent: false } }
   }
 
-  const data = await client.getWallpapers(startAfterDate, startAfterID, reverse)
+  const data = await client.getWallpapers(date, id, reverse)
   if (data.wallpapers.length === 0) {
     return { notFound: true }
   }
