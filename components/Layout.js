@@ -23,18 +23,15 @@ const Layout = (props) => (
 const Header = () => (
   <nav className="navbar navbar-expand navbar-dark bg-dark" aria-label="navigation">
     <div className="navbar-nav container-lg px-3 px-lg-0">
-      <Link href="/">
+      <Link href="/bingwallpapers">
         <a className="navbar-brand">Sonu Rai</a>
       </Link>
       <div className="navbar-nav w-100">
-        <ActiveLink href="/">
-          <a className="nav-item nav-link">Home</a>
+        <ActiveLink href="/bingwallpapers">
+          <a className="nav-item nav-link">Wallpapers</a>
         </ActiveLink>
         <ActiveLink href="/about">
           <a className="nav-item nav-link">About</a>
-        </ActiveLink>
-        <ActiveLink href="/contact">
-          <a className="nav-item nav-link">Contact</a>
         </ActiveLink>
       </div>
     </div>

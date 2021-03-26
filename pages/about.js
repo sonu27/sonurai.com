@@ -4,7 +4,8 @@ const About = () => (
   <Layout>
     <div className="px-3 px-lg-0">
       <h1>About</h1>
-      <p>Designed and built by <a href="https://arai.dev" rel="me">Amarjeet Rai</a></p>
+      <p>Built by <a href="https://arai.dev" rel="me">Amarjeet Rai</a></p>
+      <p>You can contact me on Twitter <a href="https://twitter.com/sonu27" rel="me">@sonu27</a></p>
       <p>
         <a href="https://github.com/sonu27/" rel="me">GitHub</a><br />
         <a href="https://www.linkedin.com/in/amarjeetrai" rel="me">LinkedIn</a><br />
