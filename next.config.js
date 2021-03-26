@@ -2,6 +2,11 @@ module.exports = {
   async redirects() {
     return [
       {
+        source: '/',
+        destination: '/bingwallpapers',
+        permanent: false,
+      },
+      {
         source: '/bingwallpapers/page/1',
         destination: '/bingwallpapers',
         permanent: true,
