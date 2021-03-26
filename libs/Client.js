@@ -7,7 +7,7 @@ function apiToWallpaper(v) {
     copyright: v.copyright,
     date: v.date,
     filename: v.filename,
-    labelAnnotations: v.labelAnnotations || [],
+    tags: v.tags || {},
   }
 }
 
