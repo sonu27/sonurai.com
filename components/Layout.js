@@ -3,7 +3,7 @@ import Link from 'next/link'
 import ActiveLink from 'components/ActiveLink'
 
 const Layout = (props) => (
-  <div>
+  <>
     <Head>
       <title key="title">{process.env.NEXT_PUBLIC_NAME}</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,7 +17,7 @@ const Layout = (props) => (
     <Header />
     <div className="container-lg px-0">{props.children}</div>
     <Footer />
-  </div>
+  </>
 )
 
 const Header = () => (
