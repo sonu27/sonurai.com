@@ -5,14 +5,14 @@ import Layout from 'components/Layout'
 import client from 'libs/Client'
 import { intToDate } from 'libs/date'
 
-export default function Wallpapers({ wallpapers }) {
+export default function Wallpapers({ wallpapers, tag }) {
   return (
     <Layout>
       <Head>
-        <title key="title">Bing Wallpapers - {process.env.NEXT_PUBLIC_NAME}</title>
+        <title key="title">{tag} - Bing Wallpapers - {process.env.NEXT_PUBLIC_NAME}</title>
         <meta name="description" content="Bing Wallpapers" />
       </Head>
-      <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
+      <h1 className="px-3 px-lg-0">{tag} - Bing Wallpapers</h1>
       {wallpapers.map(({ id, title, date, filename }) => (
         <div key={id} className="wallpaper">
           <h2 className="px-3 px-lg-0">{title}</h2>
@@ -43,6 +43,7 @@ export async function getServerSideProps({ query }) {
 
   return {
     props: {
+      tag,
       wallpapers: data.wallpapers,
     }
   }
