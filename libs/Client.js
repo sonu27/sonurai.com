@@ -24,14 +24,11 @@ class Client {
     }
 
     const res = await fetch(url)
-    const json = await res.json()
-
-    if (json.data === null) {
-      return {
-        wallpapers: []
-      }
+    if (res.status === 404) {
+      return { wallpapers: [] }
     }
 
+    const json = await res.json()
     const wallpapers = json.data.map(apiToWallpaper)
 
     const first = wallpapers[0]
@@ -47,6 +44,22 @@ class Client {
           id: last.id,
         },
       },
+      wallpapers: wallpapers
+    }
+  }
+
+  async getWallpapersByTag(tag) {
+    let url = `${apiUrl}/wallpapers/tags/${tag}`
+
+    const res = await fetch(url)
+    if (res.status === 404) {
+      return { wallpapers: [] }
+    }
+
+    const json = await res.json()
+    const wallpapers = json.data.map(apiToWallpaper)
+
+    return {
       wallpapers: wallpapers
     }
   }
