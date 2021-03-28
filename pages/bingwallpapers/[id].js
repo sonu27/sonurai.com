@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import Layout from 'components/Layout'
 import client from 'libs/Client'
 import { intToDate } from 'libs/date'
@@ -13,7 +14,7 @@ export default function Wallpaper({ wallpaper }) {
   const t = Object.entries(tags).sort((a, b) => b[1] - a[1])
 
   const tagFields = t.map((l, i) => (
-    <Fragment key={i}><span className="badge bg-secondary">{l[0]}</span> </Fragment>
+    <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`}><a><span className="badge bg-secondary">{l[0]}</span></a></Link> </Fragment>
   ))
 
   return (
