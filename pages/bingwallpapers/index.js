@@ -3,7 +3,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Layout from 'components/Layout'
 import client from 'libs/Client'
-import { intToDate } from 'libs/date'
 
 const getUrlPrev = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
 const getUrlNext = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}`
@@ -24,9 +23,8 @@ export default function Wallpapers({ wallpapers, pagination }) {
       </Head>
       <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
       <div className="flex-container">
-        {wallpapers.map(({ id, title, date, filename }) => (
+        {wallpapers.map(({ id, title, filename }) => (
           <div key={id} className="wallpaper flex-item">
-            {/* <h2 className="px-3 px-lg-0">{title}</h2> */}
             <Link href={`/bingwallpapers/${id}`}>
               <a title={title}>
                 <Image
@@ -38,7 +36,6 @@ export default function Wallpapers({ wallpapers, pagination }) {
                 />
               </a>
             </Link>
-            {/* <div className="px-3 px-lg-0">{intToDate(date)}</div> */}
           </div>
         ))}
       </div>
