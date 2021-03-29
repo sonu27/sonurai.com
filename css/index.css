@@ -1,19 +1,50 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: silver;
 }
 
-.wallpaper, footer {
-  margin-bottom: 2.5rem;;
+h1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.flex-item {
+  border: 1px black solid;
+  width: 440px;
+  line-height: 0;
+  font-weight: bold;
+}
+
+.footer {
+  margin-bottom: 2.5rem;
+}
+
+.badge {
+  color: black !important;
 }
 
 @media (max-width: 575.98px) {
-  h1 {
-    font-size: 1.7rem;
+  .flex-item {
+    /* padding: 0; */
   }
 
-  h2 {
-    font-size: 1.2rem;
+  h1 {
+    font-size: 1.7rem;
   }
 
   h1.title {
