@@ -25,7 +25,7 @@ export default function Wallpaper({ wallpaper }) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content={`${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`} />
         <meta property="og:description" content={`${title} ${copyright}`} />
-        <meta property="og:image" content={`https://images.sonurai.com/${filename}_th.jpg`} />
+        <meta property="og:image" content={`https://images.sonurai.com/${filename}.jpg`} />
       </Head>
       <h1 className="title px-3 px-lg-0">{title}</h1>
       <a href={`https://images.sonurai.com/${filename}.jpg`}>
