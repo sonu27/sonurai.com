@@ -24,8 +24,9 @@ h2 {
 }
 
 .flex-item {
+  flex: 1;
   border: 1px black solid;
-  width: 440px;
+  min-width: 440px;
   line-height: 0;
   font-weight: bold;
 }
