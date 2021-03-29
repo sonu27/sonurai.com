@@ -23,23 +23,25 @@ export default function Wallpapers({ wallpapers, pagination }) {
         <meta name="description" content="Bing Wallpapers" />
       </Head>
       <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
-      {wallpapers.map(({ id, title, date, filename }) => (
-        <div key={id} className="wallpaper">
-          <h2 className="px-3 px-lg-0">{title}</h2>
-          <Link href={`/bingwallpapers/${id}`}>
-            <a title={title}>
-              <Image
-                className="img-fluid"
-                src={`https://images.sonurai.com/${filename}.jpg`}
-                width="1920"
-                height="1200"
-                alt={title}
-              />
-            </a>
-          </Link>
-          <div className="px-3 px-lg-0">{intToDate(date)}</div>
-        </div>
-      ))}
+      <div className="flex-container">
+        {wallpapers.map(({ id, title, date, filename }) => (
+          <div key={id} className="wallpaper flex-item">
+            {/* <h2 className="px-3 px-lg-0">{title}</h2> */}
+            <Link href={`/bingwallpapers/${id}`}>
+              <a title={title}>
+                <Image
+                  className="img-fluid"
+                  src={`https://images.sonurai.com/${filename}.jpg`}
+                  width="1920"
+                  height="1200"
+                  alt={title}
+                />
+              </a>
+            </Link>
+            {/* <div className="px-3 px-lg-0">{intToDate(date)}</div> */}
+          </div>
+        ))}
+      </div>
       <Pagination pagination={pagination} />
     </Layout>
   )
