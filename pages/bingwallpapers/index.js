@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
 import Layout from 'components/Layout'
+import WallpaperList from 'components/WallpaperList'
 import client from 'libs/Client'
 
 const getUrlPrev = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
@@ -22,23 +22,7 @@ export default function Wallpapers({ wallpapers, pagination }) {
         <meta name="description" content="Bing Wallpapers" />
       </Head>
       <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
-      <div className="flex-container">
-        {wallpapers.map(({ id, title, filename }) => (
-          <div key={id} className="wallpaper flex-item">
-            <Link href={`/bingwallpapers/${id}`}>
-              <a title={title}>
-                <Image
-                  className="img-fluid"
-                  src={`https://images.sonurai.com/${filename}.jpg`}
-                  width="1920"
-                  height="1200"
-                  alt={title}
-                />
-              </a>
-            </Link>
-          </div>
-        ))}
-      </div>
+      <WallpaperList wallpapers={wallpapers} />
       <Pagination pagination={pagination} />
     </Layout>
   )
