@@ -30,9 +30,9 @@ export default function Wallpapers({ wallpapers, pagination }) {
             <a title={title}>
               <Image
                 className="img-fluid"
-                src={`https://images.sonurai.com/${filename}_th.jpg`}
+                src={`https://images.sonurai.com/${filename}.jpg`}
                 width="1920"
-                height="1080"
+                height="1200"
                 alt={title}
               />
             </a>
