@@ -14,13 +14,17 @@ h2 {
   font-size: 1.2rem;
 }
 
+footer {
+  margin-bottom: 5rem;
+}
+
 .flex-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   padding: 0;
   margin: 0;
-  list-style: none;
+  margin-bottom: 1rem;
 }
 
 .flex-item {
@@ -29,10 +33,6 @@ h2 {
   min-width: 440px;
   line-height: 0;
   font-weight: bold;
-}
-
-.footer {
-  margin-bottom: 2.5rem;
 }
 
 .badge {
