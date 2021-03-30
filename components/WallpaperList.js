@@ -9,6 +9,7 @@ export default function WallpaperList({ wallpapers }) {
           <Link href={`/bingwallpapers/${id}`}>
             <a title={title}>
               <Image
+                layout="responsive"
                 className="img-fluid"
                 src={`https://images.sonurai.com/${filename}.jpg`}
                 width="1920"
