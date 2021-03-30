@@ -66,4 +66,8 @@ footer {
   h1.title {
     font-size: 1.2rem;
   }
+
+  .flex-item {
+    min-width: 100%;
+  }
 }
