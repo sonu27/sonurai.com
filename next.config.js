@@ -22,6 +22,9 @@ module.exports = {
     domains: ['images.sonurai.com'],
     deviceSizes: [640, 880],
   },
+  experimental: {
+    scrollRestoration: true
+  },
   poweredByHeader: false,
   reactStrictMode: true,
 }
