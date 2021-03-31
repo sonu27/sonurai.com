@@ -29,7 +29,7 @@ export default function Wallpaper({ wallpaper }) {
       </Head>
       <h1 className="title px-3 px-lg-0">{title}</h1>
       <a href={`https://images.sonurai.com/${filename}.jpg`}>
-        <img className="img-fluid" src={`https://images.sonurai.com/${filename}.jpg`} alt={title} />
+        <img className="img-fluid" src={`https://images.sonurai.com/${filename}.jpg`} width={1920} height={1200} alt={title} />
       </a>
       <p className="px-3 px-lg-0">{copyright} - {intToDate(date)}</p>
       <p className="px-3 px-lg-0">
