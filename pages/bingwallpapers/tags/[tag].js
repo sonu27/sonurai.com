@@ -16,8 +16,15 @@ export default function Wallpapers({ wallpapers, tag }) {
   )
 }
 
-export async function getServerSideProps({ query }) {
-  const { tag } = query
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const { tag } = params
   const data = await client.getWallpapersByTag(tag)
   if (data.wallpapers.length === 0) {
     return { notFound: true }
@@ -27,6 +34,7 @@ export async function getServerSideProps({ query }) {
     props: {
       tag,
       wallpapers: data.wallpapers,
-    }
+    },
+    revalidate: 604800,
   }
 }
