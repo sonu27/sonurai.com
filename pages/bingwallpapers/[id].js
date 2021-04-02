@@ -45,8 +45,15 @@ export default function Wallpaper({ wallpaper }) {
   )
 }
 
-export async function getServerSideProps({ query }) {
-  const { id } = query
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const { id } = params
   const data = await client.getWallpaper(id)
 
   if (!data.wallpaper) {
@@ -57,5 +64,5 @@ export async function getServerSideProps({ query }) {
     return { redirect: { destination: `/bingwallpapers/${data.wallpaper.id}`, permanent: true } }
   }
 
-  return { props: { wallpaper: data.wallpaper } }
+  return { props: { wallpaper: data.wallpaper }, revalidate: 604800 }
 }
