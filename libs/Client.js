@@ -13,10 +13,10 @@ function apiToWallpaper(v) {
 
 class Client {
   async getWallpapers(startAfterDate, startAfterID, prev) {
-    let url = `${apiUrl}/wallpapers`
+    let url = `${apiUrl}/wallpapers?limit=10`
 
     if (startAfterDate && startAfterID) {
-      url = `${url}?startAfterDate=${startAfterDate}&startAfterID=${startAfterID}`
+      url = `${url}&startAfterDate=${startAfterDate}&startAfterID=${startAfterID}`
 
       if (prev) {
         url = `${url}&prev=1`
