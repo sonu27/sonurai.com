@@ -12,8 +12,8 @@ export default function WallpaperList({ wallpapers }) {
                 layout="responsive"
                 className="img-fluid"
                 src={`https://images.sonurai.com/${filename}.jpg`}
-                width="1920"
-                height="1200"
+                width={1920}
+                height={1200}
                 alt={title}
               />
               <figcaption className="caption">{title}</figcaption>
