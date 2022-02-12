@@ -1,6 +1,15 @@
 const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
-function apiToWallpaper(v) {
+export type Wallpaper = {
+  id: string;
+  title: string;
+  copyright: string;
+  date: string;
+  filename: string;
+  tags: string[] | {};
+}
+
+function apiToWallpaper(v: Wallpaper): Wallpaper {
   return {
     id: v.id,
     title: v.title,
@@ -12,7 +21,7 @@ function apiToWallpaper(v) {
 }
 
 class Client {
-  async getWallpapers(startAfterDate, startAfterID, prev) {
+  async getWallpapers(startAfterDate: string | null, startAfterID: string | null, prev: boolean | null) {
     let url = `${apiUrl}/wallpapers`
 
     if (startAfterDate && startAfterID) {
@@ -48,7 +57,7 @@ class Client {
     }
   }
 
-  async getWallpapersByTag(tag) {
+  async getWallpapersByTag(tag: string) {
     let url = `${apiUrl}/wallpapers/tags/${tag}`
 
     const res = await fetch(url)
@@ -64,7 +73,7 @@ class Client {
     }
   }
 
-  async getWallpaper(id) {
+  async getWallpaper(id: string) {
     const res = await fetch(`${apiUrl}/wallpapers/${id}`)
     if (res.status === 404) {
       return { wallpaper: null }
@@ -80,4 +89,4 @@ class Client {
 
 const client = new Client()
 
-export default client
+export { client }

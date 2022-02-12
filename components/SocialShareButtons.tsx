@@ -7,7 +7,7 @@ import {
   TwitterShareButton,
 } from 'react-share'
 
-export default function SocialShareButtons({ url, media, desc, size }) {
+export default function SocialShareButtons({ url, media, desc, size }: { url: string, media: string, desc: string, size: number}) {
   return (
     <>
       <PinterestShareButton url={url} media={media} description={desc}>
