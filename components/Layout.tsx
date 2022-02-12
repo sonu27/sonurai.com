@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import ActiveLink from 'components/ActiveLink'
+import ActiveLink from '../components/ActiveLink'
 
 const Layout = (props) => (
   <>
@@ -14,9 +14,11 @@ const Layout = (props) => (
       <meta name="twitter:site" content="@sonu27" />
       <meta name="twitter:creator" content="@sonu27" />
     </Head>
-    <Header />
-    <div className="container-lg px-0">{props.children}</div>
-    <Footer />
+    <div className="container mx-auto">
+      <Header />
+      {props.children}
+      <Footer />
+    </div>
   </>
 )
 
@@ -39,7 +41,7 @@ const Header = () => (
 )
 
 const Footer = () => (
-  <footer className="container-lg px-0">
+  <footer className="mt-4 mb-16 text-gray-400">
     <div className="px-3 px-lg-0">&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</div>
   </footer>
 )

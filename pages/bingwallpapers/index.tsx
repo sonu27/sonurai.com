@@ -1,17 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Layout from 'components/Layout'
-import WallpaperList from 'components/WallpaperList'
-import client from 'libs/Client'
+import { client } from '../../libs/Client'
+import Layout from '../../components/Layout'
+import WallpaperList from '../../components/WallpaperList'
 
 const getUrlPrev = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
 const getUrlNext = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}`
 
 const Pagination = ({ pagination }) => (
-  <ul className="pagination px-3 px-lg-0">
-    <li className="page-item"><Link href={getUrlPrev(pagination.prev)}><a className="page-link">Prev</a></Link></li>
-    <li className="page-item"><Link href={getUrlNext(pagination.next)}><a className="page-link">Next</a></Link></li>
-  </ul>
+  <div className="my-4">
+    <Link href={getUrlPrev(pagination.prev)}><a className="rounded p-2 bg-slate-800 text-white hover:bg-slate-700">Prev</a></Link>
+    <Link href={getUrlNext(pagination.next)}><a className="rounded p-2 bg-slate-800 text-white hover:bg-slate-700 ml-2">Next</a></Link>
+  </div>
 )
 
 export default function Wallpapers({ wallpapers, pagination }) {
@@ -21,7 +21,7 @@ export default function Wallpapers({ wallpapers, pagination }) {
         <title key="title">Bing Wallpapers - {process.env.NEXT_PUBLIC_NAME}</title>
         <meta name="description" content="Bing Wallpapers" />
       </Head>
-      <h1 className="px-3 px-lg-0">Bing Wallpapers</h1>
+      <h1 className="text-3xl mb-2 text-white">Bing Wallpapers</h1>
       <WallpaperList wallpapers={wallpapers} />
       <Pagination pagination={pagination} />
     </Layout>
