@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-export default function ActiveLink({ href, children }: { href: string }) {
+export default function ActiveLink({ href, children }: { href: string, children: any }) {
   const router = useRouter()
 
   let className = children.props.className || ''
