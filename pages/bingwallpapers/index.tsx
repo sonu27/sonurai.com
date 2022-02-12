@@ -4,17 +4,17 @@ import { client } from '../../libs/Client'
 import Layout from '../../components/Layout'
 import WallpaperList from '../../components/WallpaperList'
 
-const getUrlPrev = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
-const getUrlNext = (p) => `/bingwallpapers?date=${p.date}&id=${p.id}`
+const getUrlPrev = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
+const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
 
-const Pagination = ({ pagination }) => (
+const Pagination = ({ pagination }: any) => (
   <div className="my-4">
     <Link href={getUrlPrev(pagination.prev)}><a className="rounded p-2 bg-slate-800 text-white hover:bg-slate-700">Prev</a></Link>
     <Link href={getUrlNext(pagination.next)}><a className="rounded p-2 bg-slate-800 text-white hover:bg-slate-700 ml-2">Next</a></Link>
   </div>
 )
 
-export default function Wallpapers({ wallpapers, pagination }) {
+export default function Wallpapers({ wallpapers, pagination }: any) {
   return (
     <Layout>
       <Head>
@@ -28,7 +28,7 @@ export default function Wallpapers({ wallpapers, pagination }) {
   )
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }: any) {
   const { date, id, prev } = query
   const reverse = (prev === '1')
 

@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   const { tag } = params
   const data = await client.getWallpapersByTag(tag)
   if (data.wallpapers.length === 0) {

@@ -62,7 +62,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   const { id } = params
   const data = await client.getWallpaper(id)
 

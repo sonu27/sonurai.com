@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import ActiveLink from '../components/ActiveLink'
 
-const Layout = (props) => (
+const Layout = (props: any) => (
   <>
     <Head>
       <title key="title">{process.env.NEXT_PUBLIC_NAME}</title>

@@ -9,7 +9,7 @@ export type Wallpaper = {
   tags: string[] | {};
 }
 
-function apiToWallpaper(v): Wallpaper {
+function apiToWallpaper(v: Wallpaper): Wallpaper {
   return {
     id: v.id,
     title: v.title,
