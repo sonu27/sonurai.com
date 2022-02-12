@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  color: rgb(148, 163, 184); /* text-slate-400 */
+}
+
+.about a:link, .about a:visited {
+  color: white;
+  text-decoration: underline;
+}
+
 .wallpaper:hover .caption {
     display: block;
 }

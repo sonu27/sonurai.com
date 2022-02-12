@@ -26,23 +26,21 @@ export default function W({ wallpaper }: { wallpaper: Wallpaper }) {
         <meta property="og:description" content={`${title} ${copyright}`} />
         <meta property="og:image" content={`https://images.sonurai.com/${filename}.jpg`} />
       </Head>
-      <figure key={id} className="wallpaper relative">
-        <Link href={`/bingwallpapers/${id}`}>
-          <a title={title}>
-            <Image
-              className="img-fluid"
-              unoptimized={true}
-              src={`https://images.sonurai.com/${filename}.jpg`}
-              width={1920}
-              height={1200}
-              alt={title}
-            />
-            <figcaption className="caption text-2xl text-white">{title}</figcaption>
-          </a>
-        </Link>
-      </figure>
-      <p className="text-gray-400">{copyright} - {intToDate(date)}</p>
-      <p className="mt-2">
+      <Link href={`/bingwallpapers/${id}`}>
+        <a title={title}>
+          <Image
+            className="img-fluid"
+            unoptimized={true}
+            src={`https://images.sonurai.com/${filename}.jpg`}
+            width={1920}
+            height={1200}
+            alt={title}
+          />
+        </a>
+      </Link>
+      <h1 className="caption text-2xl text-white mx-2 md:mx-0">{title}</h1>
+      <p className="text-gray-400 mx-2 md:mx-0">{copyright} - {intToDate(date)}</p>
+      <p className="mt-2 mx-2 md:mx-0">
         <SocialShareButtons
           url={`${domain}/bingwallpapers/${wallpaper.id}`}
           media={`https://images.sonurai.com/${filename}.jpg`}
@@ -50,7 +48,7 @@ export default function W({ wallpaper }: { wallpaper: Wallpaper }) {
           size={40}
         />
       </p>
-      <p className="mt-2">{tagFields}</p>
+      <p className="mt-2 mx-2 md:mx-0">{tagFields}</p>
     </Layout>
   )
 }
