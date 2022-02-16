@@ -9,8 +9,8 @@ const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
 
 const Pagination = ({ pagination }: any) => (
   <div className="my-4 mx-2 md:mx-0">
-    <Link href={getUrlPrev(pagination.prev)}><a className="rounded p-2 bg-slate-800 text-white hover:bg-slate-700">Prev</a></Link>
-    <Link href={getUrlNext(pagination.next)}><a className="rounded p-2 bg-slate-800 text-white hover:bg-slate-700 ml-1">Next</a></Link>
+    <Link href={getUrlPrev(pagination.prev)}><a className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">Prev</a></Link>
+    <Link href={getUrlNext(pagination.next)}><a className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white ml-1">Next</a></Link>
   </div>
 )
 
