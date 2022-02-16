@@ -27,10 +27,10 @@ const Header = () => (
         <a className="text-xl text-white">Sonu Rai</a>
       </Link>
       <ActiveLink href="/bingwallpapers">
-        <a className="ml-4">Wallpapers</a>
+        <a className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">Wallpapers</a>
       </ActiveLink>
       <ActiveLink href="/about">
-        <a className="ml-2">About</a>
+        <a className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">About</a>
       </ActiveLink>
     </div>
   </nav>
