@@ -7,7 +7,7 @@ export default function ActiveLink({ href, children }: { href: string, children:
 
   let className = children.props.className || ''
   if (router.pathname === href) {
-    className = `${className} active text-white`
+    className = `${className} active`
   }
 
   return <Link href={href}>{React.cloneElement(children, { className })}</Link>

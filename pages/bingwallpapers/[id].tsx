@@ -13,7 +13,7 @@ export default function W({ wallpaper }: { wallpaper: Wallpaper }) {
   const { id, filename, title, copyright, date, tags } = wallpaper
   const t = Object.entries(tags).sort((a: any, b: any) => b[1] - a[1])
   const tagFields = t.map((l, i) => (
-    <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`}><a className="rounded p-2 leading-10 bg-slate-800 text-white hover:bg-slate-700">{l[0]}</a></Link> </Fragment>
+    <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`}><a className="leading-10 whitespace-nowrap px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">{l[0]}</a></Link> </Fragment>
   ))
 
   return (
