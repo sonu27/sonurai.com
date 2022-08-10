@@ -6,7 +6,7 @@ export default function WallpaperList({ wallpapers } : { wallpapers: Wallpaper[]
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
       {wallpapers.map(({ id, title, filename }) => (
-        <figure key={id} className="wallpaper relative mb-1">
+        <figure key={id} className="wallpaper relative">
           <Link href={`/bingwallpapers/${id}`}>
             <a title={title}>
               <Image
