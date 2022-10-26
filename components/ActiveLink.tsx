@@ -10,5 +10,5 @@ export default function ActiveLink({ href, children }: { href: string, children:
     className = `${className} active`
   }
 
-  return <Link href={href}>{React.cloneElement(children, { className })}</Link>
+  return <Link href={href} legacyBehavior>{React.cloneElement(children, { className })}</Link>
 }

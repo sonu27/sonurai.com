@@ -22,17 +22,15 @@ const Layout = (props: any) => (
 
 const Header = () => (
   <nav className="flex items-center h-16 mx-2 md:mx-0" aria-label="navigation">
-    <div className="">
-      <Link href="/bingwallpapers">
-        <a className="text-xl text-white">Sonu Rai</a>
-      </Link>
-      <ActiveLink href="/bingwallpapers">
-        <a className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">Wallpapers</a>
-      </ActiveLink>
-      <ActiveLink href="/about">
-        <a className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">About</a>
-      </ActiveLink>
-    </div>
+    <Link href="/bingwallpapers" className="text-xl text-white">
+      Sonu Rai
+    </Link>
+    <Link href="/bingwallpapers" className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+      Wallpapers
+    </Link>
+    <Link href="/about" className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+      About
+    </Link>
   </nav>
 )
 

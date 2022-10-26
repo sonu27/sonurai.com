@@ -6,7 +6,7 @@ const Index = () => (
     <div className="px-3 px-lg-0">
       <h1>Home</h1>
       <ul>
-        <li><Link href="/bingwallpapers"><a>Bing Wallpapers</a></Link></li>
+        <li><Link href="/bingwallpapers">Bing Wallpapers</Link></li>
         <li><a href="https://arai.dev" rel="me">Blog</a></li>
       </ul>
     </div>
