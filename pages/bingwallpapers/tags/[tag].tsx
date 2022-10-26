@@ -4,10 +4,11 @@ import WallpaperList from '../../../components/WallpaperList'
 import { client, Wallpaper } from '../../../libs/Client'
 
 export default function Wallpapers({ wallpapers, tag }: { wallpapers: Wallpaper[], tag: string }) {
+  const pageTitle = `Tagged "${tag}" - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
     <Layout>
       <Head>
-        <title key="title">Tagged &quot;{tag}&quot; - Bing Wallpapers - {process.env.NEXT_PUBLIC_NAME}</title>
+        <title key="title">{pageTitle}</title>
         <meta name="description" content="Bing Wallpapers" />
       </Head>
       <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">Search results for: &quot;{tag}&quot;</h1>
