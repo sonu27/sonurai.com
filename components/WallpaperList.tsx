@@ -9,7 +9,6 @@ export default function WallpaperList({ wallpapers } : { wallpapers: Wallpaper[]
         <figure key={id} className="wallpaper relative">
           <Link href={`/bingwallpapers/${id}`} title={title} passHref>
             <Image
-              layout="responsive"
               src={`https://images.sonurai.com/${filename}.jpg`}
               width={1920}
               height={1200}
