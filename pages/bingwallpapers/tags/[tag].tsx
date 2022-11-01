@@ -11,7 +11,7 @@ export default function Wallpapers({ wallpapers, tag }: { wallpapers: Wallpaper[
         <title key="title">{pageTitle}</title>
         <meta name="description" content="Bing Wallpapers" />
       </Head>
-      <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">Search results for: &quot;{tag}&quot;</h1>
+      <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">Wallpapers tagged with &quot;{tag}&quot;</h1>
       <WallpaperList wallpapers={wallpapers} />
     </Layout>
   )

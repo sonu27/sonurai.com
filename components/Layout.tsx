@@ -28,6 +28,9 @@ const Header = () => (
     <Link href="/bingwallpapers" className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
       Wallpapers
     </Link>
+    <Link href="/bingwallpapers/tags" className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+      Tags
+    </Link>
     <Link href="/about" className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
       About
     </Link>
