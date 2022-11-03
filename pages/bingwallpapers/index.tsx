@@ -4,16 +4,6 @@ import { client } from '../../libs/Client'
 import Layout from '../../components/Layout'
 import WallpaperList from '../../components/WallpaperList'
 
-const getUrlPrev = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
-const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
-
-const Pagination = ({ pagination }: any) => (
-  <div className="my-4 mx-2 md:mx-0">
-    <Link href={getUrlPrev(pagination.prev)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">Prev</Link>
-    <Link href={getUrlNext(pagination.next)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white ml-1">Next</Link>
-  </div>
-)
-
 export default function Wallpapers({ wallpapers, pagination }: any) {
   const pageTitle = `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
@@ -26,6 +16,18 @@ export default function Wallpapers({ wallpapers, pagination }: any) {
       <WallpaperList wallpapers={wallpapers} />
       <Pagination pagination={pagination} />
     </Layout>
+  )
+}
+
+function Pagination ({ pagination }: any) {
+  const getUrlPrev = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
+  const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
+
+  return (
+    <div className="pagination my-4 mx-2 md:mx-0">
+      <Link href={getUrlPrev(pagination.prev)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">Prev</Link>
+      <Link href={getUrlNext(pagination.next)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white ml-1">Next</Link>
+    </div>
   )
 }
 

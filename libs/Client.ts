@@ -43,6 +43,7 @@ class Client {
     const first = wallpapers[0]
     const last = wallpapers[wallpapers.length - 1]
     return {
+      wallpapers: wallpapers,
       pagination: {
         prev: {
           date: first.date,
@@ -53,7 +54,6 @@ class Client {
           id: last.id,
         },
       },
-      wallpapers: wallpapers
     }
   }
 
@@ -69,7 +69,23 @@ class Client {
     const wallpapers = json.data.map(apiToWallpaper)
 
     return {
-      wallpapers: wallpapers
+      wallpapers: wallpapers,
+      nextUrl: json.links?.next,
+    }
+  }
+
+  async nextFn(url: string): Promise<{ wallpapers: Wallpaper[], nextUrl: string }> {
+    const res = await fetch(`${apiUrl}${url}`)
+    if (res.status === 404) {
+      return { wallpapers: [], nextUrl: '' }
+    }
+
+    const json = await res.json()
+    const wallpapers = json.data.map(apiToWallpaper)
+
+    return {
+      wallpapers: wallpapers,
+      nextUrl: json.links?.next,
     }
   }
 
