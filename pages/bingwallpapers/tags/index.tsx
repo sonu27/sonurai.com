@@ -14,7 +14,7 @@ export default function T({ tags }: { tags: [string, number][] }) {
   const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
     <Layout pageTitle={pageTitle}>
-      <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">Tags - Bing Wallpapers</h1>
+      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Tags - Bing Wallpapers</h1>
       {tagFields}
     </Layout>
   )
