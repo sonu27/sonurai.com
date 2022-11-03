@@ -36,9 +36,9 @@ export default function W({ wallpaper }: { wallpaper: Wallpaper }) {
           alt={title}
         />
       </Link>
-      <h1 className="caption text-2xl text-white mx-2 md:mx-0">{title}</h1>
-      <p className="text-gray-400 mx-2 md:mx-0">{copyright} - {intToDate(date)}</p>
-      <p className="mt-2 mx-2 md:mx-0">
+      <h1 className="caption text-2xl text-white mx-4 md:mx-0">{title}</h1>
+      <p className="text-gray-400 mx-4 md:mx-0">{copyright} - {intToDate(date)}</p>
+      <p className="mt-2 mx-4 md:mx-0">
         <SocialShareButtons
           url={`${domain}/bingwallpapers/${wallpaper.id}`}
           media={`https://images.sonurai.com/${filename}.jpg`}
@@ -46,7 +46,7 @@ export default function W({ wallpaper }: { wallpaper: Wallpaper }) {
           size={40}
         />
       </p>
-      <p className="mt-2 mx-2 md:mx-0">{tagFields}</p>
+      <p className="mt-2 mx-4 md:mx-0">{tagFields}</p>
     </Layout>
   )
 }

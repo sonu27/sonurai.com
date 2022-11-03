@@ -24,7 +24,7 @@ export default function RootLayout ({ pageTitle, children }: any) {
 }
 
 const Header = () => (
-  <nav className="flex items-center h-16 mx-2 md:mx-0" aria-label="navigation">
+  <nav className="flex items-center h-16 mx-4 md:mx-0" aria-label="navigation">
     <Link href="/bingwallpapers" className="text-xl text-white">
       Sonu Rai
     </Link>
@@ -41,5 +41,5 @@ const Header = () => (
 )
 
 const Footer = () => (
-  <footer className="mt-4 mb-16 mx-2 md:mx-0 text-gray-400">&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</footer>
+  <footer className="mt-4 mb-16 mx-4 md:mx-0 text-gray-400">&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</footer>
 )

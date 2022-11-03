@@ -7,7 +7,7 @@ export default function Wallpapers({ wallpapers, pagination }: any) {
   const pageTitle = `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
     <Layout pageTitle={pageTitle}>
-      <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">Bing Wallpapers</h1>
+      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Bing Wallpapers</h1>
       <WallpaperList wallpapers={wallpapers} />
       <Pagination pagination={pagination} />
     </Layout>
@@ -19,7 +19,7 @@ function Pagination ({ pagination }: any) {
   const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
 
   return (
-    <div className="pagination my-4 mx-2 md:mx-0">
+    <div className="pagination my-4 mx-4 md:mx-0">
       <Link href={getUrlPrev(pagination.prev)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">Prev</Link>
       <Link href={getUrlNext(pagination.next)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white ml-1">Next</Link>
     </div>

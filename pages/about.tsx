@@ -4,8 +4,8 @@ export default function About() {
   const pageTitle = `About - ${process.env.NEXT_PUBLIC_NAME}`
   return (
     <Layout pageTitle={pageTitle}>
-      <div className="about">
-        <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">About</h1>
+      <div className="about mx-4 md:mx-0">
+        <h1 className="text-3xl mb-2 text-white">About</h1>
         <p>Built by <a href="https://amarjeet.dev" rel="me">Amarjeet Rai</a></p>
         <p>You can contact me on Twitter <a href="https://twitter.com/sonu27" rel="me">@sonu27</a></p>
         <p>
