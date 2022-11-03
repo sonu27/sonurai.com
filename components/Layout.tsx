@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-export default function RootLayout (props: any) {
+export default function RootLayout ({ pageTitle, children }: any) {
   return (
-    <div className="container mx-auto">
+    <>
       <Head>
-        <title key="title">{process.env.NEXT_PUBLIC_NAME}</title>
+        <title key="title">{pageTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#111827" />
         <link rel="icon" href="/favicon.ico" />
@@ -13,11 +13,13 @@ export default function RootLayout (props: any) {
         <link rel="manifest" href="/manifest.json" />
         <meta name="twitter:site" content="@sonu27" />
         <meta name="twitter:creator" content="@sonu27" />
+        <meta name="description" content={pageTitle} />
+        <meta property="og:title" content={pageTitle} />
       </Head>
       <Header />
-      {props.children}
+      {children}
       <Footer />
-    </div>
+    </>
   )
 }
 
