@@ -1,11 +1,8 @@
 import { Fragment } from 'react'
-import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../../../components/Layout'
 
 export default function T({ tags }: { tags: [string, number][] }) {
-  const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
-
   const max = tags.reduce((a, c) => Math.max(a, c[1]), 0)
   const tagFields = tags.map((l, i) => {
     const normalised = (l[1] - 1) / (max - 1) * 4 + 1
@@ -13,12 +10,10 @@ export default function T({ tags }: { tags: [string, number][] }) {
       <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`} className="px-3 py-2 rounded-md text-gray-300 hover:bg-slate-700 hover:text-white" style={{"fontSize": normalised+"em"}}>{l[0]}</Link> </Fragment>
     )
   })
+
+  const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
-    <Layout>
-      <Head>
-        <title key="title">{pageTitle}</title>
-        <meta name="description" content="Tags - Bing Wallpapers" />
-      </Head>
+    <Layout pageTitle={pageTitle}>
       <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">Tags - Bing Wallpapers</h1>
       {tagFields}
     </Layout>

@@ -11,19 +11,17 @@ const domain = process.env.NEXT_PUBLIC_URL
 
 export default function W({ wallpaper }: { wallpaper: Wallpaper }) {
   const { id, filename, title, copyright, date, tags } = wallpaper
-  const pageTitle = `${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   const t = Object.entries(tags).sort((a: any, b: any) => b[1] - a[1])
   const tagFields = t.map((l, i) => (
     <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`} className="leading-10 whitespace-nowrap px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">{l[0]}</Link> </Fragment>
   ))
 
+  const pageTitle = `${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
-    <Layout>
+    <Layout pageTitle={pageTitle}>
       <Head>
-        <title key="title">{pageTitle}</title>
         <meta name="keywords" content={t.reduce((a, c) => `${a}, ${c[0]}`, '')} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:title" content={`${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`} />
         <meta property="og:description" content={`${title} ${copyright}`} />
         <meta property="og:image" content={`https://images.sonurai.com/${filename}.jpg`} />
       </Head>

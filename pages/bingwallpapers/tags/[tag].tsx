@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Head from 'next/head'
 import Layout from '../../../components/Layout'
 import WallpaperList from '../../../components/WallpaperList'
 import { client, Wallpaper } from '../../../libs/Client'
@@ -19,14 +18,10 @@ export default function Wallpapers({ wallpapers, tag, nextUrl }: { wallpapers: W
       }
     }
   }
-  
+
   const pageTitle = `Tagged "${tag}" - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
-    <Layout>
-      <Head>
-        <title key="title">{pageTitle}</title>
-        <meta name="description" content="Bing Wallpapers" />
-      </Head>
+    <Layout pageTitle={pageTitle}>
       <h1 className="text-3xl mb-2 text-white mx-2 md:mx-0">Wallpapers tagged with &quot;{tag}&quot;</h1>
       <WallpaperList wallpapers={wallpaperList} />
       <div className="pagination my-4 mx-2 md:mx-0">
