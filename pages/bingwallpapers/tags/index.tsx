@@ -8,9 +8,9 @@ export default function T({ tags }: { tags: [string, number][] }) {
 
   const max = tags.reduce((a, c) => Math.max(a, c[1]), 0)
   const tagFields = tags.map((l, i) => {
-    const normalised = (l[1] - 1) / (max - 1) * 5 + 1
+    const normalised = (l[1] - 1) / (max - 1) * 4 + 1
     return (
-      <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`} className="whitespace-nowrap px-3 py-2 rounded-md text-gray-300 hover:bg-slate-700 hover:text-white" style={{"fontSize": normalised+"em"}}>{l[0]}</Link> </Fragment>
+      <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`} className="px-3 py-2 rounded-md text-gray-300 hover:bg-slate-700 hover:text-white" style={{"fontSize": normalised+"em"}}>{l[0]}</Link> </Fragment>
     )
   })
   return (
