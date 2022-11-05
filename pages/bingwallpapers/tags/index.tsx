@@ -8,7 +8,7 @@ export default function T({ tags }: { tags: [string, number][] }) {
   const tagFields = tags.map((l, i) => {
     const normalised = (l[1] - min) / (max - min) * 5 + 1
     return (
-      <Fragment key={i}><Link href={`/bingwallpapers/tags/${l[0]}`} className="px-2 py-1 leading-[3rem] rounded-md text-gray-300 hover:bg-slate-700 hover:text-white" style={{"fontSize": normalised+"em"}}>{l[0]}</Link> </Fragment>
+      <Fragment key={i}><Link prefetch={false} href={`/bingwallpapers/tags/${l[0]}`} className="px-2 py-1 leading-[3rem] rounded-md text-gray-300 hover:bg-slate-700 hover:text-white" style={{"fontSize": normalised+"em"}}>{l[0]}</Link> </Fragment>
     )
   })
 

@@ -7,7 +7,7 @@ export default function WallpaperList({ wallpapers } : { wallpapers: Wallpaper[]
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
       {wallpapers.map(({ id, title, filename }, i) => (
         <figure key={id} className="wallpaper relative">
-          <Link href={`/bingwallpapers/${id}`} title={title} passHref>
+          <Link prefetch={false} href={`/bingwallpapers/${id}`} title={title}>
             <Image
               src={`https://images.sonurai.com/${filename}.jpg`}
               width={1920}
