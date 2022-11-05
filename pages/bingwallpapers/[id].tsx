@@ -25,17 +25,15 @@ export default function W({ wallpaper }: { wallpaper: Wallpaper }) {
         <meta property="og:description" content={`${title} ${copyright}`} />
         <meta property="og:image" content={`https://images.sonurai.com/${filename}.jpg`} />
       </Head>
-      <Link href={`/bingwallpapers/${id}`} title={title} passHref>
-        <Image
-          className="img-fluid"
-          priority={true}
-          unoptimized={true}
-          src={`https://images.sonurai.com/${filename}.jpg`}
-          width={1920}
-          height={1200}
-          alt={title}
-        />
-      </Link>
+      <Image
+        className="img-fluid"
+        priority={true}
+        unoptimized={true}
+        src={`https://images.sonurai.com/${filename}.jpg`}
+        width={1920}
+        height={1200}
+        alt={title}
+      />
       <h1 className="caption text-2xl text-white mx-4 md:mx-0">{title}</h1>
       <p className="text-gray-400 mx-4 md:mx-0">{copyright} - {intToDate(date)}</p>
       <p className="mt-2 mx-4 md:mx-0">
