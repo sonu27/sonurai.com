@@ -70,7 +70,7 @@ class Client {
 
     return {
       wallpapers: wallpapers,
-      nextUrl: json.links?.next,
+      nextUrl: json.links?.next || '',
     }
   }
 
@@ -85,7 +85,7 @@ class Client {
 
     return {
       wallpapers: wallpapers,
-      nextUrl: json.links?.next,
+      nextUrl: json.links?.next || '',
     }
   }
 
