@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
-import Layout from '../../../components/Layout'
+import Layout from '../../layout
 
 export default function T({ tags }: { tags: [string, number][] }) {
   const max = tags.reduce((a, c) => Math.max(a, c[1]), 0)

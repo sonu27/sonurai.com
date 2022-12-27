@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { client } from '../../libs/Client'
-import Layout from '../../components/Layout'
+import Layout from '../layout
 import WallpaperList from '../../components/WallpaperList'
 
 export default function Wallpapers({ wallpapers, pagination }: any) {

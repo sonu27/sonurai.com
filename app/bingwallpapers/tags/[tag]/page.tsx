@@ -1,9 +1,6 @@
 import { useState } from 'react'
-import Layout from '../../../components/Layout'
-import WallpaperList from '../../../components/WallpaperList'
-import { client, Wallpaper } from '../../../libs/Client'
-
-export default function Wallpapers({ wallpapers, tag, nextUrl }: { wallpapers: Wallpaper[], tag: string, nextUrl: string }) {
+import Layout from '../../../layout'
+import WallpaperList from '../../.../../../../components/WallpaperListt { client, Wallpaper } from '../../.../../../../libs/Clientrt default function Wallpapers({ wallpapers, tag, nextUrl }: { wallpapers: Wallpaper[], tag: string, nextUrl: string }) {
   const limit = 36
   const [wallpaperList, setWallpaperList] = useState(wallpapers)
   const [next, setNext] = useState(nextUrl)

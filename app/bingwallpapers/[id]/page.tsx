@@ -2,10 +2,10 @@ import { Fragment } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { client, Wallpaper } from '../../libs/Client'
-import { intToDate } from '../../libs/date'
-import SocialShareButtons from '../../components/SocialShareButtons'
-import Layout from '../../components/Layout'
+import { client, Wallpaper } from '../../../libs/Client'
+import { intToDate } from '../../../libs/date'
+import SocialShareButtons from '../../../components/SocialShareButtons'
+import Layout from '../../layout'
 
 const domain = process.env.NEXT_PUBLIC_URL
 
