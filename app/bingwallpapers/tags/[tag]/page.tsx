@@ -9,7 +9,7 @@ export default async function Page({ params }: {
   const limit = 36
   const data = await client.getWallpapersByTag(params.tag)
   if (data.wallpapers.length === 0) {
-    return notFound()
+    notFound()
   }
   return (
     <>

@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Image from 'next/image'
 import Link from 'next/link'
 import { client, Wallpaper } from '../../../libs/Client'
@@ -11,14 +11,14 @@ export default async function Page({ params }: {
   params: { id: string },
 }) {
   const data = await client.getWallpaper(params.id)
-  if (!data.wallpaper) {
-    return notFound()
+  if (data.wallpaper == undefined) {
+    notFound()
   }
 
   const { id, filename, title, copyright, date, tags } = data.wallpaper
 
   if (!isNaN(Number(id))) {
-    return { redirect: { destination: `/bingwallpapers/${id}`, permanent: true } }
+    redirect(`/bingwallpapers/${id}`)
   }
 
   const t = Object.entries(tags).sort((a: any, b: any) => b[1] - a[1])
