@@ -24,7 +24,8 @@ const nextConfig = {
     deviceSizes: [640, 880],
   },
   experimental: {
-    scrollRestoration: true
+    scrollRestoration: true,
+    appDir: true,
   },
   poweredByHeader: false,
   reactStrictMode: true,

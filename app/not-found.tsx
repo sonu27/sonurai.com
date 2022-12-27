@@ -1,4 +1,4 @@
-import Layout from '../components/Layout'
+import Layout from './layout'
 
 export default function Custom404() {
   const pageTitle = `404 - Page Not Found`
