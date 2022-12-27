@@ -11,3 +11,5 @@ describe('main navigation', () => {
     cy.get("nav").contains("Wallpapers").click();
   });
 })
+
+export {}
