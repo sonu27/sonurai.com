@@ -1,25 +1,26 @@
-import Head from 'next/head'
+import '../styles/globals.css'
 import Link from 'next/link'
 
-export default function RootLayout ({ pageTitle, children }: any) {
+export default function RootLayout({ children }: {
+  children: React.ReactNode;
+}) {
   return (
-    <>
-      <Head>
-        <title key="title">{pageTitle}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#111827" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/logo192.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="twitter:site" content="@sonu27" />
-        <meta name="twitter:creator" content="@sonu27" />
-        <meta name="description" content={pageTitle} />
-        <meta property="og:title" content={pageTitle} />
-      </Head>
+    <html lang="en">
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color" content="#111827" />
+      <link rel="icon" href="/favicon.ico" />
+      <link rel="apple-touch-icon" href="/logo192.png" />
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="twitter:site" content="@sonu27" />
+      <meta name="twitter:creator" content="@sonu27" />
+    </head>
+    <body className="container mx-auto bg-gray-900">
       <Header />
       {children}
       <Footer />
-    </>
+    </body>
+    </html>
   )
 }
 

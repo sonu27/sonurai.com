@@ -1,9 +1,5 @@
-import Layout from '../components/Layout'
-
-export default function About() {
-  const pageTitle = `About - ${process.env.NEXT_PUBLIC_NAME}`
+export default function Page() {
   return (
-    <Layout pageTitle={pageTitle}>
       <div className="about mx-4 md:mx-0">
         <h1 className="text-3xl mb-2 text-white">About</h1>
         <p>Built by <a href="https://amarjeet.dev" rel="me">Amarjeet Rai</a></p>
@@ -15,6 +11,5 @@ export default function About() {
           <a href="https://twitter.com/sonu27" title="Twitter @sonu27" rel="me">Twitter</a>
         </p>
       </div>
-    </Layout>
   )
 }
