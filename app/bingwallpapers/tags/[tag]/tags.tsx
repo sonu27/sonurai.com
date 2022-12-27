@@ -3,7 +3,10 @@ import { useState } from 'react'
 import WallpaperList from '../../../../components/WallpaperList'
 import { client, Wallpaper } from '../../../../libs/Client'
 
-export default function LoadWallpapers({ nextUrl, limit }) {
+export default function LoadWallpapers({ nextUrl, limit }: {
+  nextUrl: string,
+  limit: number,
+}) {
   const [wallpapers, setWallpapers] = useState([] as Wallpaper[])
   const [next, setNext] = useState(nextUrl)
   const moreFn = async () => {
