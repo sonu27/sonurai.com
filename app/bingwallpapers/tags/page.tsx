@@ -1,8 +1,8 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
-import Layout from '../../layout
 
-export default function T({ tags }: { tags: [string, number][] }) {
+export default function Page() {
+  const tags = getTags()
   const max = tags.reduce((a, c) => Math.max(a, c[1]), 0)
   const min = tags.reduce((a, c) => Math.min(a, c[1]), max)
   const tagFields = tags.map((l, i) => {
@@ -14,14 +14,14 @@ export default function T({ tags }: { tags: [string, number][] }) {
 
   const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
-    <Layout pageTitle={pageTitle}>
+    <>
       <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Tags - Bing Wallpapers</h1>
       <div className="mx-2 md:mx-0">{tagFields}</div>
-    </Layout>
+    </>
   )
 }
 
-export async function getStaticProps() {
+function getTags() {
   const tags = {
     'acrylic paint': 56,
     adaptation: 343,
@@ -455,9 +455,5 @@ export async function getStaticProps() {
   //   }, {})
   // console.log(a)
 
-  return {
-    props: {
-      tags: t,
-    }
-  }
+  return t
 }

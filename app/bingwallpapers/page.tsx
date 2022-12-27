@@ -1,23 +1,10 @@
 import Link from 'next/link'
 import { client } from '../../libs/Client'
-import Layout from '../layout
 import WallpaperList from '../../components/WallpaperList'
 
-export default function Wallpapers({ wallpapers, pagination }: any) {
-  const pageTitle = `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
-  return (
-    <Layout pageTitle={pageTitle}>
-      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Bing Wallpapers</h1>
-      <WallpaperList wallpapers={wallpapers} />
-      <Pagination pagination={pagination} />
-    </Layout>
-  )
-}
-
-function Pagination ({ pagination }: any) {
+function Pagination({ pagination }: any) {
   const getUrlPrev = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
   const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
-
   return (
     <div className="pagination my-4 mx-4 md:mx-0">
       <Link href={getUrlPrev(pagination.prev)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">Prev</Link>
@@ -26,8 +13,11 @@ function Pagination ({ pagination }: any) {
   )
 }
 
-export async function getServerSideProps({ query }: any) {
-  const { date, id, prev } = query
+export default async function Page({ params, searchParams }: {
+  params: {},
+  searchParams: { id: string, date: string, prev: string }
+}) {
+  const { date, id, prev } = searchParams
   const reverse = (prev === '1')
 
   if (date && id && (!date || !id)) {
@@ -39,10 +29,11 @@ export async function getServerSideProps({ query }: any) {
     return { notFound: true }
   }
 
-  return {
-    props: {
-      wallpapers: data.wallpapers,
-      pagination: data.pagination,
-    }
-  }
+  return (
+    <>
+      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Bing Wallpapers</h1>
+      <WallpaperList wallpapers={data.wallpapers} />
+      <Pagination pagination={data.pagination} />
+    </>
+  )
 }
