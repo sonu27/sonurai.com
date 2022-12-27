@@ -32,7 +32,7 @@ class Client {
       }
     }
 
-    const res = await fetch(url)
+    const res = await fetch(url, { next: { revalidate: 604800 } })
     if (res.status === 404) {
       return { wallpapers: [] }
     }
@@ -60,7 +60,7 @@ class Client {
   async getWallpapersByTag(tag: string) {
     let url = `${apiUrl}/wallpapers/tags/${tag}`
 
-    const res = await fetch(url)
+    const res = await fetch(url, { next: { revalidate: 604800 } })
     if (res.status === 404) {
       return { wallpapers: [] }
     }
@@ -75,7 +75,7 @@ class Client {
   }
 
   async nextFn(url: string): Promise<{ wallpapers: Wallpaper[], nextUrl: string }> {
-    const res = await fetch(`${apiUrl}${url}`)
+    const res = await fetch(`${apiUrl}${url}`, { next: { revalidate: 604800 } })
     if (res.status === 404) {
       return { wallpapers: [], nextUrl: '' }
     }
@@ -90,7 +90,7 @@ class Client {
   }
 
   async getWallpaper(id: string) {
-    const res = await fetch(`${apiUrl}/wallpapers/${id}`)
+    const res = await fetch(`${apiUrl}/wallpapers/${id}`, { next: { revalidate: 604800 } })
     if (res.status === 404) {
       return { wallpaper: null }
     }
