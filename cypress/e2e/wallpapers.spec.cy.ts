@@ -17,3 +17,5 @@ describe('wallpapers', () => {
     cy.get(".pagination").contains("Prev").click();
   });
 })
+
+export {}
