@@ -26,6 +26,7 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
     appDir: true,
+    runtime: 'experimental-edge',
   },
   poweredByHeader: false,
   reactStrictMode: true,
