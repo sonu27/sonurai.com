@@ -21,7 +21,7 @@ function apiToWallpaper(v: Wallpaper): Wallpaper {
 }
 
 class Client {
-  async getWallpapers(startAfterDate: string | null, startAfterID: string | null, prev: boolean | null) {
+  async getWallpapers(startAfterDate: string | undefined, startAfterID: string | undefined, prev: boolean | undefined) {
     let url = `${apiUrl}/wallpapers`
 
     if (startAfterDate && startAfterID) {

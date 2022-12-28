@@ -15,13 +15,12 @@ function Pagination({ pagination }: any) {
 }
 
 export default async function Page({ params, searchParams }: {
-  params?: {},
+  params: {},
   searchParams?: { id: string, date: string, prev: string }
 }) {
-  if (searchParams == undefined) {
-    notFound()
-  }
-  const { date, id, prev } = searchParams
+  const date = searchParams?.date
+  const id = searchParams?.id
+  const prev = searchParams?.prev
   const reverse = (prev === '1')
 
   if (date && id && (!date || !id)) {
