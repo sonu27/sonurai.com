@@ -1,5 +1,12 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
+
+export const metadata: Metadata = {
+  title: pageTitle,
+};
 
 export default function Page() {
   const tags = getTags()
@@ -12,7 +19,6 @@ export default function Page() {
     )
   })
 
-  const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
     <>
       <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Tags - Bing Wallpapers</h1>

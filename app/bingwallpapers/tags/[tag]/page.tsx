@@ -2,6 +2,15 @@ import { notFound } from 'next/navigation'
 import WallpaperList from '../../../../components/WallpaperList'
 import { client } from '../../../../libs/Client'
 import LoadWallpapers from './tags'
+import type { Metadata } from 'next'
+
+export async function generateMetadata({ params }: {
+  params: { tag: string },
+}): Promise<Metadata> {
+  return {
+    title: `Tagged "${params.tag}" - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+  }
+};
 
 export default async function Page({ params }: {
   params: { tag: string },

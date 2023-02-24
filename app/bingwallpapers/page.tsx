@@ -2,6 +2,12 @@ import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
 import { client } from '../../libs/Client'
 import WallpaperList from '../../components/WallpaperList'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+  description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+};
 
 function Pagination({ pagination }: any) {
   const getUrlPrev = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`

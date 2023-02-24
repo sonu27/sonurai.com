@@ -1,5 +1,18 @@
 import '../styles/globals.css'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: `${process.env.NEXT_PUBLIC_NAME}`,
+  viewport: 'width=device-width, initial-scale=1',
+  themeColor: '#111827',
+  icons: '/favicon.ico',
+  manifest: '/manifest.json',
+  twitter: {
+    site: '@sonu27',
+    creator: '@sonu27',
+  },
+};
 
 export default function RootLayout({ children }: {
   children: React.ReactNode;
@@ -7,13 +20,7 @@ export default function RootLayout({ children }: {
   return (
     <html lang="en">
     <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#111827" />
-      <link rel="icon" href="/favicon.ico" />
       <link rel="apple-touch-icon" href="/logo192.png" />
-      <link rel="manifest" href="/manifest.json" />
-      <meta name="twitter:site" content="@sonu27" />
-      <meta name="twitter:creator" content="@sonu27" />
     </head>
     <body className="container mx-auto bg-gray-900">
       <Header />

@@ -1,3 +1,9 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: `About - ${process.env.NEXT_PUBLIC_NAME}`,
+};
+
 export default function Page() {
   return (
     <div className="about mx-4 md:mx-0">

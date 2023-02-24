@@ -2,10 +2,39 @@ import { Fragment } from 'react'
 import { notFound, redirect } from 'next/navigation';
 import Image from 'next/image'
 import Link from 'next/link'
-import { client, Wallpaper } from '../../../libs/Client'
+import { client } from '../../../libs/Client'
 import { intToDate } from '../../../libs/date'
+import type { Metadata } from 'next'
 
 const domain = process.env.NEXT_PUBLIC_URL
+
+export async function generateMetadata({ params }: {
+  params: { id: string },
+}): Promise<Metadata> {
+  const data = await client.getWallpaper(params.id)
+  if (!data.wallpaper) {
+    return {}
+  }
+
+  const { title, copyright, tags, filename } = data.wallpaper
+  const pageTitle = `${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
+  const desc = `${title} ${copyright}`
+  const t = Object.entries(tags).sort((a: any, b: any) => b[1] - a[1])
+
+  return {
+    title: pageTitle,
+    description: desc,
+    keywords: t.reduce((a, c) => `${a}, ${c[0]}`, ''),
+    twitter: {
+      card: "summary_large_image",
+    },
+    openGraph: {
+      title: pageTitle,
+      description: desc,
+      images: ['https://images.sonurai.com/${filename}.jpg'],
+    }
+  }
+};
 
 export default async function Page({ params }: {
   params: { id: string },
