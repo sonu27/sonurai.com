@@ -5,11 +5,11 @@ import { Wallpaper } from '../libs/Client'
 export default function WallpaperList({ wallpapers } : { wallpapers: Wallpaper[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
-      {wallpapers.map(({ id, title, filename }, i) => (
+      {wallpapers.map(({ id, title }, i) => (
         <figure key={id} className="wallpaper relative">
           <Link prefetch={false} href={`/bingwallpapers/${id}`} title={title}>
             <Image
-              src={`https://images.sonurai.com/${filename}.jpg`}
+              src={`https://images.sonurai.com/${id}.jpg`}
               width={1920}
               height={1200}
               priority={i < 3}
