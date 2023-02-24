@@ -24,9 +24,9 @@ const nextConfig = {
     deviceSizes: [640, 880],
   },
   experimental: {
-    scrollRestoration: true,
+    // scrollRestoration: true,
     appDir: true,
-    // runtime: 'edge',
+    runtime: 'edge',
   },
   poweredByHeader: false,
   reactStrictMode: true,
