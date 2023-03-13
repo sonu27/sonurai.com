@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Head from 'next/head'
 import { client } from '../../libs/Client'
 import Layout from '../../components/Layout'
 import WallpaperList from '../../components/WallpaperList'
@@ -7,6 +8,9 @@ export default function Wallpapers({ wallpapers, pagination }: any) {
   const pageTitle = `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   return (
     <Layout pageTitle={pageTitle}>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
       <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Bing Wallpapers</h1>
       <WallpaperList wallpapers={wallpapers} />
       <Pagination pagination={pagination} />
