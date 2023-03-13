@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: {
     return {}
   }
 
-  const { title, copyright, tags, filename } = data.wallpaper
+  const { id, title, copyright, tags } = data.wallpaper
   const pageTitle = `${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`
   const desc = `${title} ${copyright}`
   const t = Object.entries(tags).sort((a: any, b: any) => b[1] - a[1])
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: {
     openGraph: {
       title: pageTitle,
       description: desc,
-      images: ['https://images.sonurai.com/${filename}.jpg'],
+      images: [`https://images.sonurai.com/${id}.jpg`],
     }
   }
 };
@@ -44,7 +44,7 @@ export default async function Page({ params }: {
     notFound()
   }
 
-  const { id, filename, title, copyright, date, tags } = data.wallpaper
+  const { id, title, copyright, date, tags } = data.wallpaper
 
   if (!isNaN(Number(id))) {
     redirect(`/bingwallpapers/${id}`)
@@ -61,7 +61,7 @@ export default async function Page({ params }: {
         className="img-fluid"
         priority={true}
         unoptimized={true}
-        src={`https://images.sonurai.com/${filename}.jpg`}
+        src={`https://images.sonurai.com/${id}.jpg`}
         width={1920}
         height={1200}
         alt={title}

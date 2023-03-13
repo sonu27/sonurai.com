@@ -5,7 +5,6 @@ export type Wallpaper = {
   title: string;
   copyright: string;
   date: string;
-  filename: string;
   tags: string[] | {};
 }
 
@@ -15,7 +14,6 @@ function apiToWallpaper(v: Wallpaper): Wallpaper {
     title: v.title,
     copyright: v.copyright,
     date: v.date,
-    filename: v.filename,
     tags: v.tags || {},
   }
 }

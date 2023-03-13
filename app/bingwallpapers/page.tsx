@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
   description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+  robots: { follow: true, index: false },
 };
 
 function Pagination({ pagination }: any) {
