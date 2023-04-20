@@ -8,11 +8,6 @@ const nextConfig = {
         permanent: false,
       },
       {
-        source: '/bingwallpapers/page/1',
-        destination: '/bingwallpapers',
-        permanent: true,
-      },
-      {
         source: '/wallpaper/:image',
         destination: 'https://images.sonurai.com/:image',
         permanent: true,
@@ -24,9 +19,9 @@ const nextConfig = {
     deviceSizes: [640, 880],
   },
   experimental: {
-    // scrollRestoration: true,
+    // scrollRestoration: true, // does not work
     appDir: true,
-    runtime: 'edge',
+    // runtime: 'edge', // bug: https://github.com/vercel/next.js/issues/43384
   },
   poweredByHeader: false,
   reactStrictMode: true,

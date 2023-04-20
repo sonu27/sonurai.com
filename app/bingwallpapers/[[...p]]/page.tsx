@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound, redirect } from 'next/navigation'
-import { client } from '../../libs/Client'
-import WallpaperList from '../../components/WallpaperList'
+import { client } from '../../../libs/Client'
+import WallpaperList from '../../../components/WallpaperList'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 function Pagination({ pagination }: any) {
-  const getUrlPrev = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
-  const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
+  const getUrlPrev = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}/prev`
+  const getUrlNext = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}`
   return (
     <div className="pagination my-4 mx-4 md:mx-0">
       <Link href={getUrlPrev(pagination.prev)} className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white">Prev</Link>
@@ -22,13 +22,23 @@ function Pagination({ pagination }: any) {
 }
 
 export default async function Page({ params, searchParams }: {
-  params: {},
-  searchParams?: { id: string, date: string, prev: string }
+  params: { p?: string[] },
+  searchParams: {}
 }) {
-  const date = searchParams?.date
-  const id = searchParams?.id
-  const prev = searchParams?.prev
-  const reverse = (prev === '1')
+  const p = params?.p
+  let date
+  let id
+  let reverse = false
+
+  if (p) {
+    if (p.length > 0 && p[0] !== 'page' || p.length < 3 || p.length > 4 || (p.length === 4 && p[3] !== 'prev')) {
+      redirect('/bingwallpapers')
+    }
+
+    date = p[1]
+    id = p[2]
+    reverse = (p[3] === 'prev')
+  }
 
   if (date && id && (!date || !id)) {
     redirect('/bingwallpapers')
