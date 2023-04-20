@@ -19,8 +19,8 @@ export default function Wallpapers({ wallpapers, pagination }: any) {
 }
 
 function Pagination ({ pagination }: any) {
-  const getUrlPrev = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}&prev=1`
-  const getUrlNext = (p: any) => `/bingwallpapers?date=${p.date}&id=${p.id}`
+  const getUrlPrev = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}/prev`
+  const getUrlNext = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}`
 
   return (
     <div className="pagination my-4 mx-4 md:mx-0">
@@ -30,9 +30,24 @@ function Pagination ({ pagination }: any) {
   )
 }
 
-export async function getServerSideProps({ query }: any) {
-  const { date, id, prev } = query
-  const reverse = (prev === '1')
+export async function getServerSideProps({ query }: {
+  query: { p?: string[] },
+}) {
+  const p = query?.p
+  let date
+  let id
+  let reverse = false
+
+  if (p) {
+    if (p.length > 0 && p[0] !== 'page' || p.length < 3 || p.length > 4 || (p.length === 4 && p[3] !== 'prev')) {
+      return { redirect: { destination: '/bingwallpapers', permanent: false } }
+    }
+
+    date = p[1]
+    id = p[2]
+    reverse = (p[3] === 'prev')
+  }
+
 
   if (date && id && (!date || !id)) {
     return { redirect: { destination: '/bingwallpapers', permanent: false } }
