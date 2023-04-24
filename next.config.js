@@ -19,7 +19,9 @@ const nextConfig = {
     deviceSizes: [640, 880],
   },
   experimental: {
-    scrollRestoration: true
+    // scrollRestoration: true, // does not work
+    appDir: true,
+    // runtime: 'edge', // bug: https://github.com/vercel/next.js/issues/43384
   },
   poweredByHeader: false,
   reactStrictMode: true,
