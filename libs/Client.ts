@@ -72,6 +72,15 @@ class Client {
     }
   }
 
+  async getTags() {
+    let url = `${apiUrl}/wallpapers/tags`
+
+    const res = await fetch(url)
+    const tags: object = await res.json()
+
+    return tags
+  }
+
   async nextFn(url: string): Promise<{ wallpapers: Wallpaper[], nextUrl: string }> {
     const res = await fetch(`${apiUrl}${url}`)
     if (res.status === 404) {
