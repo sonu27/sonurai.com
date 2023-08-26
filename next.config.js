@@ -18,9 +18,6 @@ const nextConfig = {
     domains: ['images.sonurai.com'],
     deviceSizes: [640, 880],
   },
-  experimental: {
-    runtime: 'edge',
-  },
   poweredByHeader: false,
   reactStrictMode: true,
 }
