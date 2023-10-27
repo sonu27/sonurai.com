@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   robots: { follow: true, index: false },
 };
 
+export const dynamic = 'force-dynamic'
 export const dynamicParams = true
+export const fetchCache = 'force-no-store'
 
 function Pagination({ pagination }: any) {
   const getUrlPrev = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}/prev`
