@@ -30,7 +30,7 @@ class Client {
       }
     }
 
-    const res = await fetch(url, { next: { revalidate: 1 } })
+    const res = await fetch(url, { next: { revalidate: 0 } })
     if (res.status === 404) {
       return { wallpapers: [] }
     }
