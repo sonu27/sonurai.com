@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   robots: { follow: true, index: false },
 };
 
+export const dynamicParams = true
+
 function Pagination({ pagination }: any) {
   const getUrlPrev = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}/prev`
   const getUrlNext = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}`
