@@ -12,7 +12,7 @@ export default function Wallpapers({ wallpapers, pagination }: any) {
         <meta name="robots" content="noindex" />
       </Head>
       <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Bing Wallpapers</h1>
-      <p className="mb-2 mt-2 mx-4 md:mx-0">This project is looking for sponsorship for hosting costs. Email me on sonu [at] sonurai.com if interested</p>
+      <p className="mb-2 mt-2 mx-4 md:mx-0">This project is looking for sponsorship. Email me on sonu [at] sonurai.com if interested</p>
       <WallpaperList wallpapers={wallpapers} />
       <Pagination pagination={pagination} />
     </Layout>
