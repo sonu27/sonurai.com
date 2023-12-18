@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { ReactNode } from 'react'
 
 export default function RootLayout ({ pageTitle, children }: any) {
   return (
@@ -23,22 +25,42 @@ export default function RootLayout ({ pageTitle, children }: any) {
   )
 }
 
-const Header = () => (
-  <nav className="flex items-center h-16 mx-4 md:mx-0" aria-label="navigation">
-    <Link href="/bingwallpapers" className="text-xl text-white">
-      Sonu Rai
+const Header = () => {
+  const router = useRouter()
+  return (
+    <nav className="flex items-center h-16 mx-4 md:mx-0" aria-label="navigation">
+      <Link href="/bingwallpapers" className="text-xl text-white">
+        Sonu Rai
+      </Link>
+      <ActiveLink href="/about" className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+        About
+      </ActiveLink>
+      <ActiveLink href="/bingwallpapers/tags" className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+        Tags
+      </ActiveLink>
+      <ActiveLink href="/bingwallpapers/search" className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+        Search
+      </ActiveLink>
+    </nav>
+  )
+}
+
+interface ActiveLinkProps {
+  children: ReactNode;
+  href: string;
+  className: string;
+}
+
+function ActiveLink({ children, href, className }: ActiveLinkProps) {
+  const router = useRouter()
+  className = router.asPath === href ? `${className} bg-gray-800` : className
+
+  return (
+    <Link href={href} className={className}>
+      {children}
     </Link>
-    <Link href="/bingwallpapers" className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
-      Wallpapers
-    </Link>
-    <Link href="/bingwallpapers/tags" className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
-      Tags
-    </Link>
-    <Link href="/about" className="text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
-      About
-    </Link>
-  </nav>
-)
+  )
+}
 
 const Footer = () => (
   <footer className="mt-4 mb-16 mx-4 md:mx-0 text-gray-400">&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</footer>
