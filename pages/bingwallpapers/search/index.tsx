@@ -67,8 +67,9 @@ function getPagination() {
       showLast={false}
       classNames={{
         root: "pagination my-4 mx-4 md:mx-0",
-        item: "inline-block rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white",
-        selectedItem: "bg-sky-500 text-white hover:bg-sky-500",
+        item: "inline-block rounded-md",
+        pageItem: "text-gray-300 hover:bg-slate-700 hover:text-white",
+        selectedItem: "text-white font-bold bg-blue-500",
         disabledItem:
           "bg-slate-900 hover:bg-slate-900 text-gray-500 hover:text-gray-500",
         link: "px-3 py-2 block",
