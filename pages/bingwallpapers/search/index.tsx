@@ -11,6 +11,7 @@ import {
   Pagination,
   useHits,
   UseHitsProps,
+  RefinementList,
 } from "react-instantsearch";
 
 const searchClient = algoliasearch(
@@ -28,6 +29,7 @@ export default function Search() {
       <InstantSearch
         searchClient={searchClient}
         indexName="wallpapers"
+        future={{ preserveSharedStateOnUnmount: true }}
         insights
       >
         <SearchBox
@@ -37,6 +39,18 @@ export default function Search() {
             root: "mx-4 md:mx-0",
             input:
               "block px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1",
+          }}
+        />
+        <RefinementList
+          attribute="tagsOrdered"
+          searchable={true}
+          searchablePlaceholder="Search tags"
+          showMore={true}
+          operator="and"
+          classNames={{
+            root: "mx-4 md:mx-0",
+            count: "ml-2",
+            labelText: "ml-2 text-white",
           }}
         />
         <EmptyQueryBoundary fallback={null}>
