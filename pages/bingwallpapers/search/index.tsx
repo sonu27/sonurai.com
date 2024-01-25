@@ -53,13 +53,11 @@ export default function Search() {
             labelText: "ml-2 text-white",
           }}
         />
-        <EmptyQueryBoundary fallback={null}>
-          <NoResultsBoundary fallback={<NoResults />}>
-            {getPagination()}
-            <CustomHits />
-            {getPagination()}
-          </NoResultsBoundary>
-        </EmptyQueryBoundary>
+        <NoResultsBoundary fallback={<NoResults />}>
+          {getPagination()}
+          <CustomHits />
+          {getPagination()}
+        </NoResultsBoundary>
       </InstantSearch>
     </Layout>
   );
