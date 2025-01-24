@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  /* color: var(--foreground);
+  background: var(--background); */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  /* text-slate-400 */
+  color: rgb(148, 163, 184);
+}
+
+.about a:link,
+.about a:visited {
+  color: white;
+}
+
+.wallpaper:hover .caption {
+  display: block;
+}
+
+.tag-search input {
+  background-color: white;
+  padding: 0.4rem;
+}
