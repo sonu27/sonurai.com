@@ -24,13 +24,15 @@ export async function generateMetadata(props: {
     title: pageTitle,
     description: desc,
     keywords: t.reduce((a, c) => `${a}, ${c[0]}`, ""),
-    twitter: {
-      card: "summary_large_image",
-    },
     openGraph: {
       title: pageTitle,
       description: desc,
       images: [`https://images.sonurai.com/${id}.jpg`],
+      siteName: process.env.NEXT_PUBLIC_NAME,
+      url: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/${id}`,
+    },
+    twitter: {
+      card: "summary_large_image",
     },
   };
 }
