@@ -1,8 +1,12 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { Wallpaper } from '../libs/Client'
+import Image from "next/image";
+import Link from "next/link";
+import { Wallpaper } from "../libs/Client";
 
-export default function WallpaperList({ wallpapers }: { wallpapers: Wallpaper[] }) {
+export default function WallpaperList({
+  wallpapers,
+}: {
+  wallpapers: Wallpaper[];
+}) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
       {wallpapers.map(({ id, title }, i) => (
@@ -16,10 +20,12 @@ export default function WallpaperList({ wallpapers }: { wallpapers: Wallpaper[] 
               priority={i < 3}
               alt={title}
             />
-            <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 mx-4 md:mx-0 md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black md:bg-opacity-80 md:text-white">{title}</figcaption>
+            <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 mx-4 md:mx-0 md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black md:bg-opacity-80 md:text-white">
+              {title}
+            </figcaption>
           </Link>
         </figure>
       ))}
     </div>
-  )
+  );
 }
