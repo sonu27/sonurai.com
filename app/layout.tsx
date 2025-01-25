@@ -4,21 +4,21 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: `${process.env.NEXT_PUBLIC_NAME}`,
-  icons: '/favicon.ico',
-  manifest: '/manifest.json',
+  icons: "/favicon.ico",
+  manifest: "/manifest.json",
   twitter: {
-    site: '@sonu27',
-    creator: '@sonu27',
+    site: "@sonu27",
+    creator: "@sonu27",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#111827',
-  width: 'device-width',
+  themeColor: "#111827",
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-}
+};
 
 export default function RootLayout({
   children,
@@ -44,13 +44,22 @@ const Header = () => (
     <Link href="/bingwallpapers" className="text-xl text-white">
       Sonu Rai
     </Link>
-    <Link href="/about" className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+    <Link
+      href="/about"
+      className="ml-4 text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md"
+    >
       About
     </Link>
-    <Link href="/bingwallpapers/tags" className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+    <Link
+      href="/bingwallpapers/tags"
+      className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md"
+    >
       Tags
     </Link>
-    <Link href="/bingwallpapers/search" className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md">
+    <Link
+      href="/bingwallpapers/search"
+      className=" text-gray-300 hover:bg-gray-800 hover:text-white px-3 py-2 rounded-md"
+    >
       Search
     </Link>
   </nav>
