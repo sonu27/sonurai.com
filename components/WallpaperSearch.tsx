@@ -1,8 +1,9 @@
+"use client";
+
 import { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Layout from "../../../components/Layout";
-import algoliasearch from "algoliasearch/lite";
+import { liteClient } from 'algoliasearch/lite';
 import {
   useInstantSearch,
   InstantSearch,
@@ -14,56 +15,52 @@ import {
   RefinementList,
 } from "react-instantsearch";
 
-const searchClient = algoliasearch(
+const searchClient = liteClient(
   "C2HE5P5XXN",
-  "d2c8fc1252a7738a63c4ca3c8b96eea5"
+  "d2c8fc1252a7738a63c4ca3c8b96eea5",
 );
 
-export default function Search() {
-  const pageTitle = `Search - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
+export function Search() {
   return (
-    <Layout pageTitle={pageTitle}>
-      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">
-        Search - Bing Wallpapers
-      </h1>
-      <InstantSearch
-        searchClient={searchClient}
-        indexName="wallpapers"
-        future={{ preserveSharedStateOnUnmount: true }}
-        insights
-      >
-        <SearchBox
-          placeholder="Search wallpapers"
-          queryHook={debounceQuery}
-          classNames={{
-            root: "mx-4 md:mx-0",
-            input:
-              "block px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1",
-          }}
-        />
-        <RefinementList
-          attribute="tagsOrdered"
-          searchable={true}
-          searchablePlaceholder="Search tags"
-          showMore={true}
-          operator="and"
-          classNames={{
-            root: "mx-4 md:mx-0",
-            count: "ml-2",
-            labelText: "ml-2 text-white",
-          }}
-        />
-        <NoResultsBoundary fallback={<NoResults />}>
-          {getPagination()}
-          <CustomHits />
-          {getPagination()}
-        </NoResultsBoundary>
-      </InstantSearch>
-    </Layout>
+    <InstantSearch
+      searchClient={searchClient}
+      indexName="wallpapers"
+      future={{ preserveSharedStateOnUnmount: true }}
+      insights
+    >
+      <SearchBox
+        placeholder="Search wallpapers"
+        queryHook={debounceQuery}
+        classNames={{
+          root: "mx-4 md:mx-0",
+          input:
+            "block px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1",
+        }}
+      />
+      <RefinementList
+        attribute="tagsOrdered"
+        searchable={true}
+        searchablePlaceholder="Search tags"
+        showMore={true}
+        operator="and"
+        classNames={{
+          root: "mx-4 md:mx-0",
+          searchBox: "tag-search",
+          count: "ml-2",
+          labelText: "ml-2 text-white",
+        }}
+      />
+      <NoResultsBoundary fallback={<NoResults />}>
+        {getPagination()}
+        <CustomHits />
+        {getPagination()}
+      </NoResultsBoundary>
+    </InstantSearch>
   );
 }
+
 let timerId: any = undefined;
-let timeout = 500;
+const timeout = 500;
 function debounceQuery(query: string, search: any) {
   if (timerId) {
     clearTimeout(timerId);
@@ -91,11 +88,11 @@ function getPagination() {
 }
 
 function CustomHits(props: UseHitsProps) {
-  const { hits } = useHits(props);
+  const { items } = useHits(props);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
-      {hits.map((hit, i) => {
+      {items.map((hit, i) => {
         const { id, title }: any = hit;
         return (
           <figure
@@ -127,6 +124,7 @@ interface FallbackProps {
   fallback: ReactNode;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function EmptyQueryBoundary({ children, fallback }: FallbackProps) {
   const { indexUiState } = useInstantSearch();
 

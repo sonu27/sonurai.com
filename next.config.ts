@@ -1,5 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
@@ -14,8 +15,12 @@ const nextConfig = {
       },
     ]
   },
+  // images: {
+  //   domains: ['images.sonurai.com'],
+  //   deviceSizes: [640, 880],
+  // },
   poweredByHeader: false,
   reactStrictMode: true,
-}
+};
 
-module.exports = nextConfig
+export default nextConfig;
