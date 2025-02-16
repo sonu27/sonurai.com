@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Wallpaper } from "../libs/Client";
+import { Wallpaper } from "@/libs/Client";
 
 export default function WallpaperList({
   wallpapers,
@@ -20,7 +20,7 @@ export default function WallpaperList({
               priority={i < 3}
               alt={title}
             />
-            <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 mx-4 md:mx-0 md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black md:bg-opacity-80 md:text-white">
+            <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 mx-4 md:mx-0 md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black/80 md:text-white">
               {title}
             </figcaption>
           </Link>
