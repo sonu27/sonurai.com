@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import WallpaperList from "../../../../components/WallpaperList";
-import { client, Wallpaper } from "../../../../libs/Client";
+import WallpaperList from "@/components/WallpaperList";
+import { client, Wallpaper } from "@/libs/Client";
 
 export default function LoadWallpapers({
   nextUrl,

@@ -13,6 +13,10 @@ export const metadata: Metadata = {
     site: "@sonu27",
     creator: "@sonu27",
   },
+  appleWebApp: {
+    statusBarStyle: "black-translucent",
+    capable: true,
+  }
 };
 
 export const viewport: Viewport = {

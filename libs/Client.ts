@@ -1,4 +1,4 @@
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL as string;
 
 export type Wallpaper = {
   id: string;
@@ -20,9 +20,9 @@ function apiToWallpaper(v: Wallpaper): Wallpaper {
 
 class Client {
   async getWallpapers(
-    startAfterDate: string | undefined,
-    startAfterID: string | undefined,
-    prev: boolean | undefined,
+    startAfterDate?: string,
+    startAfterID?: string,
+    prev?: boolean,
   ) {
     let url = `${apiUrl}/wallpapers`;
 
