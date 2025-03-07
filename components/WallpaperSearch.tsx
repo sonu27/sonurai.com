@@ -101,8 +101,7 @@ function CustomHits(props: UseHitsProps) {
           >
             <Link prefetch={false} href={`/bingwallpapers/${id}`} title={title}>
               <Image
-                unoptimized={true}
-                src={`https://img2.sonurai.com/${id}.jpg`}
+                src={`https://images.sonurai.com/${id}.jpg`}
                 width={1920}
                 height={1200}
                 priority={i < 3}

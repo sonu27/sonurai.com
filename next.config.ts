@@ -15,10 +15,18 @@ const nextConfig: NextConfig = {
       },
     ]
   },
-  // images: {
-  //   domains: ['images.sonurai.com'],
-  //   deviceSizes: [640, 880],
-  // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.sonurai.com',
+        port: '',
+        pathname: '**',
+        search: '',
+      },
+    ],
+    deviceSizes: [880],
+  },
   poweredByHeader: false,
   reactStrictMode: true,
 };
