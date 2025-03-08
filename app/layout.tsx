@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from 'next/script';
 import Header from "./header";
 import "./globals.css";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="apple-touch-icon" href="/logo192.png" />
+        <Script defer src="https://abc.sonurai.com/script.js" data-website-id="a708a4bd-e0a6-4adb-8c0d-9573cc94a88f"></Script>
       </head>
       <body className="container mx-auto bg-gray-900">
         <Header />

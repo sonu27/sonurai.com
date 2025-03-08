@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: '/abc/:match*',
+  //       destination: 'https://abc.sonurai.com/:match*',
+  //     },
+  //   ]
+  // },
   images: {
     remotePatterns: [
       {
