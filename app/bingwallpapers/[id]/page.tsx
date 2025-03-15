@@ -46,7 +46,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
 
   const { id, title, copyright, date, tags } = data.wallpaper;
 
-  if (!isNaN(Number(id))) {
+  if (!isNaN(Number(params.id))) {
     redirect(`/bingwallpapers/${id}`);
   }
 
