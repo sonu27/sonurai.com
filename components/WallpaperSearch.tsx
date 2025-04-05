@@ -65,9 +65,8 @@ function getPagination() {
         root: "pagination my-4 mx-4 md:mx-0",
         item: "inline-block rounded-md",
         pageItem: "text-gray-300 hover:bg-slate-700 hover:text-white",
-        selectedItem: "text-white font-bold bg-blue-500",
-        disabledItem:
-          "bg-slate-900 hover:bg-slate-900 text-gray-500 hover:text-gray-500",
+        selectedItem: "text-white font-bold bg-gray-800",
+        disabledItem: "bg-dark-primary text-slate-950 hover:bg-dark-primary hover:text-slate-950",
         link: "px-3 py-2 block",
       }}
     />
@@ -110,7 +109,6 @@ interface FallbackProps {
   fallback: ReactNode;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function EmptyQueryBoundary({ children, fallback }: FallbackProps) {
   const { indexUiState } = useInstantSearch();
 
