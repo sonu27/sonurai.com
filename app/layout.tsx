@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#111827",
+  themeColor: "#0d1014",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -38,7 +38,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/logo192.png" />
         <Script defer src="https://abc.sonurai.com/script.js" data-website-id="a708a4bd-e0a6-4adb-8c0d-9573cc94a88f"></Script>
       </head>
-      <body className="container mx-auto bg-gray-900">
+      <body className="container mx-auto">
         <Header />
         {children}
         <Footer />

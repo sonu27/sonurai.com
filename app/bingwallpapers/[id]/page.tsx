@@ -74,7 +74,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         height={1200}
         alt={title}
       />
-      <h1 className="caption text-2xl text-white mx-4 md:mx-0">{title}</h1>
+      <h1 className="caption text-xl text-white mt-2 mx-4 md:mx-0 md:text-2xl">{title}</h1>
       <p className="text-gray-400 mx-4 md:mx-0">
         {copyright} - {intToDate(date)}
       </p>
