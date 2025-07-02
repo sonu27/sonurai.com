@@ -16,8 +16,8 @@ export async function generateMetadata(props: {
   }
 
   const { id, title, copyright, tags } = data.wallpaper;
-  const pageTitle = `${title} - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
-  const desc = `${title} ${copyright}`;
+  const pageTitle = `${title} Wallpaper`;
+  const desc = `${title} ${copyright}. Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
   const t = Object.entries(tags).sort((a: any, b: any) => b[1] - a[1]);
 
   return {
