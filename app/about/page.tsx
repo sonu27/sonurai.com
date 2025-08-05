@@ -12,6 +12,8 @@ export default function Page() {
       <p>You can email me on sonu [at] sonurai.com</p>
       <p>
         <a href="https://arai.dev" rel="me">Blog</a><br />
+        <a href="https://brain.arai.dev" rel="me">My Notes</a><br />
+        <a href="https://amarjeet.photos" rel="me">Amarjeet.photos (my photography)</a><br />
         <a href="https://github.com/sonu27/" rel="me">GitHub</a><br />
         <a href="https://www.linkedin.com/in/amarjeetrai" rel="me">LinkedIn</a><br />
       </p>
