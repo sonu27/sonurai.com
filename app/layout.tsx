@@ -5,6 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: `${process.env.NEXT_PUBLIC_NAME}`,
+  description: "Download beautiful, high-resolution Bing wallpapers for your desktop and mobile devices. Updated daily.",
   icons: "/favicon.ico",
   manifest: "/manifest.json",
   openGraph: {

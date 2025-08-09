@@ -3,12 +3,34 @@ import { notFound, redirect } from "next/navigation";
 import { client } from "@/libs/Client";
 import WallpaperList from "@/components/WallpaperList";
 import type { Metadata } from "next";
+import { intToDate } from "@/libs/date";
 
-export const metadata: Metadata = {
-  title: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
-  description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
-  robots: { follow: true, index: false },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { p?: string[] };
+}): Promise<Metadata> {
+  const p = params?.p;
+
+  if (p) {
+    const date = p[1];
+    return {
+      title: `Bing Wallpapers from ${intToDate(date)} - ${
+        process.env.NEXT_PUBLIC_NAME
+      }`,
+      description: `Bing Wallpapers from ${intToDate(
+        date
+      )}. Download for free for your desktop or mobile device.`,
+      robots: { follow: true, index: false },
+    };
+  }
+
+  return {
+    title: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+    description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+    robots: { follow: true, index: false },
+  };
+}
 
 function Pagination({ pagination }: any) {
   const getUrlPrev = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}/prev`;
@@ -32,11 +54,11 @@ function Pagination({ pagination }: any) {
   );
 }
 
-export default async function Page(props: {
-  params: Promise<{ p?: string[] }>;
-  searchParams: Promise<object>;
+export default async function Page({
+  params,
+}: {
+  params: { p?: string[] };
 }) {
-  const params = await props.params;
   const p = params?.p;
   let date;
   let id;

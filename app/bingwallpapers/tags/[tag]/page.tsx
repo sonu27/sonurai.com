@@ -4,20 +4,19 @@ import { client } from "@/libs/Client";
 import LoadWallpapers from "./tags";
 import type { Metadata } from "next";
 
-export async function generateMetadata(props: {
-  params: Promise<{ tag: string }>;
+export async function generateMetadata({
+  params,
+}: {
+  params: { tag: string };
 }): Promise<Metadata> {
-  const params = await props.params;
   const decodedTag = decodeURIComponent(params.tag);
   return {
     title: `Tagged "${decodedTag}" - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+    description: `Download wallpapers tagged with "${decodedTag}" from Bing.`,
   };
 }
 
-export default async function Page(props: {
-  params: Promise<{ tag: string }>;
-}) {
-  const params = await props.params;
+export default async function Page({ params }: { params: { tag: string } }) {
   const decodedTag = decodeURIComponent(params.tag);
   const limit = 36;
   const data = await client.getWallpapersByTag(decodedTag);
