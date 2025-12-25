@@ -13,6 +13,7 @@ import {
   useHits,
   UseHitsProps,
 } from "react-instantsearch";
+import { colorsToDataURL } from "@/libs/Client";
 
 const searchClient = liteClient(
   "C2HE5P5XXN",
@@ -79,7 +80,7 @@ function CustomHits(props: UseHitsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
       {items.map((hit, i) => {
-        const { id, title }: any = hit;
+        const { id, title, colors }: any = hit;
         return (
           <figure
             key={id}
@@ -92,6 +93,7 @@ function CustomHits(props: UseHitsProps) {
                 height={1200}
                 priority={i < 3}
                 alt={title}
+                placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
               />
               <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 mx-4 md:mx-0 md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black/80 md:text-white">
                 <Highlight attribute="title" hit={hit} />

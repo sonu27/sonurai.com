@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/libs/Client";
+import { client, colorsToDataURL } from "@/libs/Client";
 import { intToDate } from "@/libs/date";
 import type { Metadata } from "next";
 
@@ -44,7 +44,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     notFound();
   }
 
-  const { id, title, copyright, date, tags } = data.wallpaper;
+  const { id, title, copyright, date, tags, colors } = data.wallpaper;
 
   if (!isNaN(Number(params.id))) {
     redirect(`/bingwallpapers/${id}`);
@@ -73,6 +73,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         width={1920}
         height={1200}
         alt={title}
+        placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
       />
       <h1 className="caption text-xl text-white mt-2 mx-4 md:mx-0 md:text-2xl">{title}</h1>
       <p className="text-gray-400 mx-4 md:mx-0">
