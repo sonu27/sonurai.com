@@ -1,0 +1,73 @@
+import { client, Wallpaper } from "@/libs/Client";
+import { intToDate } from "@/libs/date";
+
+const siteUrl = process.env.NEXT_PUBLIC_URL as string;
+const siteName = process.env.NEXT_PUBLIC_NAME as string;
+
+function escapeXml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function dateToRfc822(dateStr: string): string {
+  // dateStr is in format YYYYMMDD
+  const date = new Date(intToDate(dateStr));
+  return date.toUTCString();
+}
+
+function generateRssItem(wallpaper: Wallpaper): string {
+  const { id, title, copyright, date } = wallpaper;
+  const link = `${siteUrl}/bingwallpapers/${id}`;
+  const imageUrl = `https://images.sonurai.com/${id}.jpg`;
+  const description = `${escapeXml(title)} - ${escapeXml(copyright)}`;
+
+  return `    <item>
+      <title>${escapeXml(title)}</title>
+      <link>${link}</link>
+      <guid isPermaLink="true">${link}</guid>
+      <description>${description}</description>
+      <pubDate>${dateToRfc822(date)}</pubDate>
+      <enclosure url="${imageUrl}" type="image/jpeg" length="0" />
+      <media:content url="${imageUrl}" type="image/jpeg" medium="image" width="1920" height="1200" />
+      <media:thumbnail url="${imageUrl}" width="1920" height="1200" />
+    </item>`;
+}
+
+function generateRssFeed(wallpapers: Wallpaper[]): string {
+  const items = wallpapers.map(generateRssItem).join("\n");
+  const lastBuildDate = wallpapers.length > 0 ? dateToRfc822(wallpapers[0].date) : new Date().toUTCString();
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Bing Wallpapers - ${escapeXml(siteName)}</title>
+    <link>${siteUrl}/bingwallpapers</link>
+    <description>Latest Bing Wallpapers from ${escapeXml(siteName)}</description>
+    <language>en-us</language>
+    <lastBuildDate>${lastBuildDate}</lastBuildDate>
+    <atom:link href="${siteUrl}/bingwallpapers/rss.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>${siteUrl}/logo192.png</url>
+      <title>Bing Wallpapers - ${escapeXml(siteName)}</title>
+      <link>${siteUrl}/bingwallpapers</link>
+    </image>
+${items}
+  </channel>
+</rss>`;
+}
+
+export async function GET() {
+  const data = await client.getWallpapers();
+  const feed = generateRssFeed(data.wallpapers);
+
+  return new Response(feed, {
+    headers: {
+      "Content-Type": "application/rss+xml; charset=utf-8",
+      "Cache-Control": "public, max-age=3600, s-maxage=3600",
+    },
+  });
+}
