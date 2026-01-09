@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
   description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
   robots: { follow: true, index: false },
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers`,
+  },
 };
 
 function Pagination({ pagination }: any) {
