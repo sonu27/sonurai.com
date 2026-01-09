@@ -7,6 +7,10 @@ const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
 
 export const metadata: Metadata = {
   title: pageTitle,
+  description: "Browse all tags for Bing Wallpapers. Discover wallpapers organized by category, theme, and subject matter.",
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/tags`,
+  },
 };
 
 export default async function Page() {

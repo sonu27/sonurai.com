@@ -3,8 +3,10 @@ import { Search } from "@/components/WallpaperSearch";
 
 export const metadata: Metadata = {
   title: `Search - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
-  description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
-  robots: { follow: true, index: false },
+  description: `Search Bing Wallpapers by keyword. Find and download free HD desktop wallpapers.`,
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/search`,
+  },
 };
 
 export default function WallpaperSearch() {

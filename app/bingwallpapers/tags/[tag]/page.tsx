@@ -11,6 +11,10 @@ export async function generateMetadata(props: {
   const decodedTag = decodeURIComponent(params.tag);
   return {
     title: `Tagged "${decodedTag}" - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+    description: `Browse and download free HD wallpapers tagged with "${decodedTag}" from Bing's daily wallpaper collection.`,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/tags/${params.tag}`,
+    },
   };
 }
 

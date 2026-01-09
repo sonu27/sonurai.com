@@ -17,7 +17,7 @@ export default function WallpaperList({
               width={1920}
               height={1200}
               priority={i < 3}
-              alt={title}
+              alt={`Bing Wallpaper: ${title}`}
               placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
             />
             <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 mx-4 md:mx-0 md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black/80 md:text-white">
