@@ -75,7 +75,7 @@ function getPagination() {
 }
 
 function CustomHits(props: UseHitsProps) {
-  const { items } = useHits(props);
+  const { items, sendEvent } = useHits(props);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
@@ -86,7 +86,12 @@ function CustomHits(props: UseHitsProps) {
             key={id}
             className="wallpaper relative mb-12 md:mb-0 last:mb-0"
           >
-            <Link prefetch={false} href={`/bingwallpapers/${id}`} title={title}>
+            <Link
+              prefetch={false}
+              href={`/bingwallpapers/${id}`}
+              title={title}
+              onClick={() => sendEvent("click", hit, "Hit Clicked")}
+            >
               <Image
                 src={`https://images.sonurai.com/${id}.jpg`}
                 width={1920}
