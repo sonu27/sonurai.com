@@ -78,6 +78,14 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     encodingFormat: "image/jpeg",
     copyrightNotice: copyright,
     keywords: Object.keys(tags).join(", "),
+    creditText: copyright,
+    creator: {
+      "@type": "Organization",
+      name: "Microsoft Bing",
+      url: "https://www.bing.com",
+    },
+    license: "https://www.microsoft.com/en-us/servicesagreement/",
+    acquireLicensePage: "https://www.bing.com/gallery/",
   };
 
   return (
