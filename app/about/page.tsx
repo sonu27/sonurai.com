@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: `About - ${process.env.NEXT_PUBLIC_NAME}`,
-  description: `About ${process.env.NEXT_PUBLIC_NAME} - Discover stunning daily Bing wallpapers from around the world. Curated and built by Amarjeet Rai.`,
+  description: `About ${process.env.NEXT_PUBLIC_NAME} - Discover stunning daily Bing wallpapers from around the world. Built by Amarjeet Rai.`,
   alternates: {
     canonical: `${process.env.NEXT_PUBLIC_URL}/about`,
   },
