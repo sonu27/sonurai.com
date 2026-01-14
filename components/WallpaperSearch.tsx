@@ -13,7 +13,7 @@ import {
   useHits,
   UseHitsProps,
 } from "react-instantsearch";
-import { colorsToDataURL } from "@/libs/Client";
+import { colorsToDataURL } from "@/libs/image";
 
 const searchClient = liteClient(
   "C2HE5P5XXN",

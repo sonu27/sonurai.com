@@ -3,7 +3,8 @@ import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { client, colorsToDataURL } from "@/libs/Client";
+import { client } from "@/libs/Client";
+import { colorsToDataURL } from "@/libs/image";
 import { intToDate } from "@/libs/date";
 import type { Metadata } from "next";
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Wallpaper, colorsToDataURL } from "@/libs/Client";
+import { Wallpaper } from "@/libs/Client";
+import { colorsToDataURL } from "@/libs/image";
 
 export default function WallpaperList({
   wallpapers,
