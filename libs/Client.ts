@@ -9,17 +9,6 @@ export type Wallpaper = {
   colors?: string[];
 };
 
-function apiToWallpaper(v: Wallpaper): Wallpaper {
-  return {
-    id: v.id,
-    title: v.title,
-    copyright: v.copyright,
-    date: v.date,
-    tags: v.tags,
-    colors: v.colors,
-  };
-}
-
 export async function getWallpapers(
   startAfterDate?: string,
   startAfterID?: string,
@@ -41,7 +30,7 @@ export async function getWallpapers(
   }
 
   const json = await res.json();
-  const wallpapers = json.data.map(apiToWallpaper);
+  const wallpapers: Wallpaper[] = json.data;
 
   const first = wallpapers[0];
   const last = wallpapers[wallpapers.length - 1];
@@ -69,7 +58,7 @@ export async function getWallpapersByTag(tag: string) {
   }
 
   const json = await res.json();
-  const wallpapers = json.data.map(apiToWallpaper);
+  const wallpapers: Wallpaper[] = json.data;
 
   return {
     wallpapers: wallpapers,
@@ -97,7 +86,7 @@ export async function fetchNextPage(
   }
 
   const json = await res.json();
-  const wallpapers = json.data.map(apiToWallpaper);
+  const wallpapers: Wallpaper[] = json.data;
 
   return {
     wallpapers: wallpapers,
@@ -116,6 +105,6 @@ export async function getWallpaper(id: string) {
   const json = await res.json();
 
   return {
-    wallpaper: apiToWallpaper(json),
+    wallpaper: json as Wallpaper,
   };
 }
