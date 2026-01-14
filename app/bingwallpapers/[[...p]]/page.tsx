@@ -57,11 +57,13 @@ export default async function Page(props: {
 
     date = p[1];
     id = p[2];
-    reverse = p[3] === "prev";
-  }
 
-  if (date && id && (!date || !id)) {
-    redirect("/bingwallpapers");
+    // Both date and id are required for pagination
+    if (!date || !id) {
+      redirect("/bingwallpapers");
+    }
+
+    reverse = p[3] === "prev";
   }
 
   const data = await client.getWallpapers(date, id, reverse);
