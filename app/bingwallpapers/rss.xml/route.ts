@@ -23,13 +23,14 @@ function generateRssItem(wallpaper: Wallpaper): string {
   const { id, title, copyright, date } = wallpaper;
   const link = `${siteUrl}/bingwallpapers/${id}`;
   const imageUrl = `https://images.sonurai.com/${id}.jpg`;
-  const description = `${escapeXml(title)} - ${escapeXml(copyright)}`;
+  const descriptionText = `${escapeXml(title)} - ${escapeXml(copyright)}`;
+  const descriptionHtml = `<![CDATA[<img src="${imageUrl}" alt="${escapeXml(title)}" /><p>${descriptionText}</p>]]>`;
 
   return `    <item>
       <title>${escapeXml(title)}</title>
       <link>${link}</link>
       <guid isPermaLink="true">${link}</guid>
-      <description>${description}</description>
+      <description>${descriptionHtml}</description>
       <pubDate>${dateToRfc822(date)}</pubDate>
       <enclosure url="${imageUrl}" type="image/jpeg" length="0" />
       <media:content url="${imageUrl}" type="image/jpeg" medium="image" width="1920" height="1200" />
