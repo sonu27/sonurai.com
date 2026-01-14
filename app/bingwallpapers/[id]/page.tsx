@@ -43,7 +43,7 @@ export async function generateMetadata(props: {
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const data = await getWallpaper(params.id);
-  if (data.wallpaper == undefined) {
+  if (data.wallpaper === null) {
     notFound();
   }
 
@@ -53,7 +53,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     redirect(`/bingwallpapers/${id}`);
   }
 
-  const t = Object.entries(tags).sort((a: any, b: any) => b[1] - a[1]);
+  const t = Object.entries(tags).sort((a, b) => b[1] - a[1]);
   const tagFields = t.map((l, i) => (
     <Fragment key={i}>
       <Link

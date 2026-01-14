@@ -48,9 +48,9 @@ export function Search() {
   );
 }
 
-let timerId: any = undefined;
+let timerId: ReturnType<typeof setTimeout> | undefined = undefined;
 const timeout = 500;
-function debounceQuery(query: string, search: any) {
+function debounceQuery(query: string, search: (query: string) => void) {
   if (timerId) {
     clearTimeout(timerId);
   }
@@ -81,7 +81,11 @@ function CustomHits(props: UseHitsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
       {items.map((hit, i) => {
-        const { id, title, colors }: any = hit;
+        const { id, title, colors } = hit as unknown as {
+          id: string;
+          title: string;
+          colors?: string[];
+        };
         return (
           <figure
             key={id}

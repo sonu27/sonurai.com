@@ -25,7 +25,12 @@ const Header = () => {
   );
 };
 
-const ActiveLink = ({ href, children }: any) => {
+type ActiveLinkProps = {
+  href: string;
+  children: React.ReactNode;
+};
+
+const ActiveLink = ({ href, children }: ActiveLinkProps) => {
   const p = usePathname();
 
   return (
