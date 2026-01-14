@@ -13,20 +13,19 @@ export const metadata: Metadata = {
   },
 };
 
-function Pagination({ pagination }: any) {
-  const getUrlPrev = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}/prev`;
-  const getUrlNext = (p: any) => `/bingwallpapers/page/${p.date}/${p.id}`;
+type PaginationCursor = { date: string; id: string };
 
+function Pagination({ prev, next }: { prev: PaginationCursor; next: PaginationCursor }) {
   return (
     <div className="pagination my-4 mx-4 md:mx-0">
       <Link
-        href={getUrlPrev(pagination.prev)}
+        href={`/bingwallpapers/page/${prev.date}/${prev.id}/prev`}
         className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white"
       >
         Prev
       </Link>
       <Link
-        href={getUrlNext(pagination.next)}
+        href={`/bingwallpapers/page/${next.date}/${next.id}`}
         className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white ml-1"
       >
         Next
@@ -67,7 +66,7 @@ export default async function Page(props: {
   }
 
   const data = await getWallpapers(date, id, reverse);
-  if (data.wallpapers.length === 0) {
+  if (data.wallpapers.length === 0 || !data.pagination) {
     notFound();
   }
 
@@ -75,7 +74,7 @@ export default async function Page(props: {
     <>
       <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Bing Wallpapers</h1>
       <WallpaperList wallpapers={data.wallpapers} />
-      <Pagination pagination={data.pagination} />
+      <Pagination prev={data.pagination.prev} next={data.pagination.next} />
     </>
   );
 }
