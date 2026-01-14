@@ -5,7 +5,7 @@ export type Wallpaper = {
   title: string;
   copyright: string;
   date: string;
-  tags: string[];
+  tags: Record<string, number>;
   colors?: string[];
 };
 
