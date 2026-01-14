@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import WallpaperList from "@/components/WallpaperList";
-import { client, Wallpaper } from "@/libs/Client";
+import { fetchNextPage, Wallpaper } from "@/libs/Client";
 
 export default function LoadWallpapers({
   nextUrl,
@@ -13,7 +13,7 @@ export default function LoadWallpapers({
   const [wallpapers, setWallpapers] = useState([] as Wallpaper[]);
   const [next, setNext] = useState(nextUrl);
   const moreFn = async () => {
-    const res = await client.nextFn(next);
+    const res = await fetchNextPage(next);
     setNext(res.nextUrl);
     if (res.wallpapers.length > 0) {
       setWallpapers([...wallpapers, ...res.wallpapers]);

@@ -82,7 +82,7 @@ import { Fragment } from "react";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { client } from "@/libs/Client";
+import { getWallpaper } from "@/libs/Client";
 import { colorsToDataURL } from "@/libs/image";
 import { intToDate } from "@/libs/date";
 import type { Metadata } from "next";

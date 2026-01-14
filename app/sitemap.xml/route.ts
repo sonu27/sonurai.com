@@ -1,4 +1,4 @@
-import { client } from "@/libs/Client";
+import { getTags } from "@/libs/Client";
 
 const siteUrl = process.env.NEXT_PUBLIC_URL as string;
 
@@ -38,7 +38,7 @@ ${tagUrls}
 }
 
 export async function GET() {
-  const tagsObj = await client.getTags();
+  const tagsObj = await getTags();
   const tags = Object.keys(tagsObj);
 
   const sitemap = generateSitemap(tags);

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import { client } from "@/libs/Client";
+import { getTags } from "@/libs/Client";
 import type { Metadata } from "next";
 
 const pageTitle = `Tags - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const t = await client.getTags();
+  const t = await getTags();
   const tags = Object.entries(t);
   const max = tags.reduce((a, c) => Math.max(a, c[1]), 0);
   const min = tags.reduce((a, c) => Math.min(a, c[1]), max);

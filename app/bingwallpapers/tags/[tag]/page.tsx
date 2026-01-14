@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import WallpaperList from "@/components/WallpaperList";
-import { client } from "@/libs/Client";
+import { getWallpapersByTag } from "@/libs/Client";
 import LoadWallpapers from "./tags";
 import type { Metadata } from "next";
 
@@ -24,7 +24,7 @@ export default async function Page(props: {
   const params = await props.params;
   const decodedTag = decodeURIComponent(params.tag);
   const limit = 36;
-  const data = await client.getWallpapersByTag(decodedTag);
+  const data = await getWallpapersByTag(decodedTag);
   if (data.wallpapers.length === 0) {
     notFound();
   }
