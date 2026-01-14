@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { client } from "@/libs/Client";
+import { getWallpapers } from "@/libs/Client";
 import WallpaperList from "@/components/WallpaperList";
 import type { Metadata } from "next";
 
@@ -66,7 +66,7 @@ export default async function Page(props: {
     reverse = p[3] === "prev";
   }
 
-  const data = await client.getWallpapers(date, id, reverse);
+  const data = await getWallpapers(date, id, reverse);
   if (data.wallpapers.length === 0) {
     notFound();
   }

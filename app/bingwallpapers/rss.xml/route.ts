@@ -1,4 +1,4 @@
-import { client, Wallpaper } from "@/libs/Client";
+import { getWallpapers, Wallpaper } from "@/libs/Client";
 import { intToDate } from "@/libs/date";
 
 const siteUrl = process.env.NEXT_PUBLIC_URL as string;
@@ -61,7 +61,7 @@ ${items}
 }
 
 export async function GET() {
-  const data = await client.getWallpapers();
+  const data = await getWallpapers();
   const feed = generateRssFeed(data.wallpapers);
 
   return new Response(feed, {

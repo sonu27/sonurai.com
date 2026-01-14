@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { client } from "@/libs/Client";
+import { getWallpaper } from "@/libs/Client";
 import { colorsToDataURL } from "@/libs/image";
 import { intToDate } from "@/libs/date";
 import type { Metadata } from "next";
@@ -12,7 +12,7 @@ export async function generateMetadata(props: {
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const data = await client.getWallpaper(params.id);
+  const data = await getWallpaper(params.id);
   if (!data.wallpaper) {
     return {};
   }
@@ -42,7 +42,7 @@ export async function generateMetadata(props: {
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
-  const data = await client.getWallpaper(params.id);
+  const data = await getWallpaper(params.id);
   if (data.wallpaper == undefined) {
     notFound();
   }
