@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import WallpaperList from "@/components/WallpaperList";
 import { getWallpapersByTag } from "@/libs/Client";
-import LoadWallpapers from "./tags";
+import LoadWallpapers from "./LoadWallpapers";
 import type { Metadata } from "next";
 
 export async function generateMetadata(props: {
