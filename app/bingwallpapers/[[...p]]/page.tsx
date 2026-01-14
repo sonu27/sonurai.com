@@ -17,7 +17,7 @@ type PaginationCursor = { date: string; id: string };
 
 function Pagination({ prev, next }: { prev: PaginationCursor; next: PaginationCursor }) {
   return (
-    <div className="pagination my-4 mx-4 md:mx-0">
+    <div className="pagination my-4 content-margin">
       <Link
         href={`/bingwallpapers/page/${prev.date}/${prev.id}/prev`}
         className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white"
@@ -72,7 +72,7 @@ export default async function Page(props: {
 
   return (
     <>
-      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">Bing Wallpapers</h1>
+      <h1 className="text-3xl mb-2 text-white content-margin">Bing Wallpapers</h1>
       <WallpaperList wallpapers={data.wallpapers} />
       <Pagination prev={data.pagination.prev} next={data.pagination.next} />
     </>

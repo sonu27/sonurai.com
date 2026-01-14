@@ -22,3 +22,7 @@ p {
 .wallpaper:hover .caption {
   display: block;
 }
+
+.content-margin {
+  @apply mx-4 md:mx-0;
+}

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const Header = () => {
   return (
-    <nav className="flex items-center h-16 mx-4 md:mx-0" aria-label="navigation">
+    <nav className="flex items-center h-16 content-margin" aria-label="navigation">
       <Link
         href="/bingwallpapers"
         className={`text-xl text-white`}

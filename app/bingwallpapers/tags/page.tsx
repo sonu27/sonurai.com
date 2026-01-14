@@ -36,7 +36,7 @@ export default async function Page() {
 
   return (
     <>
-      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">
+      <h1 className="text-3xl mb-2 text-white content-margin">
         Tags - Bing Wallpapers
       </h1>
       <div className="mx-2 md:mx-0">{tagFields}</div>

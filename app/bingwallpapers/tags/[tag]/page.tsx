@@ -30,7 +30,7 @@ export default async function Page(props: {
   }
   return (
     <>
-      <h1 className="text-3xl mb-2 text-white my-4 mx-4 md:mx-0">
+      <h1 className="text-3xl mb-2 text-white my-4 content-margin">
         Wallpapers tagged with &quot;{decodedTag}&quot;
       </h1>
       <WallpaperList wallpapers={data.wallpapers} />

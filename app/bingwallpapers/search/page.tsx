@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function WallpaperSearch() {
   return (
     <>
-      <h1 className="text-3xl mb-2 text-white mx-4 md:mx-0">
+      <h1 className="text-3xl mb-2 text-white content-margin">
         Search - Bing Wallpapers
       </h1>
       <Search />
