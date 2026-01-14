@@ -32,7 +32,7 @@ export function Search() {
         placeholder="Search wallpapers"
         queryHook={debounceQuery}
         classNames={{
-          root: "mx-4 md:mx-0",
+          root: "content-margin",
           input: "block px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1",
         }}
       />
@@ -64,7 +64,7 @@ function getPagination() {
       showFirst={false}
       showLast={false}
       classNames={{
-        root: "pagination my-4 mx-4 md:mx-0",
+        root: "pagination my-4 content-margin",
         item: "inline-block rounded-md",
         pageItem: "text-gray-300 hover:bg-slate-700 hover:text-white",
         selectedItem: "text-white font-bold bg-gray-800",
@@ -101,7 +101,7 @@ function CustomHits(props: UseHitsProps) {
                 alt={`Bing Wallpaper: ${title}`}
                 placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
               />
-              <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 mx-4 md:mx-0 md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black/80 md:text-white">
+              <figcaption className="caption md:hidden md:absolute md:bottom-0 md:left-0 content-margin md:p-4 mt-3 md:mt-0 md:h-full md:w-full md:text-2xl md:bg-black/80 md:text-white">
                 <Highlight attribute="title" hit={hit} />
               </figcaption>
             </Link>
@@ -122,7 +122,7 @@ function LoadingIndicator() {
 
   if (status === "loading" || status === "stalled") {
     return (
-      <div className="my-4 mx-4 md:mx-0 text-gray-400">
+      <div className="my-4 content-margin text-gray-400">
         Loading...
       </div>
     );

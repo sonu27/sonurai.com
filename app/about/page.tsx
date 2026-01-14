@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="about mx-4 md:mx-0">
+    <div className="about content-margin">
       <h1 className="text-3xl mb-2 text-white">About</h1>
       <p>This is a wallpaper site showcasing beautiful Bing wallpapers from around the world, updated daily with the latest images.</p>
       <p>Built by <a href="https://amarjeet.dev" rel="me">Amarjeet Rai</a></p>

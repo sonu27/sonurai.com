@@ -49,7 +49,7 @@ export default function RootLayout({
 }
 
 const Footer = () => (
-  <footer className="mt-4 mb-16 mx-4 md:mx-0 text-gray-400 flex items-center justify-between">
+  <footer className="mt-4 mb-16 content-margin text-gray-400 flex items-center justify-between">
     <span>&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</span>
     <a
       href="/bingwallpapers/rss.xml"

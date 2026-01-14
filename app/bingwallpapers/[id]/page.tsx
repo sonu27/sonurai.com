@@ -106,11 +106,11 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         alt={`Bing Wallpaper: ${title}`}
         placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
       />
-      <h1 className="caption text-xl text-white mt-2 mx-4 md:mx-0 md:text-2xl">{title}</h1>
-      <p className="text-gray-400 mx-4 md:mx-0">
+      <h1 className="caption text-xl text-white mt-2 content-margin md:text-2xl">{title}</h1>
+      <p className="text-gray-400 content-margin">
         {copyright} - {intToDate(date)}
       </p>
-      <p className="mt-2 mx-4 md:mx-0">{tagFields}</p>
+      <p className="mt-2 content-margin">{tagFields}</p>
     </>
   );
 }

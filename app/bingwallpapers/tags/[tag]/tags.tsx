@@ -33,7 +33,7 @@ export default function LoadWallpapers({
   return (
     <>
       <WallpaperList wallpapers={wallpapers} />
-      <div className="pagination my-4 mx-4 md:mx-0">
+      <div className="pagination my-4 content-margin">
         {next !== "" && (
           <button
             onClick={loadMore}
