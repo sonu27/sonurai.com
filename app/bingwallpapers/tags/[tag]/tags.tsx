@@ -10,28 +10,37 @@ export default function LoadWallpapers({
   nextUrl: string;
   limit: number;
 }) {
-  const [wallpapers, setWallpapers] = useState([] as Wallpaper[]);
+  const [wallpapers, setWallpapers] = useState<Wallpaper[]>([]);
   const [next, setNext] = useState(nextUrl);
-  const moreFn = async () => {
-    const res = await fetchNextPage(next);
-    setNext(res.nextUrl);
-    if (res.wallpapers.length > 0) {
-      setWallpapers([...wallpapers, ...res.wallpapers]);
-      if (res.wallpapers.length < limit) {
-        setNext("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const loadMore = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetchNextPage(next);
+      setNext(res.nextUrl);
+      if (res.wallpapers.length > 0) {
+        setWallpapers([...wallpapers, ...res.wallpapers]);
+        if (res.wallpapers.length < limit) {
+          setNext("");
+        }
       }
+    } finally {
+      setIsLoading(false);
     }
   };
+
   return (
     <>
       <WallpaperList wallpapers={wallpapers} />
       <div className="pagination my-4 mx-4 md:mx-0">
         {next !== "" && (
           <button
-            onClick={moreFn}
-            className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white"
+            onClick={loadMore}
+            disabled={isLoading}
+            className="px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            More
+            {isLoading ? "Loading..." : "More"}
           </button>
         )}
       </div>
