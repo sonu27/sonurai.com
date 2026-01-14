@@ -37,6 +37,7 @@ export function Search() {
         }}
       />
       <EmptyQueryBoundary fallback={null}>
+        <LoadingIndicator />
         <NoResultsBoundary fallback={<NoResults />}>
           {getPagination()}
           <CustomHits />
@@ -114,6 +115,20 @@ function CustomHits(props: UseHitsProps) {
 interface FallbackProps {
   children: ReactNode;
   fallback: ReactNode;
+}
+
+function LoadingIndicator() {
+  const { status } = useInstantSearch();
+
+  if (status === "loading" || status === "stalled") {
+    return (
+      <div className="my-4 mx-4 md:mx-0 text-gray-400">
+        Loading...
+      </div>
+    );
+  }
+
+  return null;
 }
 
 function EmptyQueryBoundary({ children, fallback }: FallbackProps) {
