@@ -5,12 +5,22 @@ const siteUrl = process.env.NEXT_PUBLIC_URL as string;
 const siteName = process.env.NEXT_PUBLIC_NAME as string;
 
 function escapeXml(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
+  return text.replace(/[&<>"']/g, (match) => {
+    switch (match) {
+      case "&":
+        return "&amp;";
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case '"':
+        return "&quot;";
+      case "'":
+        return "&apos;";
+      default:
+        return match;
+    }
+  });
 }
 
 function dateToRfc822(dateStr: string): string {
