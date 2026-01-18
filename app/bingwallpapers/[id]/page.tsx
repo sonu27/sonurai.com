@@ -1,9 +1,9 @@
-import { Fragment } from "react";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import Script from "next/script";
-import { getWallpaper } from "@/libs/Client";
+import { getWallpaper, getRelatedWallpapers } from "@/libs/Client";
+import RelatedWallpapers from "@/components/RelatedWallpapers";
+import TagList from "@/components/TagList";
 import { colorsToDataURL } from "@/libs/image";
 import { intToDate } from "@/libs/date";
 import type { Metadata } from "next";
@@ -53,18 +53,9 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     redirect(`/bingwallpapers/${id}`);
   }
 
-  const t = Object.entries(tags).sort((a, b) => b[1] - a[1]);
-  const tagFields = t.map((l, i) => (
-    <Fragment key={i}>
-      <Link
-        prefetch={false}
-        href={`/bingwallpapers/tags/${l[0]}`}
-        className="leading-10 whitespace-nowrap px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white"
-      >
-        {l[0]}
-      </Link>{" "}
-    </Fragment>
-  ));
+  const relatedWallpapers = await getRelatedWallpapers(id, tags);
+
+  const sortedTags = Object.entries(tags).sort((a, b) => b[1] - a[1]);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -110,7 +101,8 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
       <p className="text-gray-400 content-margin">
         {copyright} - {intToDate(date)}
       </p>
-      <p className="mt-2 content-margin">{tagFields}</p>
+      <TagList tags={sortedTags} />
+      <RelatedWallpapers wallpapers={relatedWallpapers} />
     </>
   );
 }
