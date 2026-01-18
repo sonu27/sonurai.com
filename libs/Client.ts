@@ -16,7 +16,9 @@ export async function getWallpapers(
 ) {
   let url = `${apiUrl}/wallpapers`;
 
-  if (startAfterDate && startAfterID) {
+  const isPaginated = startAfterDate && startAfterID;
+
+  if (isPaginated) {
     url = `${url}?startAfterDate=${startAfterDate}&startAfterID=${startAfterID}`;
 
     if (prev) {
@@ -24,7 +26,8 @@ export async function getWallpapers(
     }
   }
 
-  const res = await fetch(url, { next: { revalidate: 0 } });
+  const revalidate = isPaginated ? 86400 : 3600; // 24h for pagination, 1h for main
+  const res = await fetch(url, { next: { revalidate } });
   if (res.status === 404) {
     return { wallpapers: [] };
   }
