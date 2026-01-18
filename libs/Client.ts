@@ -108,3 +108,20 @@ export async function getWallpaper(id: string) {
     wallpaper: json as Wallpaper,
   };
 }
+
+export async function getRelatedWallpapers(
+  currentId: string,
+  tags: Record<string, number>,
+  limit: number = 6
+): Promise<Wallpaper[]> {
+  const sortedTags = Object.entries(tags).sort((a, b) => b[1] - a[1]);
+  if (sortedTags.length === 0) return [];
+
+  const topTag = sortedTags[0][0];
+  try {
+    const data = await getWallpapersByTag(topTag);
+    return data.wallpapers.filter((w) => w.id !== currentId).slice(0, limit);
+  } catch {
+    return [];
+  }
+}

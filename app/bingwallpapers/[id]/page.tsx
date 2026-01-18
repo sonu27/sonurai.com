@@ -3,7 +3,8 @@ import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { getWallpaper } from "@/libs/Client";
+import { getWallpaper, getRelatedWallpapers } from "@/libs/Client";
+import RelatedWallpapers from "@/components/RelatedWallpapers";
 import { colorsToDataURL } from "@/libs/image";
 import { intToDate } from "@/libs/date";
 import type { Metadata } from "next";
@@ -52,6 +53,8 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   if (!isNaN(Number(params.id))) {
     redirect(`/bingwallpapers/${id}`);
   }
+
+  const relatedWallpapers = await getRelatedWallpapers(id, tags);
 
   const t = Object.entries(tags).sort((a, b) => b[1] - a[1]);
   const tagFields = t.map((l, i) => (
@@ -111,6 +114,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         {copyright} - {intToDate(date)}
       </p>
       <p className="mt-2 content-margin">{tagFields}</p>
+      <RelatedWallpapers wallpapers={relatedWallpapers} />
     </>
   );
 }
