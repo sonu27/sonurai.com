@@ -7,6 +7,7 @@ export type Wallpaper = {
   date: string;
   tags: Record<string, number>;
   colors?: string[];
+  urlBase?: string;
 };
 
 export async function getWallpapers(

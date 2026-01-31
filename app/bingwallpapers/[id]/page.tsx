@@ -17,9 +17,12 @@ export async function generateMetadata(props: {
     return {};
   }
 
-  const { id, title, copyright } = data.wallpaper;
+  const { id, title, copyright, urlBase } = data.wallpaper;
   const pageTitle = `${title} Wallpaper`;
   const desc = `${title} ${copyright}. Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
+  const imageUrl = urlBase
+    ? `${urlBase}_1920x1080.jpg`
+    : `https://images.sonurai.com/${id}.jpg`;
 
   return {
     title: pageTitle,
@@ -30,7 +33,7 @@ export async function generateMetadata(props: {
     openGraph: {
       title: pageTitle,
       description: desc,
-      images: [`https://images.sonurai.com/${id}.jpg`],
+      images: [imageUrl],
       siteName: process.env.NEXT_PUBLIC_NAME,
       url: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/${id}`,
     },
@@ -47,7 +50,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     notFound();
   }
 
-  const { id, title, copyright, date, tags, colors } = data.wallpaper;
+  const { id, title, copyright, date, tags, colors, urlBase } = data.wallpaper;
 
   if (!isNaN(Number(params.id))) {
     redirect(`/bingwallpapers/${id}`);
@@ -57,16 +60,20 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
 
   const sortedTags = Object.entries(tags).sort((a, b) => b[1] - a[1]);
 
+  const imageUrl = urlBase
+    ? `${urlBase}_UHD.jpg`
+    : `https://images.sonurai.com/${id}.jpg`;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ImageObject",
     name: title,
     description: `${title} - ${copyright}`,
-    contentUrl: `https://images.sonurai.com/${id}.jpg`,
+    contentUrl: imageUrl,
     url: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/${id}`,
     datePublished: intToDate(date),
-    width: 1920,
-    height: 1200,
+    width: urlBase ? 3840 : 1920,
+    height: urlBase ? 2160 : 1200,
     encodingFormat: "image/jpeg",
     copyrightNotice: copyright,
     keywords: Object.keys(tags).join(", "),
@@ -87,16 +94,18 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Image
-        className="img-fluid"
-        priority={true}
-        unoptimized={true}
-        src={`https://images.sonurai.com/${id}.jpg`}
-        width={1920}
-        height={1200}
-        alt={`Bing Wallpaper: ${title}`}
-        placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
-      />
+      <a href={urlBase ? `${urlBase}_UHD.jpg` : `https://images.sonurai.com/${id}.jpg`}>
+        <Image
+          className="img-fluid"
+          priority={true}
+          unoptimized={true}
+          src={urlBase ? `${urlBase}_UHD.jpg` : `https://images.sonurai.com/${id}.jpg`}
+          width={3840}
+          height={urlBase ? 2160 : 1200}
+          alt={`Bing Wallpaper: ${title}`}
+          placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
+        />
+      </a>
       <h1 className="caption text-xl text-white mt-2 content-margin md:text-2xl">{title}</h1>
       <p className="text-gray-400 content-margin">
         {copyright} - {intToDate(date)}
