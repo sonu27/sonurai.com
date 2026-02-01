@@ -19,7 +19,7 @@ export async function generateMetadata(props: {
 
   const { id, title, copyright, urlBase } = data.wallpaper;
   const pageTitle = `${title} Wallpaper`;
-  const desc = `${title} ${copyright}. Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
+  const desc = `${title} © ${copyright}. Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`;
   const imageUrl = urlBase
     ? `${urlBase}_1920x1080.jpg`
     : `https://images.sonurai.com/${id}.jpg`;
@@ -68,16 +68,16 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     "@context": "https://schema.org",
     "@type": "ImageObject",
     name: title,
-    description: `${title} - ${copyright}`,
+    description: `${title} - © ${copyright}`,
     contentUrl: imageUrl,
     url: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/${id}`,
     datePublished: intToDate(date),
     width: urlBase ? 3840 : 1920,
     height: urlBase ? 2160 : 1200,
     encodingFormat: "image/jpeg",
-    copyrightNotice: copyright,
+    copyrightNotice: `© ${copyright}`,
     keywords: Object.keys(tags).join(", "),
-    creditText: copyright,
+    creditText: `© ${copyright}`,
     creator: {
       "@type": "Organization",
       name: "Microsoft Bing",
@@ -108,7 +108,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
       </a>
       <h1 className="caption text-xl text-white mt-2 content-margin md:text-2xl">{title}</h1>
       <p className="text-gray-400 content-margin">
-        {copyright} - {intToDate(date)}
+        © {copyright} - {intToDate(date)}
       </p>
       <TagList tags={sortedTags} />
       <RelatedWallpapers wallpapers={relatedWallpapers} />
