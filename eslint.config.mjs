@@ -1,14 +1,6 @@
-import { FlatCompat } from '@eslint/eslintrc'
+import nextConfig from "eslint-config-next/core-web-vitals";
+import typescriptConfig from "eslint-config-next/typescript";
 
-const compat = new FlatCompat({
-  // import.meta.dirname is available after Node.js v20.11.0
-  baseDirectory: import.meta.dirname,
-})
+const eslintConfig = [...nextConfig, ...typescriptConfig];
 
-const eslintConfig = [
-  ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript'],
-  }),
-]
-
-export default eslintConfig
+export default eslintConfig;
