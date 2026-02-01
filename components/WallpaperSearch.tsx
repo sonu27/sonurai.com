@@ -13,21 +13,7 @@ import {
   useHits,
   UseHitsProps,
 } from "react-instantsearch";
-import { colorsToDataURL } from "@/libs/image";
-
-// Bing image sizes with ~16:9 aspect ratio only
-const BING_SIZES = [
-  { width: 1366, suffix: "1366x768" },
-  { width: 1920, suffix: "1920x1080" },
-  { width: 3840, suffix: "UHD" },
-] as const;
-
-function bingLoader({ src, width }: { src: string; width: number }): string {
-  const match = BING_SIZES.find((s) => s.width >= width);
-  const suffix = match ? match.suffix : "UHD";
-  const httpsUrl = src.replace("http://", "https://");
-  return `${httpsUrl}_${suffix}.jpg`;
-}
+import { bingLoader, colorsToDataURL } from "@/libs/image";
 
 const searchClient = liteClient(
   "C2HE5P5XXN",

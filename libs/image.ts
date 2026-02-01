@@ -1,3 +1,8 @@
+export function bingLoader({ src, width }: { src: string; width: number }): string {
+  const httpsUrl = src.replace("http://", "https://");
+  return `${httpsUrl}_UHD.jpg&w=${width}`;
+}
+
 export function colorsToDataURL(colors: string[]): `data:image/${string}` {
   const stops = colors
     .map((color, i) => {
