@@ -4,6 +4,7 @@ import Script from "next/script";
 import { getWallpaper, getRelatedWallpapers } from "@/libs/Client";
 import RelatedWallpapers from "@/components/RelatedWallpapers";
 import TagList from "@/components/TagList";
+import DownloadButton from "@/components/DownloadButton";
 import { colorsToDataURL } from "@/libs/image";
 import { intToDate } from "@/libs/date";
 import type { Metadata } from "next";
@@ -106,7 +107,10 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
           placeholder={colors?.length ? colorsToDataURL(colors) : undefined}
         />
       </a>
-      <h1 className="caption text-xl text-white mt-2 content-margin md:text-2xl">{title}</h1>
+      <div className="flex items-start justify-between gap-4 mt-2 content-margin">
+        <h1 className="caption text-xl text-white md:text-2xl">{title}</h1>
+        <DownloadButton url={imageUrl} filename={`${id}.jpg`} />
+      </div>
       <p className="text-gray-400 content-margin">
         © {copyright} - {intToDate(date)}
       </p>
