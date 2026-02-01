@@ -30,9 +30,13 @@ function dateToRfc822(dateStr: string): string {
 }
 
 function generateRssItem(wallpaper: Wallpaper): string {
-  const { id, title, copyright, date } = wallpaper;
+  const { id, title, copyright, date, urlBase } = wallpaper;
   const link = `${siteUrl}/bingwallpapers/${id}`;
-  const imageUrl = `https://images.sonurai.com/${id}.jpg`;
+  const imageUrl = urlBase
+    ? `${urlBase}_UHD.jpg`
+    : `https://images.sonurai.com/${id}.jpg`;
+  const imageWidth = urlBase ? 3840 : 1920;
+  const imageHeight = urlBase ? 2160 : 1200;
   const descriptionText = `${escapeXml(title)} - ${escapeXml(copyright)}`;
   const descriptionHtml = `<![CDATA[<img src="${imageUrl}" alt="${escapeXml(title)}" /><p>${descriptionText}</p>]]>`;
 
@@ -43,8 +47,8 @@ function generateRssItem(wallpaper: Wallpaper): string {
       <description>${descriptionHtml}</description>
       <pubDate>${dateToRfc822(date)}</pubDate>
       <enclosure url="${imageUrl}" type="image/jpeg" length="0" />
-      <media:content url="${imageUrl}" type="image/jpeg" medium="image" width="1920" height="1200" />
-      <media:thumbnail url="${imageUrl}" width="1920" height="1200" />
+      <media:content url="${imageUrl}" type="image/jpeg" medium="image" width="${imageWidth}" height="${imageHeight}" />
+      <media:thumbnail url="${imageUrl}" width="${imageWidth}" height="${imageHeight}" />
     </item>`;
 }
 
