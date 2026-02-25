@@ -115,6 +115,17 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         © {copyright} - {intToDate(date)}
       </p>
       <TagList tags={sortedTags} />
+      <p className="mt-6 text-gray-400 content-margin">
+        Like beautiful images? Browse my photography at{" "}
+        <a
+          href="https://amarjeet.photos/?ref=sonurai-wallpaper"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-300 hover:text-white"
+        >
+          amarjeet.photos
+        </a>
+      </p>
       <RelatedWallpapers wallpapers={relatedWallpapers} />
     </>
   );

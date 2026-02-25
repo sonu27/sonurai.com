@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from 'next/script';
+import { NotebookPen, Camera, Github, Instagram, Rss } from "lucide-react";
 import Header from "./header";
 import "./globals.css";
 
@@ -49,17 +50,24 @@ export default function RootLayout({
 }
 
 const Footer = () => (
-  <footer className="mt-4 mb-16 content-margin text-gray-400 flex items-center justify-between">
-    <span>&copy; 2013-{new Date().getFullYear()} Amarjeet Rai</span>
-    <a
-      href="/bingwallpapers/rss.xml"
-      className="text-gray-500 hover:text-orange-500 transition-colors"
-      title="RSS Feed"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-        <path d="M3.75 3a.75.75 0 0 0-.75.75v.5c0 .414.336.75.75.75H4c6.075 0 11 4.925 11 11v.25c0 .414.336.75.75.75h.5a.75.75 0 0 0 .75-.75V16C17 8.82 11.18 3 4 3h-.25Z" />
-        <path d="M3 8.75A.75.75 0 0 1 3.75 8H4a8 8 0 0 1 8 8v.25a.75.75 0 0 1-.75.75h-.5a.75.75 0 0 1-.75-.75V16a6 6 0 0 0-6-6h-.25A.75.75 0 0 1 3 9.25v-.5ZM7 15a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
-      </svg>
-    </a>
+  <footer className="mt-8 mb-16 pt-8 content-margin border-t border-white/8 flex items-center justify-between">
+    <span className="text-sm text-gray-600 tracking-wide">By <a href="https://amarjeet.dev" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Amarjeet Rai</a></span>
+    <div className="flex gap-x-5 text-gray-500">
+      <a href="https://arai.dev" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Notes">
+        <NotebookPen size={18} />
+      </a>
+      <a href="https://amarjeet.photos" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Photography">
+        <Camera size={18} />
+      </a>
+      <a href="https://github.com/sonu27" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="GitHub">
+        <Github size={18} />
+      </a>
+      <a href="https://www.instagram.com/amarjeet.photos" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Instagram">
+        <Instagram size={18} />
+      </a>
+      <a href="/bingwallpapers/rss.xml" className="hover:text-orange-500 transition-colors" title="RSS Feed">
+        <Rss size={18} />
+      </a>
+    </div>
   </footer>
 );

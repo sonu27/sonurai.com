@@ -29,14 +29,22 @@ export function Search() {
       insights
     >
       <SearchBox
-        placeholder="Search wallpapers"
+        placeholder="Search by location, subject, or keyword..."
         queryHook={debounceQuery}
         classNames={{
           root: "content-margin",
-          input: "block px-3 py-2 bg-white border border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 rounded-md focus:ring-1",
+          form: "relative",
+          input: "w-full px-4 py-3 bg-white/5 border border-white/10 placeholder-gray-500 text-white rounded-lg focus:outline-none focus:border-white/25 focus:ring-1 focus:ring-white/25 text-lg",
+          submit: "hidden",
+          reset: "hidden",
+          loadingIndicator: "hidden",
         }}
       />
-      <EmptyQueryBoundary fallback={null}>
+      <EmptyQueryBoundary fallback={
+        <div className="content-margin mt-12 text-center text-gray-600">
+          <p className="text-lg">Find wallpapers by location, subject, or season</p>
+        </div>
+      }>
         <LoadingIndicator />
         <NoResultsBoundary fallback={<NoResults />}>
           {getPagination()}
@@ -141,8 +149,9 @@ function LoadingIndicator() {
 
   if (status === "loading" || status === "stalled") {
     return (
-      <div className="my-4 content-margin text-gray-400">
-        Loading...
+      <div className="my-6 content-margin flex items-center gap-2 text-gray-500">
+        <span className="inline-block w-4 h-4 border-2 border-gray-600 border-t-gray-300 rounded-full animate-spin" />
+        Searching...
       </div>
     );
   }
@@ -181,10 +190,9 @@ function NoResults() {
   const { indexUiState } = useInstantSearch();
 
   return (
-    <div>
-      <p>
-        No results for <q>{indexUiState.query}</q>.
-      </p>
+    <div className="content-margin mt-8 text-center">
+      <p className="text-gray-400">No results for <q className="text-white">{indexUiState.query}</q></p>
+      <p className="text-sm text-gray-600">Try a different keyword or check your spelling</p>
     </div>
   );
 }
