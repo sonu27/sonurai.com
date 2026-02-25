@@ -5,25 +5,25 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "author": "Amarjeet Singh Rai",
   "license": "MIT",
   "dependencies": {
     "algoliasearch": "^5",
-    "react-instantsearch": "^7.4.1",
-    "next": "^16.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-instantsearch": "^7.26.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4.0.0",
-    "@types/node": "^24",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^25",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "^16.1.0",
+    "eslint": "^9.39.3",
+    "eslint-config-next": "^16.1.6",
     "postcss": "^8",
     "tailwindcss": "^4",
     "typescript": "^5"
