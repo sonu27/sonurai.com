@@ -120,7 +120,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         <a
           href="https://amarjeet.photos/?ref=sonurai-wallpaper"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="me"
           className="text-gray-300 hover:text-white"
         >
           amarjeet.photos

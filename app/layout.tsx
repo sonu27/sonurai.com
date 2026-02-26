@@ -51,18 +51,18 @@ export default function RootLayout({
 
 const Footer = () => (
   <footer className="mt-8 mb-16 pt-8 content-margin border-t border-white/8 flex items-center justify-between">
-    <span className="text-sm text-gray-600 tracking-wide">By <a href="https://amarjeet.dev" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Amarjeet Rai</a></span>
+    <span className="text-sm text-gray-600 tracking-wide">By <a href="https://amarjeet.dev" target="_blank" rel="me" className="text-gray-400 hover:text-white transition-colors">Amarjeet Rai</a></span>
     <div className="flex gap-x-5 text-gray-500">
-      <a href="https://arai.dev" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Notes">
+      <a href="https://arai.dev" target="_blank" rel="me" className="hover:text-white transition-colors" title="Notes">
         <NotebookPen size={18} />
       </a>
-      <a href="https://amarjeet.photos" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Photography">
+      <a href="https://amarjeet.photos" target="_blank" rel="me" className="hover:text-white transition-colors" title="Photography">
         <Camera size={18} />
       </a>
-      <a href="https://github.com/sonu27" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="GitHub">
+      <a href="https://github.com/sonu27" target="_blank" rel="me" className="hover:text-white transition-colors" title="GitHub">
         <Github size={18} />
       </a>
-      <a href="https://www.instagram.com/amarjeet.photos" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors" title="Instagram">
+      <a href="https://www.instagram.com/amarjeet.photos" target="_blank" rel="me" className="hover:text-white transition-colors" title="Instagram">
         <Instagram size={18} />
       </a>
       <a href="/bingwallpapers/rss.xml" className="hover:text-orange-500 transition-colors" title="RSS Feed">

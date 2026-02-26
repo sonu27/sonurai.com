@@ -44,7 +44,7 @@ export default function Page() {
 
       <section>
         <h2 className="text-lg mb-3 text-white">Contact</h2>
-        <a href="mailto:sonu@sonurai.com" className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors">
+        <a href="mailto:sonu@sonurai.com" rel="me" className="flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors">
           <Mail size={16} /> sonu@sonurai.com
         </a>
       </section>
