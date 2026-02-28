@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Mail, NotebookPen, Camera, Github, Linkedin } from "lucide-react";
+import { Mail, PenLine, Camera, Code, Instagram, Linkedin } from "lucide-react";
 
 export const metadata: Metadata = {
   title: `About - ${process.env.NEXT_PUBLIC_NAME}`,
@@ -27,14 +27,17 @@ export default function Page() {
       <section className="mb-8">
         <h2 className="text-lg mb-3 text-white">Elsewhere</h2>
         <div className="flex flex-col gap-3 text-sm">
-          <a href="https://arai.dev" rel="me" className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors">
-            <NotebookPen size={16} /> Notes
-          </a>
           <a href="https://amarjeet.photos" rel="me" className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors">
-            <Camera size={16} /> Photography
+            <Camera size={16} /> Amarjeet Photos (My photography)
           </a>
-          <a href="https://github.com/sonu27/" rel="me" className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors">
-            <Github size={16} /> GitHub
+          <a href="https://arai.dev" rel="me" className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors">
+            <PenLine size={16} /> Rai Notes (My writing and blog)
+          </a>
+          <a href="https://raitech.co" rel="me" className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors">
+            <Code size={16} /> Rai Tech (My software consultancy)
+          </a>
+          <a href="https://www.instagram.com/amarjeet.photos" rel="me" className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors">
+            <Instagram size={16} /> Instagram
           </a>
           <a href="https://www.linkedin.com/in/amarjeetrai" rel="me" className="flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors">
             <Linkedin size={16} /> LinkedIn

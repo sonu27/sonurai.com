@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from 'next/script';
-import { NotebookPen, Camera, Github, Instagram, Rss } from "lucide-react";
+import { PenLine, Code, Camera, Instagram, Rss } from "lucide-react";
 import Header from "./header";
 import "./globals.css";
 
@@ -49,25 +49,58 @@ export default function RootLayout({
   );
 }
 
+const FOOTER_ACTIONS = [
+  {
+    href: "https://amarjeet.photos",
+    label: "Amarjeet Photos (My photography)",
+    icon: Camera,
+  },
+  {
+    href: "https://arai.dev",
+    label: "Rai Notes (My writing and blog)",
+    icon: PenLine,
+  },
+  {
+    href: "https://raitech.co",
+    label: "Rai Tech (My software consultancy)",
+    icon: Code,
+  },
+  {
+    href: "https://www.instagram.com/amarjeet.photos",
+    label: "Instagram",
+    icon: Instagram,
+  },
+  {
+    href: "/bingwallpapers/rss.xml",
+    label: "RSS Feed",
+    icon: Rss,
+    hoverColor: "hover:text-orange-500",
+  },
+] as const;
+
 const Footer = () => (
   <footer className="mt-8 mb-16 pt-8 content-margin border-t border-white/8 flex items-center justify-between">
     <span className="text-sm text-gray-600 tracking-wide">By <a href="https://amarjeet.dev" target="_blank" rel="me" className="text-gray-400 hover:text-white transition-colors">Amarjeet Rai</a></span>
-    <div className="flex gap-x-5 text-gray-500">
-      <a href="https://arai.dev" target="_blank" rel="me" className="hover:text-white transition-colors" title="Notes">
-        <NotebookPen size={18} />
-      </a>
-      <a href="https://amarjeet.photos" target="_blank" rel="me" className="hover:text-white transition-colors" title="Photography">
-        <Camera size={18} />
-      </a>
-      <a href="https://github.com/sonu27" target="_blank" rel="me" className="hover:text-white transition-colors" title="GitHub">
-        <Github size={18} />
-      </a>
-      <a href="https://www.instagram.com/amarjeet.photos" target="_blank" rel="me" className="hover:text-white transition-colors" title="Instagram">
-        <Instagram size={18} />
-      </a>
-      <a href="/bingwallpapers/rss.xml" className="hover:text-orange-500 transition-colors" title="RSS Feed">
-        <Rss size={18} />
-      </a>
-    </div>
+    <nav aria-label="Footer links">
+      <ul className="flex items-center gap-1.5 text-gray-500 sm:gap-2">
+        {FOOTER_ACTIONS.map((action) => {
+          const Icon = action.icon;
+          return (
+            <li key={action.label}>
+              <a
+                href={action.href}
+                className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${"hoverColor" in action ? action.hoverColor : "hover:text-white"}`}
+                target="_blank"
+                rel="me"
+                aria-label={action.label}
+                title={action.label}
+              >
+                <Icon size={18} strokeWidth={1.9} />
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   </footer>
 );
