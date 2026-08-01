@@ -23,9 +23,9 @@ function escapeXml(text: string): string {
   });
 }
 
-function dateToRfc822(dateStr: string): string {
-  // dateStr is in format YYYYMMDD
-  const date = new Date(intToDate(dateStr));
+function dateToRfc822(dateInt: number): string {
+  // dateInt is in format YYYYMMDD
+  const date = new Date(intToDate(dateInt));
   return date.toUTCString();
 }
 

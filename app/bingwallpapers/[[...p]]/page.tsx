@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   },
 };
 
-type PaginationCursor = { date: string; id: string };
+type PaginationCursor = { date: number; id: string };
 
 function Pagination({ prev, next }: { prev: PaginationCursor; next: PaginationCursor }) {
   return (
