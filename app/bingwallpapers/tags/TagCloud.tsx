@@ -27,7 +27,9 @@ export default function TagCloud({ tags }: { tags: [string, number][] }) {
       </div>
       {hasMore && (
         <button
+          type="button"
           onClick={() => setShowAll(!showAll)}
+          aria-expanded={showAll}
           className="mt-4 text-sm text-gray-500 hover:text-white transition-colors"
         >
           {showAll ? "Show less" : `Show all ${tags.length} tags`}

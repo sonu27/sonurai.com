@@ -19,7 +19,10 @@ p {
   color: white;
 }
 
-.wallpaper:hover .caption {
+/* focus-within so the title is also revealed when the card is tabbed to,
+   not only on hover. */
+.wallpaper:hover .caption,
+.wallpaper:focus-within .caption {
   display: block;
 }
 

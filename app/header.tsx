@@ -29,7 +29,7 @@ const Header = () => {
   }
 
   return (
-    <nav className="content-margin mb-4" aria-label="navigation">
+    <nav className="content-margin mb-4" aria-label="Main">
       <div className="flex items-center h-16 justify-between">
         <Link href="/bingwallpapers" className="text-xl font-bold tracking-wide text-white">
           Sonu Rai
@@ -58,13 +58,16 @@ const Header = () => {
           )}
         </div>
         <button
+          type="button"
           className="md:hidden p-2 text-gray-300 hover:text-white"
           onClick={() => setIsOpen(!isOpen)}
           aria-expanded={isOpen}
+          aria-controls="mobile-menu"
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
@@ -79,31 +82,34 @@ const Header = () => {
           </svg>
         </button>
       </div>
-      {isOpen && (
-        <div className="md:hidden pb-4 pt-2 space-y-1 border-t border-gray-800">
-          {navItems.map((item) =>
-            item.external ? (
-              <a
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="me noopener"
-                className="block px-3 py-2 rounded-md text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
-              >
-                {item.label}
-              </a>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block px-3 py-2 rounded-md transition-colors ${pathname === item.href ? "bg-gray-800 text-white" : "text-gray-300 hover:bg-gray-800 hover:text-white"}`}
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-        </div>
-      )}
+      {/* Kept mounted rather than conditionally rendered so the toggle's
+          aria-controls always points at a real element. */}
+      <div
+        id="mobile-menu"
+        className={`md:hidden pb-4 pt-2 space-y-1 border-t border-gray-800 ${isOpen ? "" : "hidden"}`}
+      >
+        {navItems.map((item) =>
+          item.external ? (
+            <a
+              key={item.href}
+              href={item.href}
+              target="_blank"
+              rel="me noopener"
+              className="block px-3 py-2 rounded-md text-gray-300 transition-colors hover:bg-gray-800 hover:text-white"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`block px-3 py-2 rounded-md transition-colors ${pathname === item.href ? "bg-gray-800 text-white" : "text-gray-300 hover:bg-gray-800 hover:text-white"}`}
+            >
+              {item.label}
+            </Link>
+          )
+        )}
+      </div>
     </nav>
   );
 };
