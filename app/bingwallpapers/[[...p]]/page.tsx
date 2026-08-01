@@ -45,7 +45,6 @@ function Pagination({ prev, next }: { prev: PaginationCursor; next: PaginationCu
 
 export default async function Page(props: {
   params: Promise<{ p?: string[] }>;
-  searchParams: Promise<object>;
 }) {
   const params = await props.params;
   const p = params?.p;
