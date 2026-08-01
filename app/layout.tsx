@@ -80,18 +80,21 @@ const FOOTER_ACTIONS = [
 
 const Footer = () => (
   <footer className="mt-8 mb-16 pt-8 content-margin border-t border-white/8 flex items-center justify-between">
-    <span className="text-sm text-gray-600 tracking-wide">By <a href="https://amarjeet.dev" target="_blank" rel="me" className="text-gray-400 hover:text-white transition-colors">Amarjeet Rai</a></span>
+    <span className="text-sm text-gray-600 tracking-wide">By <a href="https://amarjeet.dev" target="_blank" rel="me noopener" className="text-gray-400 hover:text-white transition-colors">Amarjeet Rai</a></span>
     <nav aria-label="Footer links">
       <ul className="flex items-center gap-1.5 text-gray-500 sm:gap-2">
         {FOOTER_ACTIONS.map((action) => {
           const Icon = action.icon;
+          // rel="me" claims the target is another profile of the same person,
+          // which holds for the profile links but not for the feed.
+          const isProfile = action.href.startsWith("https://");
           return (
             <li key={action.label}>
               <a
                 href={action.href}
                 className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors ${"hoverColor" in action ? action.hoverColor : "hover:text-white"}`}
                 target="_blank"
-                rel="me"
+                rel={isProfile ? "me noopener" : "noopener"}
                 aria-label={action.label}
                 title={action.label}
               >
