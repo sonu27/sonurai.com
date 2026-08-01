@@ -1,5 +1,27 @@
 const apiUrl = process.env.NEXT_PUBLIC_API_URL as string;
 
+type WallpaperListResponse = {
+  data?: Wallpaper[];
+  links?: { next?: string };
+};
+
+// A 4xx means the resource is unknown or the request was malformed, which for
+// this site is indistinguishable from "not found". A 5xx is an upstream outage
+// and must keep throwing, so it is never cached and served as a 404.
+async function fetchJson<T>(url: string, init: RequestInit): Promise<T | null> {
+  const res = await fetch(url, init);
+
+  if (res.status >= 400 && res.status < 500) {
+    return null;
+  }
+
+  if (!res.ok) {
+    throw new Error(`Request to ${url} failed with status ${res.status}`);
+  }
+
+  return (await res.json()) as T;
+}
+
 export type Wallpaper = {
   id: string;
   title: string;
@@ -28,16 +50,18 @@ export async function getWallpapers(
   }
 
   const revalidate = isPaginated ? 86400 : 3600; // 24h for pagination, 1h for main
-  const res = await fetch(url, { next: { revalidate } });
-  if (res.status === 404) {
+  const json = await fetchJson<WallpaperListResponse>(url, {
+    next: { revalidate },
+  });
+
+  const wallpapers = json?.data ?? [];
+  const first = wallpapers[0];
+  const last = wallpapers[wallpapers.length - 1];
+
+  if (!first || !last) {
     return { wallpapers: [] };
   }
 
-  const json = await res.json();
-  const wallpapers: Wallpaper[] = json.data;
-
-  const first = wallpapers[0];
-  const last = wallpapers[wallpapers.length - 1];
   return {
     wallpapers: wallpapers,
     pagination: {
@@ -54,63 +78,44 @@ export async function getWallpapers(
 }
 
 export async function getWallpapersByTag(tag: string) {
-  const res = await fetch(`${apiUrl}/wallpapers/tags/${tag}`, {
-    next: { revalidate: 604800 },
-  });
-  if (res.status === 404) {
-    return { wallpapers: [] };
-  }
-
-  const json = await res.json();
-  const wallpapers: Wallpaper[] = json.data;
+  const json = await fetchJson<WallpaperListResponse>(
+    `${apiUrl}/wallpapers/tags/${tag}`,
+    { next: { revalidate: 604800 } },
+  );
 
   return {
-    wallpapers: wallpapers,
-    nextUrl: json.links?.next || "",
+    wallpapers: json?.data ?? [],
+    nextUrl: json?.links?.next || "",
   };
 }
 
 export async function getTags() {
-  const res = await fetch(`${apiUrl}/wallpapers/tags`, {
+  const tags = await fetchJson<object>(`${apiUrl}/wallpapers/tags`, {
     cache: "force-cache",
   });
-  const tags: object = await res.json();
 
-  return tags;
+  return tags ?? {};
 }
 
 export async function fetchNextPage(
   url: string,
 ): Promise<{ wallpapers: Wallpaper[]; nextUrl: string }> {
-  const res = await fetch(`${apiUrl}${url}`, {
+  const json = await fetchJson<WallpaperListResponse>(`${apiUrl}${url}`, {
     next: { revalidate: 604800 },
   });
-  if (res.status === 404) {
-    return { wallpapers: [], nextUrl: "" };
-  }
-
-  const json = await res.json();
-  const wallpapers: Wallpaper[] = json.data;
 
   return {
-    wallpapers: wallpapers,
-    nextUrl: json.links?.next || "",
+    wallpapers: json?.data ?? [],
+    nextUrl: json?.links?.next || "",
   };
 }
 
 export async function getWallpaper(id: string) {
-  const res = await fetch(`${apiUrl}/wallpapers/${id}`, {
+  const wallpaper = await fetchJson<Wallpaper>(`${apiUrl}/wallpapers/${id}`, {
     next: { revalidate: 604800 },
   });
-  if (res.status === 404) {
-    return { wallpaper: null };
-  }
 
-  const json = await res.json();
-
-  return {
-    wallpaper: json as Wallpaper,
-  };
+  return { wallpaper };
 }
 
 export async function getRelatedWallpapers(
