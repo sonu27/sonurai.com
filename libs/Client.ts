@@ -1,5 +1,15 @@
 const apiUrl = process.env.NEXT_PUBLIC_API_URL as string;
 
+export type Wallpaper = {
+  id: string;
+  title: string;
+  copyright: string;
+  date: number;
+  tags: Record<string, number>;
+  colors?: string[];
+  urlBase?: string;
+};
+
 type WallpaperListResponse = {
   data?: Wallpaper[];
   links?: { next?: string };
@@ -21,16 +31,6 @@ async function fetchJson<T>(url: string, init: RequestInit): Promise<T | null> {
 
   return (await res.json()) as T;
 }
-
-export type Wallpaper = {
-  id: string;
-  title: string;
-  copyright: string;
-  date: number;
-  tags: Record<string, number>;
-  colors?: string[];
-  urlBase?: string;
-};
 
 export async function getWallpapers(
   startAfterDate?: string,
