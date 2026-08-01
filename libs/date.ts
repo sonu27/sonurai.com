@@ -1,6 +1,6 @@
-export const intToDate = (int: string): string => {
+export const intToDate = (int: number): string => {
   const datePattern = /^(\d{4})(\d{2})(\d{2})$/;
-  const match = datePattern.exec(int);
+  const match = datePattern.exec(String(int));
   if (!match) {
     throw new Error(`Invalid date format: ${int}`);
   }

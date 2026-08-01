@@ -26,7 +26,7 @@ export type Wallpaper = {
   id: string;
   title: string;
   copyright: string;
-  date: string;
+  date: number;
   tags: Record<string, number>;
   colors?: string[];
   urlBase?: string;
@@ -91,10 +91,11 @@ export async function getWallpapersByTag(tag: string) {
   };
 }
 
-export async function getTags() {
-  const tags = await fetchJson<object>(`${apiUrl}/wallpapers/tags`, {
-    cache: "force-cache",
-  });
+export async function getTags(): Promise<Record<string, number>> {
+  const tags = await fetchJson<Record<string, number>>(
+    `${apiUrl}/wallpapers/tags`,
+    { cache: "force-cache" },
+  );
 
   return tags ?? {};
 }
