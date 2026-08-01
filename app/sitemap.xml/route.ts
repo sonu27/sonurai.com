@@ -3,11 +3,12 @@ import { getTags } from "@/libs/Client";
 const siteUrl = process.env.NEXT_PUBLIC_URL as string;
 
 function generateSitemap(tags: string[]): string {
+  // "/" only redirects to /bingwallpapers, so listing it would point crawlers
+  // at a redirect and duplicate the entry below.
   const staticPages = [
-    { url: "", priority: "1.0", changefreq: "daily" },
-    { url: "/about", priority: "0.5", changefreq: "monthly" },
-    { url: "/bingwallpapers", priority: "0.9", changefreq: "daily" },
+    { url: "/bingwallpapers", priority: "1.0", changefreq: "daily" },
     { url: "/bingwallpapers/tags", priority: "0.8", changefreq: "weekly" },
+    { url: "/about", priority: "0.5", changefreq: "monthly" },
   ];
 
   const staticUrls = staticPages
