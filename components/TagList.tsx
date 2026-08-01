@@ -34,7 +34,7 @@ export default function TagList({ tags }: { tags: [string, number][] }) {
           <Link
             key={tag}
             prefetch={false}
-            href={`/bingwallpapers/tags/${tag}`}
+            href={`/bingwallpapers/tags/${encodeURIComponent(tag)}`}
             className="whitespace-nowrap px-3 py-2 rounded-md bg-slate-800 text-gray-300 hover:bg-slate-700 hover:text-white"
           >
             {tag}

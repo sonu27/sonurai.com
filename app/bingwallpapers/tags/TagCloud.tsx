@@ -17,7 +17,7 @@ export default function TagCloud({ tags }: { tags: [string, number][] }) {
           <Link
             key={tag}
             prefetch={false}
-            href={`/bingwallpapers/tags/${tag}`}
+            href={`/bingwallpapers/tags/${encodeURIComponent(tag)}`}
             className="px-3 py-1.5 rounded-md bg-white/5 text-gray-300 text-sm hover:bg-white/10 hover:text-white transition-colors"
           >
             {tag}

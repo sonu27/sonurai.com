@@ -39,14 +39,16 @@ export async function getWallpapers(
 ) {
   let url = `${apiUrl}/wallpapers`;
 
-  const isPaginated = startAfterDate && startAfterID;
+  const isPaginated = Boolean(startAfterDate && startAfterID);
 
-  if (isPaginated) {
-    url = `${url}?startAfterDate=${startAfterDate}&startAfterID=${startAfterID}`;
+  if (startAfterDate && startAfterID) {
+    const query = new URLSearchParams({ startAfterDate, startAfterID });
 
     if (prev) {
-      url = `${url}&prev=1`;
+      query.set("prev", "1");
     }
+
+    url = `${url}?${query}`;
   }
 
   const revalidate = isPaginated ? 86400 : 3600; // 24h for pagination, 1h for main
@@ -79,7 +81,7 @@ export async function getWallpapers(
 
 export async function getWallpapersByTag(tag: string) {
   const json = await fetchJson<WallpaperListResponse>(
-    `${apiUrl}/wallpapers/tags/${tag}`,
+    `${apiUrl}/wallpapers/tags/${encodeURIComponent(tag)}`,
     { next: { revalidate: 604800 } },
   );
 
@@ -111,9 +113,10 @@ export async function fetchNextPage(
 }
 
 export async function getWallpaper(id: string) {
-  const wallpaper = await fetchJson<Wallpaper>(`${apiUrl}/wallpapers/${id}`, {
-    next: { revalidate: 604800 },
-  });
+  const wallpaper = await fetchJson<Wallpaper>(
+    `${apiUrl}/wallpapers/${encodeURIComponent(id)}`,
+    { next: { revalidate: 604800 } },
+  );
 
   return { wallpaper };
 }
