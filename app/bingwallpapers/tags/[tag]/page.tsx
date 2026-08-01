@@ -13,7 +13,9 @@ export async function generateMetadata(props: {
     title: `Tagged "${decodedTag}" - Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
     description: `Browse and download free HD wallpapers tagged with "${decodedTag}" from Bing's daily wallpaper collection.`,
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/tags/${params.tag}`,
+      // Re-encode rather than echoing the incoming segment, so alternative
+      // encodings of the same tag all point at one canonical URL.
+      canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers/tags/${encodeURIComponent(decodedTag)}`,
     },
   };
 }
