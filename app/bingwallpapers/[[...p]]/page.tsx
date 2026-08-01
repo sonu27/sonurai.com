@@ -4,14 +4,23 @@ import { getWallpapers } from "@/libs/Client";
 import WallpaperList from "@/components/WallpaperList";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
-  description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
-  robots: { follow: true, index: false },
-  alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers`,
-  },
-};
+export async function generateMetadata(props: {
+  params: Promise<{ p?: string[] }>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const isPaginated = Boolean(params?.p?.length);
+
+  return {
+    title: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+    description: `Bing Wallpapers - ${process.env.NEXT_PUBLIC_NAME}`,
+    // Paginated slices shift as new wallpapers arrive, so only the entry point
+    // is worth indexing. It is also where "/" redirects to.
+    robots: isPaginated ? { follow: true, index: false } : undefined,
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_URL}/bingwallpapers`,
+    },
+  };
+}
 
 type PaginationCursor = { date: number; id: string };
 
