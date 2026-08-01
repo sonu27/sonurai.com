@@ -93,7 +93,11 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
       <Script
         id="json-ld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        // Escaping "<" keeps a title containing "</script>" from closing the
+        // block early. JSON.stringify does not do this on its own.
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
       />
       <a href={urlBase ? `${urlBase}_UHD.jpg` : `https://images.sonurai.com/${id}.jpg`}>
         <Image
