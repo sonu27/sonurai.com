@@ -3,6 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
+// Matches the collapsed max-height below. Measuring against a constant rather
+// than the live clientHeight keeps the result correct while expanded.
+const COLLAPSED_HEIGHT = 88;
+
 export default function TagList({ tags }: { tags: [string, number][] }) {
   const [expanded, setExpanded] = useState(false);
   const [hasOverflow, setHasOverflow] = useState(false);
@@ -11,9 +15,7 @@ export default function TagList({ tags }: { tags: [string, number][] }) {
   useEffect(() => {
     const checkOverflow = () => {
       if (containerRef.current) {
-        setHasOverflow(
-          containerRef.current.scrollHeight > containerRef.current.clientHeight
-        );
+        setHasOverflow(containerRef.current.scrollHeight > COLLAPSED_HEIGHT);
       }
     };
 
@@ -26,8 +28,8 @@ export default function TagList({ tags }: { tags: [string, number][] }) {
     <div className="mt-2 content-margin">
       <div
         ref={containerRef}
-        className={`flex flex-wrap gap-2 overflow-hidden transition-[max-height] duration-300 ${
-          expanded ? "max-h-[500px]" : "max-h-[88px]"
+        className={`flex flex-wrap gap-2 ${
+          expanded ? "" : "max-h-[88px] overflow-hidden"
         }`}
       >
         {tags.map(([tag]) => (
@@ -41,9 +43,11 @@ export default function TagList({ tags }: { tags: [string, number][] }) {
           </Link>
         ))}
       </div>
-      {(hasOverflow || expanded) && (
+      {hasOverflow && (
         <button
+          type="button"
           onClick={() => setExpanded(!expanded)}
+          aria-expanded={expanded}
           className="mt-2 text-gray-400 hover:text-white"
         >
           {expanded ? "Show less" : "More"}
