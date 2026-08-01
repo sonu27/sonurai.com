@@ -99,12 +99,11 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <a href={urlBase ? `${urlBase}_UHD.jpg` : `https://images.sonurai.com/${id}.jpg`}>
+      <a href={imageUrl}>
         <Image
-          className="img-fluid"
           priority={true}
           unoptimized={true}
-          src={urlBase ? `${urlBase}_UHD.jpg` : `https://images.sonurai.com/${id}.jpg`}
+          src={imageUrl}
           width={3840}
           height={urlBase ? 2160 : 1200}
           alt={`Bing Wallpaper: ${title}`}
@@ -112,7 +111,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
         />
       </a>
       <div className="flex items-start justify-between gap-4 mt-2 content-margin">
-        <h1 className="caption text-xl text-white md:text-2xl">{title}</h1>
+        <h1 className="text-xl text-white md:text-2xl">{title}</h1>
         <DownloadButton url={imageUrl} filename={`${id}.jpg`} />
       </div>
       <p className="text-gray-400 content-margin">
